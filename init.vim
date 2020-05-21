@@ -1,0 +1,500 @@
+"###############################################################################
+" Genreal & vim-plugin Manager Settings
+"###############################################################################
+
+"===============================General Settings================================
+"You can enable loading the plugin files and the indent file for specific file types with:
+filetype on
+filetype plugin indent on
+
+set encoding=utf-8
+syntax on
+set number
+set ruler
+set mouse=a
+set colorcolumn=80
+"set fillchars=fold:\
+
+" Refference for tab https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
+set tabstop=4                                " The width of a hard tabstop measured in "spaces"
+set shiftwidth=4                             " The size of an "indent". It's also measured in spaces
+
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
+"autocmd FileType tex,text,markdown :setlocal spell
+
+" Required by CtrlSpace and coc.nvim
+set nocompatible
+set hidden
+
+" Color correction
+set termguicolors
+
+set list
+set lcs=tab:\|\-
+
+"=========================vim-plugin Manager settings==========================
+call plug#begin('~/.local/share/nvim/site/autoload')
+
+if !has('nvim')
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
+
+Plug 'jackguo380/vim-lsp-cxx-highlight'                  " Provides C/C++/ObjC semantic highlighting using the language server protocol.
+
+Plug 'jalvesaq/vimcmdline'                               " Send lines to interpreter
+"Plug 'justinmk/nvim-repl'
+"Plug 'voldikss/vim-floaterm'                             " Plugin for open floating terminal
+
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'idanarye/vim-vebugger', { 'branch': 'develop' }
+Plug 'puremourning/vimspector',  { 'branch': 'master' }  " Debugger plugin
+"Plug 'SkyLeach/pudb.vim'                                " Debugger plugin
+"Plug 'critiqjo/lldb.nvim'                               " Debugger plugin
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'vim-ctrlspace/vim-ctrlspace'
+Plug 'mhinz/vim-startify'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sainnhe/gruvbox-material'
+Plug 'morhetz/gruvbox'
+Plug 'sainnhe/forest-night'
+Plug 'sainnhe/edge'
+Plug 'sheerun/vim-polyglot'                              " For better syntax highlighting support
+Plug 'ryanoasis/vim-devicons'                            " Provided graphical icon
+
+Plug 'scrooloose/nerdcommenter'
+Plug 'jiangmiao/auto-pairs'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug '907th/vim-auto-save'
+
+Plug 'jreybert/vimagit'
+Plug 'kana/vim-arpeggio'                                 " Key mapping plugin.
+
+" ToDO adjust plugin:
+"Plug 'easymotion/vim-easymotion'
+"Plug 'tpope/vim-fugitive'                               " Plugin for command line git, can be integerate with airline
+
+call plug#end()
+
+
+"###############################################################################
+" Remap Keys. Use :mapclear command to reset all key map to default.
+"###############################################################################
+" noremap: non recursive normal, visual, select and operating-pending map
+noremap <C-c><C-c> "+y
+noremap <C-x><C-x> "+x
+noremap <C-v><C-v> "+p
+
+" Navigate between opened windows
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
+nnoremap <C-k> <C-W>k
+nnoremap <C-j> <C-W>j
+
+" Also you can use :bdelete in the following command
+nnoremap <Tab> :bnext<CR> 
+
+nnoremap <C-q><C-q> :q!<CR>   " Close the window in the tab, you can use :bwipe! for more restriction
+nnoremap <C-f><C-f> :bp<bar>sp<bar>bn<bar>bd!<CR>   " Close the buffer without changing the layout of windows
+nnoremap <C-t><C-t> :tabc<CR>     " Close the current tab
+
+" Set the path of current file as a working directory local for current window
+autocmd BufEnter * silent! lcd %:p:h
+
+
+"###############################################################################
+" Gruvbox-material settings
+"###############################################################################
+" For dark or light scheme
+set background=dark   " dark or light
+
+let g:gruvbox_material_background = 'soft'   "hard, soft or medium
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_disable_italic_comment = 0
+let g:gruvbox_material_enable_bold = 1
+let g:gruvbox_material_cursor = 'auto'
+let g:gruvbox_material_palette = 'material'      " Available choice material, mix, original
+
+" To enable gruvbox-material color scheme for leaderf Plugin
+"let g:Lf_StlColorscheme = 'gruvbox_material'
+
+" To enable lightline color scheme
+"let g:lightline = {'colorscheme' : 'gruvbox_material'}
+
+" This configuration option should be placed before `colorscheme gruvbox-material`
+" available values: 'hard', 'medium'(default), 'soft'
+let g:gruvbox_material_background = 'soft'
+
+colorscheme gruvbox-material                  " Available choice gruvbox-material, forest-night, edge or gruvbox, solarized
+
+
+"###############################################################################
+" Vim-Airline settings
+"###############################################################################
+let g:airline_powerline_fonts = 1
+
+" This option theme for status line and related thing, the best choice is 'papercolor', 'solarized', 'gruvbox_material', 'edge' or 'forest_night'
+let g:airline_theme = 'gruvbox_material'
+
+let g:airline_detect_crypt=1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#fnamemod = ':p:.'
+let g:airline#extensions#tabline#fnametruncate = 0
+let g:airline#extensions#tabline#show_splits = 1
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#tab_nr_type = 0    "split
+
+let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#tabline#buffer_nr_format = '%s: '
+
+" Vim-CtrlSpace with airline
+let g:airline_exclude_preview = 1
+
+" To enable/disable bufferline integration with vim-bufferline
+"let g:airline#extensions#bufferline#enabled = 1
+
+" To enable/disable bufferline integration with fugitive
+"let g:airline#extensions#fugitiveline#enabled = 1
+
+" To enable/disable bufferline integration with gina
+"let g:airline#extensions#gina#enabled = 1
+
+
+"##############################################################################
+" fzf.vim settings
+"##############################################################################
+
+
+
+"##############################################################################
+" vim-startify settings
+"##############################################################################
+let g:startify_relative_path       = 1
+let g:startify_fortune_use_unicode = 1
+
+" returns all modified files of the current git repo
+" `2>/dev/null` makes the command fail quietly, so that when we are not
+" in a git repo, the list will be empty
+function! s:gitModified()
+    let files = systemlist('git ls-files -m 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+" same as above, but show untracked files, honouring .gitignore
+function! s:gitUntracked()
+    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+" default boxed random quote, but not the ASCII art cow.
+let g:ascii = [
+			\ ' #     #  #######  #     #  ######      #     ######  ',
+			\ ' ##   ##  #     #  #     #  #     #    # #    #     # ',
+			\ ' # # # #  #     #  #     #  #     #   #   #   #     # ',
+			\ ' #  #  #  #     #  #     #  ######   #     #  #     # ',
+			\ ' #     #  #     #  #     #  #   #    #######  #     # ',
+			\ ' #     #  #     #  #     #  #    #   #     #  #     # ',
+			\ ' #     #  #######   #####   #     #  #     #  ######  ',
+			\ '                                                      ',
+			\ ]
+let g:startify_custom_header = 'startify#center(g:ascii + startify#fortune#boxed())'
+let g:startify_custom_footer = 'startify#center(startify#fortune#boxed())'
+
+
+"###############################################################################
+" vim-ctrlspace settings
+"###############################################################################
+let g:CtrlSpaceDefaultMappingKey = "<C-space> "   " Required in Neovim
+
+" Enable Tabline
+let g:CtrlSpaceUseTabline = 1
+
+" Detect your os and architecture faster
+if has('win32')
+	let s:vimfiles = '~/vimfiles'
+	let s:os   = 'windows'
+else
+	let s:vimfiles = '~/.vim'
+	if has('mac') || has('gui_macvim')
+		let s:os = 'darwin'
+	else
+	" elseif has('gui_gtk2') || has('gui_gtk3')
+		let s:os = 'linux'
+	endif
+endif
+
+
+"###############################################################################
+" NerdTree settings
+"###############################################################################
+" Show hidden files
+let NERDTreeShowHidden=0
+
+" Automatically delete the buffer of the file you just deleted with NerdTree
+let NERDTreeAutoDeleteBuffer = 1
+
+" Automatically close vim if only NERDTree left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Automatically open NERDTree
+" wincmd p command back to old window
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | wincmd p | Startify | endif
+"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+" Synchronize NERDTree with current oppend file {{{ 
+" Check if NERDTree is open or active
+function! IsNERDTreeOpen()
+	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+	if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff && &filetype != 'list'
+		NERDTreeFind
+		wincmd p
+	endif
+endfunction
+
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call SyncTree()
+
+function! ToggleNerdTree()
+	set eventignore=BufEnter
+	NERDTreeToggle
+	set eventignore=
+endfunction
+nmap <C-t> :call ToggleNerdTree()<CR>
+"}}}
+
+
+"###############################################################################
+" Vimagit settings
+"###############################################################################
+let g:magit_default_fold_level = 0 
+
+
+"###############################################################################
+" NerdCommenter settings
+"###############################################################################
+"Default mapping for comment toggle: [count]|<Leader>|c<space>
+let g:NERDSpaceDelims = 0
+let g:NERDToggleCheckAllLines = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+
+
+"###############################################################################
+" Vimcmdline settings
+"###############################################################################
+" vimcmdline mappings
+let cmdline_map_start          = '<LocalLeader>s'
+let cmdline_map_send           = '<Space>'
+let cmdline_map_send_and_stay  = '<LocalLeader><Space>'
+let cmdline_map_source_fun     = '<LocalLeader>f'
+let cmdline_map_send_paragraph = '<LocalLeader>p'
+let cmdline_map_send_block     = '<LocalLeader>b'
+let cmdline_map_quit           = '<LocalLeader>q'
+
+" vimcmdline options
+let cmdline_vsplit      = 0      " Split the window vertically
+let cmdline_esc_term    = 1      " Remap <Esc> to :stopinsert in Neovim's terminal
+let cmdline_in_buffer   = 1      " Start the interpreter in a Neovim's terminal
+let cmdline_term_height = 10     " Initial height of interpreter window or pane when vsplit not active
+let cmdline_term_width  = 45     " Initial width of interpreter window or pane when vsplit active
+"let cmdline_tmp_dir     = '/tmp' " Temporary directory to save files
+let cmdline_auto_scroll = 1      " Keep the cursor at the end of terminal (nvim)
+
+let cmdline_app           = {}
+let cmdline_app['ruby']   = 'pry'
+let cmdline_app['sh']     = 'bash'
+let cmdline_app['python'] = 'ipython3'
+
+
+"###############################################################################
+" Vim-vebugger settings
+"###############################################################################
+"let g:vebugger_leader='<Leader>d'
+"let g:vebugger_view_source_cmd='edit'
+let g:vebugger_breakpoint_text = '◉'
+let g:vebugger_currentline_text = '➥'
+nmap <special> <F7> :VBGstepOver<CR>
+nmap <special> <F8> :VBGstepIn<CR>
+nmap <special> <F9> :VBGstepOut<CR>
+nmap <special> <leader><F9> :VBGcontinue<CR>
+nmap <unique> <leader>b :VBGtoggleBreakpointThisLine<CR>
+nmap <special> <leader><F8> :VBGevalWordUnderCursor<CR>
+nmap <unique> <leader>xx :VBGexecute
+nmap <unique> <leader>ee :VBGeval
+
+
+"###############################################################################
+" vimspector settings
+"###############################################################################
+"nmap <special> <leader><F9> <Plug>VimspectorContinue
+"nmap <F4> <Plug>VimspectorStop
+"nmap <F3> <Plug>VimspectorRestart
+"nmap <F5> <Plug>VimspectorPause
+"nmap <unique> <leader>b <Plug>VimspectorToggleBreakpoint
+""nmap <F8> <Plug>VimspectorAddFunctionBreakpoint
+"nmap <special> <F7> <Plug>VimspectorStepOver
+"nmap <special> <F8> <Plug>VimspectorStepInto
+"nmap <special> <F9> <Plug>VimspectorStepOut
+"sign define vimspectorBP text=🔴️ texthl=Normal
+"sign define vimspectorBPDisabled text=🔵 texthl=Normal
+"sign define vimspectorPC text=🔶 texthl=SpellBad
+
+
+"###############################################################################
+" Coc.nvim settings
+"###############################################################################
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" You can also change the signcolumn option
+set signcolumn=auto:2
+
+" Remap for do codeAction of selected region
+"function! s:cocActionsOpenFromSelected(type) abort
+"    execute 'CocCommand actions.open ' . a:type
+"endfunction
+"xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+"nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
+" Map <tab> to trigger completion and navigate to the next item:
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+
+" Using <CR> to confirm completion:
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+
+" Highlight symbol under cursor on CursorHold
+set updatetime=1000
+autocmd CursorHold * silent call CocActionAsync('highlight')
+highlight link CocHighlightText RedrawDebugRecomposed
+highlight link CocHighlightRead RedrawDebugClear
+highlight link CocHighlightWrite RedrawDebugComposed
+
+" Map function
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gc <Plug>(coc-declaration)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> ca <Plug>(coc-codeaction)
+nmap <silent> df <Plug>(coc-format)
+nmap <silent> <F2> <Plug>(coc-rename)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+"Airline configuration for coc
+let g:airline#extensions#coc#enabled = 1
+
+
+"###############################################################################
+" Auto Save settings
+"###############################################################################
+let g:auto_save = 1
+let g:auto_save_events = ["CursorHoldI", "CursorHold"]
+
+
+"###############################################################################
+" MarkDown settings
+"###############################################################################
+" set to 1, nvim will open the preview window after entering the markdown buffer
+let g:mkdp_auto_start = 0
+
+" set to 1, the nvim will auto close current preview window when change
+" from markdown buffer to another buffer
+let g:mkdp_auto_close = 1
+
+" set to 1, the vim will refresh markdown when save the buffer or
+" leave from insert mode, default 0 is auto refresh markdown as you edit or
+" move the cursor
+" default: 0
+let g:mkdp_refresh_slow = 0
+
+" set to 1, the MarkdownPreview command can be use for all files,
+" by default it can be use in markdown file
+let g:mkdp_command_for_global = 0
+
+" set to 1, preview server available to others in your network
+" by default, the server listens on localhost (127.0.0.1)
+let g:mkdp_open_to_the_world = 0
+
+" use custom IP to open preview page
+" useful when you work in remote vim and preview on local browser
+" more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
+" default empty
+let g:mkdp_open_ip = ''
+
+" specify browser to open preview page
+" default: ''
+let g:mkdp_browser = 'firefox'
+
+" set to 1, echo preview page url in command line when open preview page
+" default is 0
+let g:mkdp_echo_preview_url = 1
+
+" a custom vim function name to open preview page
+" this function will receive url as param
+" default is empty
+let g:mkdp_browserfunc = ''
+
+" options for markdown render
+" mkit: markdown-it options for render
+" katex: katex options for math
+" uml: markdown-it-plantuml options
+" maid: mermaid options
+" disable_sync_scroll: if disable sync scroll, default 0
+" sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
+"   middle: mean the cursor position alway show at the middle of the preview page
+"   top: mean the vim top viewport alway show at the top of the preview page
+"   relative: mean the cursor position alway show at the relative positon of the preview page
+" hide_yaml_meta: if hide yaml metadata, default is 1
+" sequence_diagrams: js-sequence-diagrams options
+let g:mkdp_preview_options = {
+	\ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {}
+    \ }
+
+" use a custom markdown style must be absolute path
+" like '/Users/username/markdown.css' or expand('~/markdown.css')
+let g:mkdp_markdown_css = ''
+
+" use a custom highlight style must absolute path
+" like '/Users/username/highlight.css' or expand('~/highlight.css')
+let g:mkdp_highlight_css = ''
+
+" use a custom port to start server or random for empty
+let g:mkdp_port = ''
+
+" preview page title
+" ${name} will be replace with the file name
+let g:mkdp_page_title = '「${name}」'

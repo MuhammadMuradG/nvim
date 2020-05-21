@@ -1,0 +1,102 @@
+{
+	// Target to show hover information, default is floating window when possible.
+
+	// diagnostic related configurations
+	"diagnostic.enable": true,
+	"diagnostic.level": "hint",
+	"diagnostic.refreshOnInsertMode": true,
+
+	"diagnostic.signOffset": 999999,
+	"diagnostic.enableSign": true,
+	"diagnostic.errorSign": "Ⓧ",
+	"diagnostic.warningSign": "⚠",
+	"diagnostic.infoSign": "Ⓘ",
+	"diagnostic.hintSign": "Ⓗ",
+
+	"diagnostic.virtualText": false,
+	"diagnostic.virtualTextPrefix": "⎧Msg⎭❱ ",
+
+	// completion related configuration
+	"coc.preferences.hoverTarget": "float",
+	"coc.preferences.colorSupport": true,
+
+	// Make vim select first item on completion
+	"suggest.noselect": true,
+
+	// spell checker configuration
+	"cSpell.showStatus": true,
+	"cSpell.enabledLanguageIds": [
+		"vim",
+		"asciidoc",
+		"c",
+		"cpp",
+		"csharp",
+		"css",
+		"git-commit",
+		"go",
+		"handlebars",
+		"haskell",
+		"html",
+		"jade",
+		"java",
+		"javascript",
+		"javascriptreact",
+		"json",
+		"jsonc",
+		"latex",
+		"less",
+		"markdown",
+		"php",
+		"plaintext",
+		"pug",
+		"python",
+		"restructuredtext",
+		"rust",
+		"scala",
+		"scss",
+		"text",
+		"typescript",
+		"typescriptreact",
+		"yaml",
+		"yml"
+	],
+
+	// LSP Configurations
+	// Python
+	"python.autoComplete.addBrackets": true,
+	"python.jediEnabled": true,
+	"python.linting.enabled": true,
+	"python.linting.lintOnSave": true,
+	"python.linting.pylintEnabled": true,
+	"python.linting.pylintUseMinimalCheckers": true,
+	"python.formatting.provider": "black",
+
+	// Latex
+	"latex.lint.onSave": true,
+	"latex.lint.onChange": true,
+	"latex.build.onSave": true,
+	"latex.forwardSearch.executable": "/usr/bin/zathura",
+	"latex.forwardSearch.args": [
+		"--synctex-forward",
+		"%l:1:%f",
+		"%p"
+	],
+
+	// C/C++/Objective-C
+	"clangd.enabled": true,
+	"clangd.checkUpdates": true,
+	"clangd.semanticHighlighting": true,
+
+	// Manual Settings
+	"languageserver": 
+	{
+		// HDL
+		"hdlChecker": 
+		{
+			// First run "pip3 install hdl-checker --user --upgrade"
+			"command": "hdl_checker",
+			"args": ["--lsp"],
+			"filetypes": ["vhdl", "verilog", "systemverilog"]
+		}
+	}
+}
