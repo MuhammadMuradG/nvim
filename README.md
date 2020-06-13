@@ -1,4 +1,4 @@
-# fancy-neovim-config
+# A Fancy Neovim Config
 This repo is a my configuration of nvim text editor.
 
 ### Install
