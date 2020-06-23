@@ -1,4 +1,3 @@
-"###############################################################################
 " Genreal & vim-plugin Manager Settings
 "###############################################################################
 
@@ -15,7 +14,7 @@ set mouse=a
 set colorcolumn=80
 "set fillchars=fold:\
 
-" Refference for tab https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
+" Reference for tab https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
 set tabstop=4                                " The width of a hard tabstop measured in "spaces"
 set shiftwidth=4                             " The size of an "indent". It's also measured in spaces
 
@@ -31,7 +30,7 @@ set hidden
 set termguicolors
 
 set list
-set lcs=tab:\|\-
+set lcs=tab:\|\ 
 
 "=========================vim-plugin Manager settings==========================
 call plug#begin('~/.local/share/nvim/site/autoload')
@@ -57,6 +56,9 @@ Plug 'puremourning/vimspector',  { 'branch': 'master' }  " Debugger plugin
 "Plug 'critiqjo/lldb.nvim'                               " Debugger plugin
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
+Plug 'vim-pandoc/vim-pandoc'                             " Providing integration with nvim
+Plug 'vim-pandoc/vim-pandoc-syntax'                      " Providing syntax integration with nvim
+
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'vim-ctrlspace/vim-ctrlspace'
@@ -67,7 +69,7 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/forest-night'
 Plug 'sainnhe/edge'
-Plug 'sheerun/vim-polyglot'                              " For better syntax highlighting support
+"Plug 'sheerun/vim-polyglot'                              " For better syntax highlighting support with edge
 Plug 'ryanoasis/vim-devicons'                            " Provided graphical icon
 
 Plug 'scrooloose/nerdcommenter'
@@ -79,7 +81,7 @@ Plug '907th/vim-auto-save'
 Plug 'jreybert/vimagit'
 Plug 'kana/vim-arpeggio'                                 " Key mapping plugin.
 
-" ToDO adjust plugin:
+" TODO adjust plugin:
 "Plug 'easymotion/vim-easymotion'
 "Plug 'tpope/vim-fugitive'                               " Plugin for command line git, can be integerate with airline
 
@@ -397,7 +399,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gc <Plug>(coc-declaration)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> ca <Plug>(coc-codeaction)
+nmap <silent> cl <Plug>(coc-codelens-action)
+nmap <silent> caa <Plug>(coc-codeaction)
+nmap <silent> ca <Plug>(coc-codeaction-selected)<CR>
 nmap <silent> df <Plug>(coc-format)
 nmap <silent> <F2> <Plug>(coc-rename)
 
@@ -408,6 +412,9 @@ let g:coc_snippet_prev = '<c-k>'
 
 "Airline configuration for coc
 let g:airline#extensions#coc#enabled = 1
+
+"Coc explorer
+nmap <space>e :CocCommand explorer<CR>
 
 
 "###############################################################################
@@ -498,3 +505,9 @@ let g:mkdp_port = ''
 " preview page title
 " ${name} will be replace with the file name
 let g:mkdp_page_title = '「${name}」'
+
+
+"###############################################################################
+" vim-pandoc settings
+"###############################################################################
+let g:pandoc#modules#disabled = ["folding"]

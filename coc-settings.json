@@ -1,24 +1,34 @@
 {
 	// Target to show hover information, default is floating window when possible.
-
 	// diagnostic related configurations
 	"diagnostic.enable": true,
 	"diagnostic.level": "hint",
 	"diagnostic.refreshOnInsertMode": true,
-
 	"diagnostic.signOffset": 999999,
 	"diagnostic.enableSign": true,
 	"diagnostic.errorSign": "Ⓧ",
 	"diagnostic.warningSign": "⚠",
 	"diagnostic.infoSign": "Ⓘ",
 	"diagnostic.hintSign": "Ⓗ",
-
 	"diagnostic.virtualText": false,
 	"diagnostic.virtualTextPrefix": "⎧Msg⎭❱ ",
+
+	// Explorer
+	"explorer.toggle": true,
+	"explorer.autoExpandOptions": [
+		"compact",
+		"uncompact"
+	],
+	"explorer.position": "left",
+	"explorer.width": 30,
+	"explorer.previewAction.onHover": true,
+	"explorer.icon.enableNerdfont": true,
 
 	// completion related configuration
 	"coc.preferences.hoverTarget": "float",
 	"coc.preferences.colorSupport": true,
+	"codeLens.enable": true,
+	"codeLens.separator": "‣",
 
 	// Make vim select first item on completion
 	"suggest.noselect": true,
@@ -44,8 +54,11 @@
 		"json",
 		"jsonc",
 		"latex",
+		"tex",
+		"plaintex",
 		"less",
 		"markdown",
+		"pandoc",
 		"php",
 		"plaintext",
 		"pug",
@@ -68,13 +81,32 @@
 	"python.linting.enabled": true,
 	"python.linting.lintOnSave": true,
 	"python.linting.pylintEnabled": true,
-	"python.linting.pylintUseMinimalCheckers": true,
+	"python.linting.pylintArgs": [
+		"--load-plugins",
+		"pylint_django"
+	],
+	"python.linting.pylintUseMinimalCheckers": false,
 	"python.formatting.provider": "black",
 
 	// Latex
+	"latex.build.executable": "latexmk",
+	"latex.build.args": [
+		"-pdf",
+		"-interaction=nonstopmode",
+		"-synctex=1",
+		"%f"
+	],
+	
+	// Use this for the packages that need lualatex engine
+	//"latex.build.args": [
+	//	"-lualatex",
+	//	"-interaction=nonstopmode",
+	//	"-synctex=1"
+	//],
+
+	"latex.build.onSave": true,
 	"latex.lint.onSave": true,
 	"latex.lint.onChange": true,
-	"latex.build.onSave": true,
 	"latex.forwardSearch.executable": "/usr/bin/zathura",
 	"latex.forwardSearch.args": [
 		"--synctex-forward",
@@ -88,15 +120,19 @@
 	"clangd.semanticHighlighting": true,
 
 	// Manual Settings
-	"languageserver": 
-	{
+	"languageserver": {
 		// HDL
-		"hdlChecker": 
-		{
+		"hdlChecker": {
 			// First run "pip3 install hdl-checker --user --upgrade"
 			"command": "hdl_checker",
-			"args": ["--lsp"],
-			"filetypes": ["vhdl", "verilog", "systemverilog"]
+			"args": [
+				"--lsp"
+			],
+			"filetypes": [
+				"vhdl",
+				"verilog",
+				"systemverilog"
+			]
 		}
 	}
 }
