@@ -49,11 +49,12 @@ Plug 'jalvesaq/vimcmdline'                               " Send lines to interpr
 "Plug 'justinmk/nvim-repl'
 "Plug 'voldikss/vim-floaterm'                             " Plugin for open floating terminal
 
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'idanarye/vim-vebugger', { 'branch': 'develop' }
 Plug 'puremourning/vimspector',  { 'branch': 'master' }  " Debugger plugin
+"Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+"Plug 'idanarye/vim-vebugger', { 'branch': 'develop' }
 "Plug 'SkyLeach/pudb.vim'                                " Debugger plugin
 "Plug 'critiqjo/lldb.nvim'                               " Debugger plugin
+
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 Plug 'vim-pandoc/vim-pandoc'                             " Providing integration with nvim
@@ -65,20 +66,20 @@ Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'                            " Provided graphical icon
 Plug 'sainnhe/gruvbox-material'
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/forest-night'
 Plug 'sainnhe/edge'
 "Plug 'sheerun/vim-polyglot'                              " For better syntax highlighting support with edge
-Plug 'ryanoasis/vim-devicons'                            " Provided graphical icon
 
 Plug 'scrooloose/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug '907th/vim-auto-save'
+Plug 'jreybert/vimagit'                                   " Ease your git workflow within vim.
 
-Plug 'jreybert/vimagit'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'jiangmiao/auto-pairs'
+Plug '907th/vim-auto-save'
 Plug 'kana/vim-arpeggio'                                 " Key mapping plugin.
 
 " TODO adjust plugin:
@@ -231,7 +232,6 @@ else
 	if has('mac') || has('gui_macvim')
 		let s:os = 'darwin'
 	else
-	" elseif has('gui_gtk2') || has('gui_gtk3')
 		let s:os = 'linux'
 	endif
 endif
@@ -255,6 +255,10 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | endif
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | wincmd p | Startify | endif
 "autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+" Change default arrows if empty means there is no arrows
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 
 " Synchronize NERDTree with current oppend file {{{ 
 " Check if NERDTree is open or active
@@ -284,9 +288,21 @@ nmap <C-t> :call ToggleNerdTree()<CR>
 
 
 "###############################################################################
-" Vimagit settings
+" nerdtree-git settings
 "###############################################################################
-let g:magit_default_fold_level = 0 
+let g:magit_default_fold_level = 0
+let g:NERDTreeIndicatorMapCustom = {
+	\ "Modified"  : "✹",
+	\ "Staged"    : "✚",
+	\ "Untracked" : "✭",
+	\ "Renamed"   : "➜",
+	\ "Unmerged"  : "═",
+	\ "Deleted"   : "✖",
+	\ "Dirty"     : "✗",
+	\ "Clean"     : "✔︎",
+	\ "Ignored"   : "☒",
+	\ "Unknown"   : "?"
+	\ }
 
 
 "###############################################################################
@@ -331,33 +347,33 @@ let cmdline_app['python'] = 'ipython3'
 "###############################################################################
 "let g:vebugger_leader='<Leader>d'
 "let g:vebugger_view_source_cmd='edit'
-let g:vebugger_breakpoint_text = '◉'
-let g:vebugger_currentline_text = '➥'
-nmap <special> <F7> :VBGstepOver<CR>
-nmap <special> <F8> :VBGstepIn<CR>
-nmap <special> <F9> :VBGstepOut<CR>
-nmap <special> <leader><F9> :VBGcontinue<CR>
-nmap <unique> <leader>b :VBGtoggleBreakpointThisLine<CR>
-nmap <special> <leader><F8> :VBGevalWordUnderCursor<CR>
-nmap <unique> <leader>xx :VBGexecute
-nmap <unique> <leader>ee :VBGeval
+"let g:vebugger_breakpoint_text = '◉'
+"let g:vebugger_currentline_text = '➥'
+"nmap <special> <F7> :VBGstepOver<CR>
+"nmap <special> <F8> :VBGstepIn<CR>
+"nmap <special> <F9> :VBGstepOut<CR>
+"nmap <special> <leader><F9> :VBGcontinue<CR>
+"nmap <unique> <leader>b :VBGtoggleBreakpointThisLine<CR>
+"nmap <special> <leader><F8> :VBGevalWordUnderCursor<CR>
+"nmap <unique> <leader>xx :VBGexecute
+"nmap <unique> <leader>ee :VBGeval
 
 
 "###############################################################################
 " vimspector settings
 "###############################################################################
-"nmap <special> <leader><F9> <Plug>VimspectorContinue
-"nmap <F4> <Plug>VimspectorStop
-"nmap <F3> <Plug>VimspectorRestart
-"nmap <F5> <Plug>VimspectorPause
-"nmap <unique> <leader>b <Plug>VimspectorToggleBreakpoint
-""nmap <F8> <Plug>VimspectorAddFunctionBreakpoint
-"nmap <special> <F7> <Plug>VimspectorStepOver
-"nmap <special> <F8> <Plug>VimspectorStepInto
-"nmap <special> <F9> <Plug>VimspectorStepOut
-"sign define vimspectorBP text=🔴️ texthl=Normal
-"sign define vimspectorBPDisabled text=🔵 texthl=Normal
-"sign define vimspectorPC text=🔶 texthl=SpellBad
+nmap <special> <leader><F9> <Plug>VimspectorContinue
+nmap <F4> <Plug>VimspectorStop
+nmap <F3> <Plug>VimspectorRestart
+nmap <F5> <Plug>VimspectorPause
+nmap <unique> <leader>b <Plug>VimspectorToggleBreakpoint
+"nmap <F8> <Plug>VimspectorAddFunctionBreakpoint
+nmap <special> <F7> <Plug>VimspectorStepOver
+nmap <special> <F8> <Plug>VimspectorStepInto
+nmap <special> <F9> <Plug>VimspectorStepOut
+sign define vimspectorBP text=🔴️ texthl=Normal
+sign define vimspectorBPDisabled text=🔵 texthl=Normal
+sign define vimspectorPC text=🔶 texthl=SpellBad
 
 
 "###############################################################################
@@ -413,8 +429,15 @@ let g:coc_snippet_prev = '<c-k>'
 "Airline configuration for coc
 let g:airline#extensions#coc#enabled = 1
 
-"Coc explorer
-nmap <space>e :CocCommand explorer<CR>
+""Coc explorer
+"nmap <space>e :CocCommand explorer<CR>
+"autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+
+"" Automatically open coc-explorer
+"" wincmd p command back to old window
+"let dir = getcwd()
+"autocmd VimEnter * if argc() == 1 | exe 'CocCommand explorer ' . dir | wincmd p | endif
+"autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer ' . dir | wincmd p | endif
 
 
 "###############################################################################
