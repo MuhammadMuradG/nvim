@@ -14,9 +14,18 @@ set mouse=a
 set colorcolumn=80
 "set fillchars=fold:\
 
+" Fix cursor replacement after closing nvim
+set guicursor=
+
+" Shift + Tab does inverse tab
+inoremap <S-Tab> <C-d>
+
+" See invisible characters
+"set list listchars=tab:>\ ,trail:+,eol:$
+
 " Reference for tab https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
-set tabstop=4                                " The width of a hard tabstop measured in "spaces"
-set shiftwidth=4                             " The size of an "indent". It's also measured in spaces
+set tabstop=4                                " The width of a hard tabstop measured in ''spaces'
+set shiftwidth=4                             " The size of an 'indent'. It's also measured in spaces
 
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
