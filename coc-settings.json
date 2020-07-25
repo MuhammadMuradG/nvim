@@ -25,6 +25,7 @@
 	// completion related configuration
 	"coc.preferences.hoverTarget": "float",
 	"coc.preferences.colorSupport": true,
+	"coc.preferences.enableFloatHighlight": true,
 	"codeLens.enable": true,
 	"codeLens.separator": "‣",
 
