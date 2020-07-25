@@ -14,13 +14,13 @@
 	"diagnostic.virtualTextPrefix": "⎧Msg⎭❱ ",
 
 	// Explorer
-	//"explorer.toggle": true,
-	//"explorer.activeMode": true,
-	//"explorer.position": "left",
-	//"explorer.width": 30,
-	//"explorer.file.tabCD": true,
-	//"explorer.previewAction.onHover": true,
-	//"explorer.icon.enableNerdfont": true,
+	"explorer.toggle": true,
+	"explorer.activeMode": true,
+	"explorer.position": "left",
+	"explorer.width": 30,
+	"explorer.file.tabCD": true,
+	"explorer.previewAction.onHover": true,
+	"explorer.icon.enableNerdfont": true,
 
 	// completion related configuration
 	"coc.preferences.hoverTarget": "float",

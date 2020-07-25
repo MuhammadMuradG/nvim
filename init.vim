@@ -12,10 +12,6 @@ set number
 set ruler
 set mouse=a
 set colorcolumn=80
-"set fillchars=fold:\
-
-" Fix cursor replacement after closing nvim
-set guicursor=
 
 " Shift + Tab does inverse tab
 inoremap <S-Tab> <C-d>
@@ -85,8 +81,6 @@ Plug 'sainnhe/edge'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jreybert/vimagit'                                   " Ease your git workflow within vim.
 
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jiangmiao/auto-pairs'
 Plug '907th/vim-auto-save'
 Plug 'kana/vim-arpeggio'                                 " Key mapping plugin.
@@ -247,74 +241,6 @@ endif
 
 
 "###############################################################################
-" NerdTree settings
-"###############################################################################
-" Show hidden files
-let NERDTreeShowHidden=0
-
-" Automatically delete the buffer of the file you just deleted with NerdTree
-let NERDTreeAutoDeleteBuffer = 1
-
-" Automatically close vim if only NERDTree left
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" Automatically open NERDTree
-" wincmd p command back to old window
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | endif
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | wincmd p | Startify | endif
-"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-
-" Change default arrows if empty means there is no arrows
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
-
-" Synchronize NERDTree with current oppend file {{{ 
-" Check if NERDTree is open or active
-function! IsNERDTreeOpen()
-	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-	if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff && &filetype != 'list'
-		NERDTreeFind
-		wincmd p
-	endif
-endfunction
-
-" Highlight currently open buffer in NERDTree
-autocmd BufEnter * call SyncTree()
-
-function! ToggleNerdTree()
-	set eventignore=BufEnter
-	NERDTreeToggle
-	set eventignore=
-endfunction
-nmap <C-t> :call ToggleNerdTree()<CR>
-"}}}
-
-
-"###############################################################################
-" nerdtree-git settings
-"###############################################################################
-let g:magit_default_fold_level = 0
-let g:NERDTreeIndicatorMapCustom = {
-	\ "Modified"  : "✹",
-	\ "Staged"    : "✚",
-	\ "Untracked" : "✭",
-	\ "Renamed"   : "➜",
-	\ "Unmerged"  : "═",
-	\ "Deleted"   : "✖",
-	\ "Dirty"     : "✗",
-	\ "Clean"     : "✔︎",
-	\ "Ignored"   : "☒",
-	\ "Unknown"   : "?"
-	\ }
-
-
-"###############################################################################
 " NerdCommenter settings
 "###############################################################################
 "Default mapping for comment toggle: [count]|<Leader>|c<space>
@@ -438,12 +364,12 @@ let g:coc_snippet_prev = '<c-k>'
 "Airline configuration for coc
 let g:airline#extensions#coc#enabled = 1
 
-""Coc explorer
-"nmap <space>e :CocCommand explorer<CR>
-"autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+"Coc explorer
+nmap <space>e :CocCommand explorer<CR>
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
-"" Automatically open coc-explorer
-"" wincmd p command back to old window
+" Automatically open coc-explorer
+" wincmd p command back to old window
 "let dir = getcwd()
 "autocmd VimEnter * if argc() == 1 | exe 'CocCommand explorer ' . dir | wincmd p | endif
 "autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer ' . dir | wincmd p | endif

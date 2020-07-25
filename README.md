@@ -5,5 +5,7 @@ This repo is a my configuration of nvim text editor.
 1. First install [vim-plug](https://github.com/junegunn/vim-plug) plugin manager for nvim.
 2. Open `Terminal` and write `cd ~/.config`.
 3. Write in `Terminal`: `git clone "https://github.com/MuhammadMouradG/nvim.git"`.
-4. Open nvim and and write this command in command nvim mode: `:PlugInstall`.
+4. Open nvim and write this command in command nvim mode: `:PlugInstall`.
 5. Restart the nvim.
+6. Make sure you have npm. If not, write in `Terminal`: `sudo apt install npm`.
+7. Now you can install coc extention `CocInstall coc-python coc-git coc-explorer coc-highlight coc-html coc-css coc-clangd`, refer to: [coc.nvim](https://github.com/neoclide/coc.nvim)
