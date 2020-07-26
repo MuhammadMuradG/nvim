@@ -48,11 +48,8 @@ endif
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 
-Plug 'jackguo380/vim-lsp-cxx-highlight'                  " Provides C/C++/ObjC semantic highlighting using the language server protocol.
-
 Plug 'jalvesaq/vimcmdline'                               " Send lines to interpreter
 "Plug 'justinmk/nvim-repl'
-"Plug 'voldikss/vim-floaterm'                             " Plugin for open floating terminal
 
 Plug 'puremourning/vimspector',  { 'branch': 'master' }  " Debugger plugin
 "Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -78,16 +75,15 @@ Plug 'sainnhe/forest-night'
 Plug 'sainnhe/edge'
 "Plug 'sheerun/vim-polyglot'                              " For better syntax highlighting support with edge
 
+Plug 'jackguo380/vim-lsp-cxx-highlight'                  " Provides C/C++/ObjC semantic highlighting using the LSP.
+Plug 'tpope/vim-fugitive'                                " The premier Git plugin for Vim, it is illegal.
 Plug 'scrooloose/nerdcommenter'
-Plug 'jreybert/vimagit'                                   " Ease your git workflow within vim.
-
-Plug 'jiangmiao/auto-pairs'
 Plug '907th/vim-auto-save'
-Plug 'kana/vim-arpeggio'                                 " Key mapping plugin.
 
 " TODO adjust plugin:
+" Plug 'kana/vim-arpeggio'                                " Key mapping plugin.
 "Plug 'easymotion/vim-easymotion'
-"Plug 'tpope/vim-fugitive'                               " Plugin for command line git, can be integerate with airline
+"Plug 'tpope/vim-fugitive'                                " Plugin for command line git, can be integerate with airline
 
 call plug#end()
 
