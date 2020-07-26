@@ -81,7 +81,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug '907th/vim-auto-save'
 
 " TODO adjust plugin:
-" Plug 'kana/vim-arpeggio'                                " Key mapping plugin.
+"Plug 'kana/vim-arpeggio'                                " Key mapping plugin.
 "Plug 'easymotion/vim-easymotion'
 "Plug 'tpope/vim-fugitive'                                " Plugin for command line git, can be integerate with airline
 
