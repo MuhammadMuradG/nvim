@@ -15,6 +15,7 @@
 
 	// Explorer
 	"explorer.toggle": true,
+	"explorer.focus": true,
 	"explorer.activeMode": true,
 	"explorer.position": "left",
 	"explorer.width": 30,
