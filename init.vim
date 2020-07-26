@@ -368,8 +368,8 @@ autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | end
 " Automatically open coc-explorer
 " wincmd p command back to old window
 let dir = getcwd()
-autocmd VimEnter * if argc() == 1 | exe 'CocCommand explorer --no-focus ' . dir | wincmd p | endif
-autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-focus ' . dir | wincmd p | endif
+autocmd VimEnter * if argc() == 1 | exe 'CocCommand explorer --no-focus ' . dir | endif
+autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-focus ' . dir | endif
 
 
 "###############################################################################
