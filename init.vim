@@ -37,6 +37,7 @@ set termguicolors
 set list
 set lcs=tab:\|\ 
 
+
 "=========================vim-plugin Manager settings==========================
 call plug#begin('~/.local/share/nvim/site/autoload')
 
@@ -102,6 +103,8 @@ nnoremap <Tab> :bnext<CR>
 nnoremap <C-q><C-q> :q!<CR>   " Close the window in the tab, you can use :bwipe! for more restriction
 nnoremap <C-f><C-f> :bp<bar>sp<bar>bn<bar>bd!<CR>   " Close the buffer without changing the layout of windows
 nnoremap <C-t><C-t> :tabc<CR>     " Close the current tab
+
+nmap <silent><Leader>t :belowright 10split +terminal<CR>
 
 " Set the path of current file as a working directory local for current window
 autocmd BufEnter * silent! lcd %:p:h
