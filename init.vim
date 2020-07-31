@@ -48,14 +48,9 @@ endif
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 
-Plug 'jalvesaq/vimcmdline'                               " Send lines to interpreter
-"Plug 'justinmk/nvim-repl'
+Plug 'andy-kwei/vimcmdline'                              " REPL plugin
 
 Plug 'puremourning/vimspector',  { 'branch': 'master' }  " Debugger plugin
-"Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-"Plug 'idanarye/vim-vebugger', { 'branch': 'develop' }
-"Plug 'SkyLeach/pudb.vim'                                " Debugger plugin
-"Plug 'critiqjo/lldb.nvim'                               " Debugger plugin
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
@@ -73,14 +68,13 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/forest-night'
 Plug 'sainnhe/edge'
-"Plug 'sheerun/vim-polyglot'                              " For better syntax highlighting support with edge
 
 Plug 'jackguo380/vim-lsp-cxx-highlight'                  " Provides C/C++/ObjC semantic highlighting using the LSP.
 Plug 'tpope/vim-fugitive'                                " The premier Git plugin for Vim, it is illegal.
 Plug 'scrooloose/nerdcommenter'
 Plug '907th/vim-auto-save'
 
-" TODO adjust plugin:
+" TODO: adjust the following plugins:
 "Plug 'kana/vim-arpeggio'                                " Key mapping plugin.
 "Plug 'easymotion/vim-easymotion'
 "Plug 'tpope/vim-fugitive'                                " Plugin for command line git, can be integerate with airline
@@ -335,7 +329,7 @@ inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() 
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
 " Highlight symbol under cursor on CursorHold
-set updatetime=1000
+set updatetime=300
 autocmd CursorHold * silent call CocActionAsync('highlight')
 highlight link CocHighlightText RedrawDebugRecomposed
 highlight link CocHighlightRead RedrawDebugClear
@@ -361,15 +355,21 @@ let g:coc_snippet_prev = '<c-k>'
 let g:airline#extensions#coc#enabled = 1
 
 
-"Coc explorer
+"Coc-explorer
 nmap <space>e :CocCommand explorer<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " Automatically open coc-explorer
-" wincmd p command back to old window
-let dir = getcwd()
-autocmd VimEnter * if argc() == 1 | exe 'CocCommand explorer --no-focus ' . dir | endif
-autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-focus ' . dir | endif
+autocmd VimEnter * if argc() == 1 | exe 'CocCommand explorer --no-focus ' . '~' | endif
+autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-focus ' . '~' | endif
+
+" Sure the following script is called after CocExplorerOpenPost
+function s:explorer_inited()
+	autocmd BufEnter * if (&filetype != 'coc-explorer') | exe 'let dir = getcwd()' | endif
+	autocmd BufEnter * if (&filetype != 'coc-explorer') | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]}) | endif
+endfunction
+
+autocmd User CocExplorerOpenPost call s:explorer_inited()
 
 
 "###############################################################################
