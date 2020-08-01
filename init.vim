@@ -23,10 +23,6 @@ inoremap <S-Tab> <C-d>
 set tabstop=4                                " The width of a hard tabstop measured in ''spaces'
 set shiftwidth=4                             " The size of an 'indent'. It's also measured in spaces
 
-let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python3'
-"autocmd FileType tex,text,markdown :setlocal spell
-
 " Required by CtrlSpace and coc.nvim
 set nocompatible
 set hidden
@@ -70,13 +66,13 @@ Plug 'morhetz/gruvbox'
 Plug 'sainnhe/forest-night'
 Plug 'sainnhe/edge'
 
-Plug 'jackguo380/vim-lsp-cxx-highlight'                  " Provides C/C++/ObjC semantic highlighting using the LSP.
+Plug 'sheerun/vim-polyglot'                              " Syntax highlighting 
 Plug 'tpope/vim-fugitive'                                " The premier Git plugin for Vim, it is illegal.
 Plug 'scrooloose/nerdcommenter'
 Plug '907th/vim-auto-save'
 
 " TODO: adjust the following plugins:
-"Plug 'kana/vim-arpeggio'                                " Key mapping plugin.
+"Plug 'kana/vim-arpeggio'                                 " Key mapping plugin.
 "Plug 'easymotion/vim-easymotion'
 "Plug 'tpope/vim-fugitive'                                " Plugin for command line git, can be integerate with airline
 

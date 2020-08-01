@@ -93,15 +93,13 @@
 		"-interaction=nonstopmode",
 		"-synctex=1",
 		"%f"
-	],
-	
+	],	
 	// Use this for the packages that need lualatex engine
 	//"latex.build.args": [
 	//	"-lualatex",
 	//	"-interaction=nonstopmode",
 	//	"-synctex=1"
 	//],
-
 	"latex.build.onSave": true,
 	"latex.lint.onSave": true,
 	"latex.lint.onChange": true,
@@ -115,7 +113,7 @@
 	// C/C++/Objective-C
 	"clangd.enabled": true,
 	"clangd.checkUpdates": true,
-	"clangd.semanticHighlighting": true,
+	"clangd.semanticHighlighting": false,
 
 	// Manual Settings
 	"languageserver": {
@@ -123,14 +121,8 @@
 		"hdlChecker": {
 			// First run "pip3 install hdl-checker --user --upgrade"
 			"command": "hdl_checker",
-			"args": [
-				"--lsp"
-			],
-			"filetypes": [
-				"vhdl",
-				"verilog",
-				"systemverilog"
-			]
+			"args": ["--lsp"],
+			"filetypes": ["vhdl", "verilog", "systemverilog"]
 		}
 	}
 }
