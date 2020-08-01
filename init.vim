@@ -363,12 +363,12 @@ nmap <space>e :CocCommand explorer<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " Automatically open coc-explorer
-autocmd VimEnter * if argc() == 1 | exe 'CocCommand explorer --no-focus ' . '~' | endif
-autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-focus ' . '~' | endif
+autocmd BufEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list') | exe 'let dir = getcwd()' | endif
+autocmd VimEnter * if argc() == 1 | exe 'CocCommand explorer --no-focus ' . dir | endif
+autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-focus ' . dir | endif
 
 " Sure the following script is called after CocExplorerOpenPost
-function s:explorer_inited()
-	autocmd BufEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list') | exe 'let dir = getcwd()' | endif
+function s:explorer_inited()	
 	autocmd BufEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list') | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]}) | endif
 endfunction
 
