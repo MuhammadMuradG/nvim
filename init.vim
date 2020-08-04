@@ -94,11 +94,13 @@ nnoremap <C-k> <C-W>k
 nnoremap <C-j> <C-W>j
 
 " Also you can use :bdelete in the following command
-nnoremap <Tab> :bnext<CR> 
-
-nnoremap <C-q><C-q> :q!<CR>   " Close the window in the tab, you can use :bwipe! for more restriction
-nnoremap <C-f><C-f> :bp<bar>sp<bar>bn<bar>bd!<CR>   " Close the buffer without changing the layout of windows
-nnoremap <C-t><C-t> :tabc<CR>     " Close the current tab
+nnoremap <Tab> :bnext<CR>
+" Close the window in the tab, you can use :bwipe! for more restriction
+nnoremap <C-q><C-q> :q!<CR>
+" Close the buffer without changing the layout of windows
+nnoremap <C-f><C-f> :bp<bar>sp<bar>bn<bar>bd!<CR>
+" Close the current tab
+nnoremap <C-t><C-t> :tabc<CR>
 
 nmap <silent><Leader>t :belowright 10split +terminal<CR>
 
