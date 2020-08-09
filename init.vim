@@ -169,12 +169,6 @@ let g:airline_exclude_preview = 1
 
 
 "##############################################################################
-" fzf.vim settings
-"##############################################################################
-
-
-
-"##############################################################################
 " vim-startify settings
 "##############################################################################
 let g:startify_relative_path       = 1
@@ -269,23 +263,6 @@ let cmdline_app['python'] = 'ipython3'
 
 
 "###############################################################################
-" Vim-vebugger settings
-"###############################################################################
-"let g:vebugger_leader='<Leader>d'
-"let g:vebugger_view_source_cmd='edit'
-"let g:vebugger_breakpoint_text = '◉'
-"let g:vebugger_currentline_text = '➥'
-"nmap <special> <F7> :VBGstepOver<CR>
-"nmap <special> <F8> :VBGstepIn<CR>
-"nmap <special> <F9> :VBGstepOut<CR>
-"nmap <special> <leader><F9> :VBGcontinue<CR>
-"nmap <unique> <leader>b :VBGtoggleBreakpointThisLine<CR>
-"nmap <special> <leader><F8> :VBGevalWordUnderCursor<CR>
-"nmap <unique> <leader>xx :VBGexecute
-"nmap <unique> <leader>ee :VBGeval
-
-
-"###############################################################################
 " vimspector settings
 "###############################################################################
 nmap <special> <leader><F9> <Plug>VimspectorContinue
@@ -310,7 +287,7 @@ set nobackup
 set nowritebackup
 
 " You can also change the signcolumn option
-set signcolumn=auto:2
+set signcolumn=yes:2
 
 " Remap for do codeAction of selected region
 "function! s:cocActionsOpenFromSelected(type) abort
@@ -355,8 +332,7 @@ let g:coc_snippet_prev = '<c-k>'
 "Airline configuration for coc
 let g:airline#extensions#coc#enabled = 1
 
-
-"Coc-explorer
+" ============================== Coc-explorer =================================
 nmap <space>e :CocCommand explorer<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
@@ -374,7 +350,7 @@ autocmd User CocExplorerOpenPost call s:explorer_inited()
 
 
 "###############################################################################
-" Auto Save settings
+" Auto-Save plugin settings
 "###############################################################################
 let g:auto_save = 1
 let g:auto_save_events = ["CursorHoldI", "CursorHold"]

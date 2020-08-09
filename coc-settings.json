@@ -76,6 +76,9 @@
 	],
 
 	// LSP Configurations
+	// TabNine Configurations for AI code completion
+	"tabnine.shortcut": "TN",
+
 	// Python
 	"python.autoComplete.addBrackets": true,
 	"python.jediEnabled": true,
