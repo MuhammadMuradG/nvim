@@ -307,7 +307,7 @@ inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() 
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
 " Highlight symbol under cursor on CursorHold
-set updatetime=300
+set updatetime=1000
 autocmd CursorHold * silent call CocActionAsync('highlight')
 highlight link CocHighlightText RedrawDebugRecomposed
 highlight link CocHighlightRead RedrawDebugClear

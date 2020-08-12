@@ -2,7 +2,9 @@
 This repo is a my configuration of nvim text editor.
 
 ### Install
-1. First install [vim-plug](https://github.com/junegunn/vim-plug) plugin manager for nvim.
+1. First install [vim-plug](https://github.com/junegunn/vim-plug) which is plugin manager for nvim, using the following command:  
+`sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'`
 2. Open `Terminal` and write `cd ~/.config`.
 3. Write in `Terminal`: `git clone "https://github.com/MuhammadMouradG/nvim.git"`.
 4. Open nvim and write this command in command nvim mode: `:PlugInstall`.
