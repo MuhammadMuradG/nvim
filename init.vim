@@ -45,14 +45,11 @@ endif
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 
-Plug 'andy-kwei/vimcmdline'                              " REPL plugin
+Plug 'jalvesaq/vimcmdline'                              " REPL plugin
 
 Plug 'puremourning/vimspector',  { 'branch': 'master' }  " Debugger plugin
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-
-Plug 'vim-pandoc/vim-pandoc'                             " Providing integration with nvim
-Plug 'vim-pandoc/vim-pandoc-syntax'                      " Providing syntax integration with nvim
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -342,8 +339,8 @@ autocmd VimEnter * if argc() == 1 | exe 'CocCommand explorer --no-focus ' . fnam
 autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-focus ' . fnameescape(dir) | endif
 
 " Sure the following script is called after CocExplorerOpenPost
-function s:explorer_inited()	
-	autocmd BufEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list') | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]}) | endif
+function s:explorer_inited()
+	autocmd BufWinEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list') | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]}) | endif
 endfunction
 
 autocmd User CocExplorerOpenPost call s:explorer_inited()
@@ -439,7 +436,3 @@ let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
 
-"###############################################################################
-" vim-pandoc settings
-"###############################################################################
-let g:pandoc#modules#disabled = ["folding"]
