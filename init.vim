@@ -334,13 +334,14 @@ nmap <space>e :CocCommand explorer<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " Automatically open coc-explorer
-autocmd BufEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list') | exe 'let dir = getcwd()' | endif
+autocmd BufWinEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list') | exe 'let dir = getcwd()' | endif
 autocmd VimEnter * if argc() == 1 | exe 'CocCommand explorer --no-focus ' . fnameescape(dir) | endif
 autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-focus ' . fnameescape(dir) | endif
 
 " Sure the following script is called after CocExplorerOpenPost
 function s:explorer_inited()
-	autocmd BufWinEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list') | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]}) | endif
+	autocmd BufWinLeave * let prevDir = getcwd()
+	autocmd BufWinEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list' && prevDir != dir) | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]}) | endif
 endfunction
 
 autocmd User CocExplorerOpenPost call s:explorer_inited()
