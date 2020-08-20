@@ -34,6 +34,11 @@
 	// Make vim select first item on completion
 	"suggest.noselect": true,
 
+	// LSP Configurations
+	// coc-Prettier configuration
+	"prettier.tabWidth": 4,
+	"prettier.useTabs": true,
+
 	// spell checker configuration
 	"cSpell.showStatus": true,
 	"cSpell.enabledLanguageIds": [
@@ -75,7 +80,6 @@
 		"yml"
 	],
 
-	// LSP Configurations
 	// TabNine Configurations for AI code completion
 	"tabnine.shortcut": "TN",
 
@@ -85,7 +89,9 @@
 	"python.linting.enabled": true,
 	"python.linting.lintOnSave": true,
 	"python.linting.pylintEnabled": true,
-	"python.linting.pylintArgs": ["--extension-pkg-whitelist=PyQt5, OtherPackage"],
+	"python.linting.pylintArgs": [
+		"--extension-pkg-whitelist=PyQt5, OtherPackage"
+	],
 	"python.linting.pylintUseMinimalCheckers": false,
 	"python.formatting.provider": "black",
 
@@ -96,7 +102,7 @@
 		"-interaction=nonstopmode",
 		"-synctex=1",
 		"%f"
-	],	
+	],
 	// Use this for the packages that need lualatex engine
 	//"latex.build.args": [
 	//	"-lualatex",
@@ -107,11 +113,7 @@
 	"latex.lint.onSave": true,
 	"latex.lint.onChange": true,
 	"latex.forwardSearch.executable": "/usr/bin/zathura",
-	"latex.forwardSearch.args": [
-		"--synctex-forward",
-		"%l:1:%f",
-		"%p"
-	],
+	"latex.forwardSearch.args": ["--synctex-forward", "%l:1:%f", "%p"],
 
 	// C/C++/Objective-C
 	"clangd.enabled": true,
