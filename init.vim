@@ -13,12 +13,6 @@ set ruler
 set mouse=a
 set colorcolumn=80
 
-" Shift + Tab does inverse tab
-inoremap <S-Tab> <C-d>
-
-" See invisible characters
-"set list listchars=tab:>\ ,trail:+,eol:$
-
 " Reference for tab https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
 set tabstop=4                                " The width of a hard tabstop measured in ''spaces'
 set shiftwidth=4                             " The size of an 'indent'. It's also measured in spaces
@@ -90,14 +84,17 @@ nnoremap <C-l> <C-W>l
 nnoremap <C-k> <C-W>k
 nnoremap <C-j> <C-W>j
 
-" Also you can use :bdelete in the following command
+" Go to next buffer, also you can use :bdelete in the following command
 nnoremap <Tab> :bnext<CR>
+" Go to next tab
+nnoremap <S-Tab> :tabnext<CR>
+
 " Close the window in the tab, you can use :bwipe! for more restriction
 nnoremap <C-q><C-q> :q!<CR>
 " Close the buffer without changing the layout of windows
 nnoremap <C-f><C-f> :bp<bar>sp<bar>bn<bar>bd!<CR>
 " Close the current tab
-nnoremap <C-t><C-t> :tabc<CR>
+nnoremap <C-t><C-t> :tabclose<CR>
 
 " Open terminal split
 nmap <silent><Leader>t :belowright 10split +terminal<CR>
@@ -108,6 +105,9 @@ tnoremap <C-q><C-q> <C-\><C-n><bar>:q!<CR>
 
 " Set the path of current file as a working directory local for current window
 autocmd BufEnter * silent! lcd %:p:h
+
+" Shift + Tab does inverse tab
+inoremap <S-Tab> <C-d>
 
 
 "###############################################################################
