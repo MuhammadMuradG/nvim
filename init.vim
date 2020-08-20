@@ -99,7 +99,12 @@ nnoremap <C-f><C-f> :bp<bar>sp<bar>bn<bar>bd!<CR>
 " Close the current tab
 nnoremap <C-t><C-t> :tabc<CR>
 
+" Open terminal split
 nmap <silent><Leader>t :belowright 10split +terminal<CR>
+" Leave terminal mode
+tnoremap <Esc> <C-\><C-n>
+" Close terminal split
+tnoremap <C-q><C-q> <C-\><C-n><bar>:q!<CR>
 
 " Set the path of current file as a working directory local for current window
 autocmd BufEnter * silent! lcd %:p:h
@@ -263,9 +268,9 @@ let cmdline_app['python'] = 'ipython3'
 " vimspector settings
 "###############################################################################
 nmap <special> <leader><F9> <Plug>VimspectorContinue
-nmap <F4> <Plug>VimspectorStop
-nmap <F3> <Plug>VimspectorRestart
-nmap <F5> <Plug>VimspectorPause
+nmap <special> <F4> <Plug>VimspectorStop
+nmap <special> <F3> <Plug>VimspectorRestart
+nmap <special> <F5> <Plug>VimspectorPause
 nmap <unique> <leader>b <Plug>VimspectorToggleBreakpoint
 "nmap <F8> <Plug>VimspectorAddFunctionBreakpoint
 nmap <special> <F7> <Plug>VimspectorStepOver
@@ -341,7 +346,7 @@ autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-foc
 " Sure the following script is called after CocExplorerOpenPost
 function s:explorer_inited()
 	autocmd BufWinLeave * let prevDir = getcwd()
-	autocmd BufWinEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list' && prevDir != dir) | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]}) | endif
+	autocmd BufEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list' && prevDir != dir) | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]}) | endif
 endfunction
 
 autocmd User CocExplorerOpenPost call s:explorer_inited()
