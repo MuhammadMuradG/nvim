@@ -37,13 +37,10 @@ if !has('nvim')
 endif
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'honza/vim-snippets'
 
 Plug 'jalvesaq/vimcmdline'                              " REPL plugin
 
-Plug 'puremourning/vimspector',  { 'branch': 'master' }  " Debugger plugin
-
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'puremourning/vimspector',  { 'branch': 'master' } " Debugger plugin
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -57,7 +54,8 @@ Plug 'morhetz/gruvbox'
 Plug 'sainnhe/forest-night'
 Plug 'sainnhe/edge'
 
-Plug 'sheerun/vim-polyglot'                              " Syntax highlighting 
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'sheerun/vim-polyglot'                              " Syntax highlighting
 Plug 'tpope/vim-fugitive'                                " The premier Git plugin for Vim, it is illegal.
 Plug 'scrooloose/nerdcommenter'
 Plug '907th/vim-auto-save'
@@ -291,13 +289,6 @@ set nowritebackup
 " You can also change the signcolumn option
 set signcolumn=yes:2
 
-" Remap for do codeAction of selected region
-"function! s:cocActionsOpenFromSelected(type) abort
-"    execute 'CocCommand actions.open ' . a:type
-"endfunction
-"xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-"nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-
 " Map <tab> to trigger completion and navigate to the next item:
 function! s:check_back_space() abort
 	let col = col('.') - 1
@@ -314,6 +305,9 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 highlight link CocHighlightText RedrawDebugRecomposed
 highlight link CocHighlightRead RedrawDebugClear
 highlight link CocHighlightWrite RedrawDebugComposed
+
+" Use K to show documentation in preview window.
+nnoremap <silent> sd :call CocAction('doHover')<CR>
 
 " Map function
 nmap <silent> gd <Plug>(coc-definition)
