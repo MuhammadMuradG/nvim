@@ -98,6 +98,7 @@
 	// Latex
 	"latex.build.executable": "latexmk",
 	"latex.build.args": [
+		"-cd",
 		"-pdf",
 		"-interaction=nonstopmode",
 		"-synctex=1",
@@ -105,6 +106,7 @@
 	],
 	// Use this for the packages that need lualatex engine
 	//"latex.build.args": [
+	//	"-cd",
 	//	"-lualatex",
 	//	"-interaction=nonstopmode",
 	//	"-synctex=1"
