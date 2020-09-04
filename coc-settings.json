@@ -85,7 +85,7 @@
 
 	// Python
 	"python.autoComplete.addBrackets": true,
-	"python.jediEnabled": true,
+	"python.jediEnabled": false,
 	"python.linting.enabled": true,
 	"python.linting.lintOnSave": true,
 	"python.linting.pylintEnabled": true,
