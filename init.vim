@@ -339,8 +339,9 @@ autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-foc
 
 " Sure the following script is called after CocExplorerOpenPost
 function s:explorer_inited()
+	let w:has_coc_explorer = v:true
 	autocmd BufWinLeave * let prevDir = getcwd()
-	autocmd BufWinEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list' && prevDir != dir) | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]}) | endif
+	autocmd BufWinEnter * if (exists('w:has_coc_explorer') && &filetype !=? 'coc-explorer' && &filetype !=? 'list' && prevDir != dir) | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]}) | endif
 endfunction
 
 autocmd User CocExplorerOpenPost call s:explorer_inited()
