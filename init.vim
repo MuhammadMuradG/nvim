@@ -113,14 +113,14 @@ inoremap <S-Tab> <C-d>
 " Gruvbox-material settings
 "###############################################################################
 " For dark or light scheme
-set background=dark   " dark or light
+set background=dark                          " dark or light
 
-let g:gruvbox_material_background = 'soft'   "hard, soft or medium
+let g:gruvbox_material_background = 'soft'   " hard, soft or medium
 let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_disable_italic_comment = 0
 let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_cursor = 'auto'
-let g:gruvbox_material_palette = 'material'      " Available choice material, mix, original
+let g:gruvbox_material_palette = 'material'  " Available choice material, mix, original
 
 " To enable gruvbox-material color scheme for leaderf Plugin
 "let g:Lf_StlColorscheme = 'gruvbox_material'
@@ -132,7 +132,7 @@ let g:gruvbox_material_palette = 'material'      " Available choice material, mi
 " available values: 'hard', 'medium'(default), 'soft'
 let g:gruvbox_material_background = 'soft'
 
-colorscheme gruvbox-material                  " Available choice gruvbox-material, forest-night, edge or gruvbox, solarized
+colorscheme gruvbox-material                 " Available choice gruvbox-material, forest-night, edge or gruvbox, solarized
 
 
 "###############################################################################
@@ -290,6 +290,9 @@ set nowritebackup
 " You can also change the signcolumn option
 set signcolumn=yes:2
 
+" Set shorter updatetime
+set updatetime=1000
+
 " Map <tab> to trigger completion and navigate to the next item:
 function! s:check_back_space() abort
 	let col = col('.') - 1
@@ -300,14 +303,7 @@ inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() 
 " Using <CR> to confirm completion:
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
-" Highlight symbol under cursor on CursorHold
-set updatetime=1000
-autocmd CursorHold * silent call CocActionAsync('highlight')
-highlight link CocHighlightText RedrawDebugRecomposed
-highlight link CocHighlightRead RedrawDebugClear
-highlight link CocHighlightWrite RedrawDebugComposed
-
-" Use K to show documentation in preview window.
+" Use sd to show documentation in hover preview window.
 nnoremap <silent> sd :call CocAction('doHover')<CR>
 
 " Map function
@@ -329,6 +325,12 @@ let g:coc_snippet_prev = '<c-k>'
 "Airline configuration for coc
 let g:airline#extensions#coc#enabled = 1
 
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+highlight link CocHighlightText RedrawDebugRecomposed
+highlight link CocHighlightRead RedrawDebugClear
+highlight link CocHighlightWrite RedrawDebugComposed
+
 " ============================== Coc-explorer =================================
 nmap <space>e :CocCommand explorer<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
@@ -342,7 +344,7 @@ autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-foc
 function s:explorer_inited()
 	let w:has_coc_explorer = v:true
 	autocmd BufWinLeave * let prevDir = getcwd()
-	autocmd BufWinEnter * if (exists('w:has_coc_explorer') && &filetype !=? 'coc-explorer' && &filetype !=? 'list' && prevDir != dir) | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]}) | endif
+	autocmd BufWinEnter * if (exists('w:has_coc_explorer') && (&filetype != 'coc-explorer') && (&filetype != 'list') && (prevDir != dir)) | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]}) | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "refresh"}) | endif
 endfunction
 
 autocmd User CocExplorerOpenPost call s:explorer_inited()
