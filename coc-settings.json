@@ -12,7 +12,7 @@
 	"diagnostic.infoSign": "Ⓘ",
 	"diagnostic.hintSign": "Ⓗ",
 	"diagnostic.virtualText": false,
-	"diagnostic.virtualTextPrefix": "⎧Msg⎭❱ ",	
+	"diagnostic.virtualTextPrefix": "⎧Msg⎭❱ ",
 
 	// completion related configuration
 	"suggest.enablePreview": true,
