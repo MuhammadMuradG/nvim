@@ -88,15 +88,17 @@ nnoremap <Tab> :bnext<CR>
 " Go to next tab
 nnoremap <S-Tab> :tabnext<CR>
 
-" Close the window in the tab, you can use :bwipe! for more restriction
-nnoremap <C-q><C-q> :q!<CR>
+" Close the window and buffer in the current tab
+nnoremap <C-q><C-q> :bwipe!<CR>
 " Close the buffer without changing the layout of windows
-nnoremap <C-f><C-f> :bp<bar>sp<bar>bn<bar>bd!<CR>
+nnoremap <C-f><C-f> :bp<bar>sp<bar>bn<bar>bwipe<CR>
 " Close the current tab
 nnoremap <C-t><C-t> :tabclose<CR>
 
 " Open terminal split
 nmap <silent><Leader>t :belowright 10split +terminal<CR>
+" Set any terminal buffer into non listed buffers
+autocmd TermOpen * setlocal nobuflisted 
 " Leave terminal mode
 tnoremap <Esc> <C-\><C-n>
 " Close terminal split
@@ -344,7 +346,7 @@ autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-foc
 function s:explorer_inited()
 	let w:has_coc_explorer = v:true
 	autocmd BufWinLeave * let prevDir = getcwd()
-	autocmd BufWinEnter * if (exists('w:has_coc_explorer') && (&filetype != 'coc-explorer') && (&filetype != 'list') && (prevDir != dir)) | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]}) | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "refresh"}) | endif
+	autocmd BufWinEnter * if (exists('w:has_coc_explorer') && (&filetype != 'coc-explorer') && (&filetype != 'list') && (prevDir != dir)) | call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "cd", "args": [dir]}) | call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "refresh"}) | endif
 endfunction
 
 autocmd User CocExplorerOpenPost call s:explorer_inited()
