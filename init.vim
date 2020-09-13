@@ -291,7 +291,7 @@ set nowritebackup
 set signcolumn=yes:2
 
 " Set shorter updatetime
-set updatetime=1000
+set updatetime=300
 
 " Map <tab> to trigger completion and navigate to the next item:
 function! s:check_back_space() abort
