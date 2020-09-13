@@ -10,3 +10,4 @@ This repo is a my configuration of nvim text editor.
 5. Restart the nvim.
 6. Make sure you have npm. If not, write in `Terminal`: `sudo apt install npm`.
 7. Now you can install coc extention `CocInstall coc-python coc-git coc-explorer coc-highlight coc-html coc-css coc-clangd`, refer to: [coc.nvim](https://github.com/neoclide/coc.nvim)
+8. To set `.vimspector.json` for `Vimspector` plugin, put the `.vimspector.json` file in your project directory, after that the `Vimspector` will be ready to use for `Python`, `java`, `perl`, `C`.

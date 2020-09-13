@@ -42,8 +42,6 @@ Plug 'jalvesaq/vimcmdline'                              " REPL plugin
 
 Plug 'puremourning/vimspector',  { 'branch': 'master' } " Debugger plugin
 
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
@@ -88,10 +86,10 @@ nnoremap <Tab> :bnext<CR>
 " Go to next tab
 nnoremap <S-Tab> :tabnext<CR>
 
-" Close the window and buffer in the current tab
-nnoremap <C-q><C-q> :bwipe!<CR>
+" Delete the current buffer completely and close its window
+nnoremap <silent><C-q><C-q> :bwipe<bar>if bufname()==""<bar>q<bar>endif<CR>
 " Close the buffer without changing the layout of windows
-nnoremap <C-f><C-f> :bp<bar>sp<bar>bn<bar>bwipe<CR>
+nnoremap <silent><C-f><C-f> :bp<bar>sp<bar>bn<bar>bwipe<bar>if bufname()==""<bar>Startify<bar>endif<CR>
 " Close the current tab
 nnoremap <C-t><C-t> :tabclose<CR>
 
