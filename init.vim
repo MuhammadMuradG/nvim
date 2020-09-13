@@ -87,9 +87,9 @@ nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :tabnext<CR>
 
 " Delete the current buffer completely and close its window
-nnoremap <silent><C-q><C-q> :bwipe<bar>if bufname()==""<bar>q<bar>endif<CR>
+nnoremap <silent><C-q><C-q> :bwipe!<bar>if bufname()==""<bar>q<bar>endif<CR>
 " Close the buffer without changing the layout of windows
-nnoremap <silent><C-f><C-f> :bp<bar>sp<bar>bn<bar>bwipe<bar>if bufname()==""<bar>Startify<bar>endif<CR>
+nnoremap <silent><C-f><C-f> :bp<bar>sp<bar>bn<bar>bwipe!<bar>if bufname()==""<bar>Startify<bar>endif<CR>
 " Close the current tab
 nnoremap <C-t><C-t> :tabclose<CR>
 
