@@ -96,7 +96,7 @@ nnoremap <C-t><C-t> :tabclose<CR>
 " Open terminal split
 nmap <silent><Leader>t :belowright 10split +terminal<CR>
 " Set any terminal buffer into non listed buffers
-autocmd TermOpen * setlocal nobuflisted 
+autocmd TermOpen * setlocal nobuflisted winfixheight
 " Leave terminal mode
 tnoremap <Esc> <C-\><C-n>
 " Close terminal split
