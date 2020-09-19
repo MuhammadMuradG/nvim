@@ -73,6 +73,7 @@
 		"plaintex",
 		"less",
 		"markdown",
+		"rst",
 		"pandoc",
 		"php",
 		"plaintext",
