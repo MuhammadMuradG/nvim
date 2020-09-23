@@ -38,9 +38,9 @@ endif
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'jalvesaq/vimcmdline'                              " REPL plugin
+Plug 'jalvesaq/vimcmdline'                               " REPL plugin
 
-Plug 'puremourning/vimspector',  { 'branch': 'master' } " Debugger plugin
+Plug 'puremourning/vimspector',  { 'branch': 'master' }  " Debugger plugin
 
 Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'mhinz/vim-startify'
