@@ -146,18 +146,27 @@ let g:airline_theme = 'gruvbox_material'
 let g:airline_detect_crypt=1
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#tabline#fnamemod = ':p:.'
-let g:airline#extensions#tabline#fnametruncate = 0
-let g:airline#extensions#tabline#show_splits = 1
-let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#tab_nr_type = 0    "split
-
-let g:airline#extensions#tabline#buffer_nr_show = 0
-let g:airline#extensions#tabline#buffer_nr_format = '%s: '
+" Show buffers section in tabline
+let g:airline#extensions#tabline#show_buffers = 1
+" Show tabs section in tabline
+let g:airline#extensions#tabline#show_tabs = 1
+" Displaying tab number in tabs mode for ctrlspace.
+let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 1
+" Rename label for buffers
+let g:airline#extensions#tabline#buffers_label = 'buffers'
+" Rename label for tabs
+let g:airline#extensions#tabline#tabs_label = 'tabs'
+" Defines the name of a formatter for how buffer names are displayed.
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " Vim-CtrlSpace with airline
 let g:airline_exclude_preview = 1
+
+" Integerate with coc.nvim
+let g:airline#extensions#coc#enabled = 1
+
+" Integerate with ctrlSpace
+let g:airline#extensions#ctrlspace#enabled = 1
 
 " To enable/disable bufferline integration with vim-bufferline
 "let g:airline#extensions#bufferline#enabled = 1
@@ -438,5 +447,3 @@ let g:mkdp_port = ''
 " preview page title
 " ${name} will be replace with the file name
 let g:mkdp_page_title = '「${name}」'
-
-
