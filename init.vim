@@ -16,7 +16,16 @@ set colorcolumn=80
 " Reference for tab https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
 set tabstop=4                                 " Number of spaces that a <Tab> in the file counts for.
 set softtabstop=4                             " Number of spaces that a <Tab> counts in editing mode.
-set shiftwidth=4                              " The size of an 'indent'. It's also measured in spaces
+" The size of an 'indent'. It's also measured in spaces
+if exists('*shiftwidth')
+	func s:sw()
+		return shiftwidth()
+	endfunc
+else
+	func s:sw()
+		return &sw
+	endfunc
+endif
 
 " Required by CtrlSpace and coc.nvim
 set nocompatible
