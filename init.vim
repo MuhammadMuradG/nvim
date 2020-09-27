@@ -103,7 +103,7 @@ tnoremap <Esc> <C-\><C-n>
 tnoremap <C-q><C-q> <C-\><C-n><bar>:q!<CR>
 
 " Set the path of current file as a working directory local for current window
-autocmd BufEnter * silent! lcd %:p:h
+autocmd BufWinEnter * silent! lcd %:p:h
 
 " Shift + Tab does inverse tab
 inoremap <S-Tab> <C-d>
@@ -145,6 +145,15 @@ let g:airline_theme = 'gruvbox_material'
 
 let g:airline_detect_crypt=1
 
+" Define the set of names to be displayed instead of a specific filetypes (for section a and b):
+let g:airline_filetype_overrides = {
+      \ 'coc-explorer':  [ 'CoC Explorer', '' ],
+      \ 'help':  [ 'Help', '%f' ],
+      \ 'startify': [ 'startify', '' ],
+      \ 'vim-plug': [ 'Plugins', '' ],
+      \ }
+
+" Enable/Disable tabline
 let g:airline#extensions#tabline#enabled = 1
 " Show buffers section in tabline
 let g:airline#extensions#tabline#show_buffers = 1
@@ -159,8 +168,8 @@ let g:airline#extensions#tabline#tabs_label = 'tabs'
 " Defines the name of a formatter for how buffer names are displayed.
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
-" Vim-CtrlSpace with airline
-let g:airline_exclude_preview = 1
+" Defines whether the preview window should be excluded from have its window statusline modified
+let g:airline_exclude_preview = 0
 
 " Integerate with coc.nvim
 let g:airline#extensions#coc#enabled = 1
@@ -168,14 +177,26 @@ let g:airline#extensions#coc#enabled = 1
 " Integerate with ctrlSpace
 let g:airline#extensions#ctrlspace#enabled = 1
 
-" To enable/disable bufferline integration with vim-bufferline
-"let g:airline#extensions#bufferline#enabled = 1
+"" enable/disable tagbar integration
+"let g:airline#extensions#tagbar#enabled = 0
 
-" To enable/disable bufferline integration with fugitive
-"let g:airline#extensions#fugitiveline#enabled = 1
+"" To enable/disable bufferline integration with vim-bufferline
+"let g:airline#extensions#bufferline#enabled = 0
 
-" To enable/disable bufferline integration with gina
-"let g:airline#extensions#gina#enabled = 1
+"" To enable/disable bufferline integration with fugitive
+"let g:airline#extensions#fugitiveline#enabled = 0
+
+"" To enable/disable bufferline integration with gina
+"let g:airline#extensions#gina#enabled = 0
+
+"" enable/disable syntastic integration
+"let g:airline#extensions#syntastic#enabled = 0
+
+"" enable/disable searchcount integration >
+"let g:airline#extensions#searchcount#enabled = 0
+
+"" enable/disable poetv integration
+"let g:airline#extensions#poetv#enabled = 0
 
 
 "##############################################################################
@@ -342,10 +363,10 @@ highlight link CocHighlightWrite RedrawDebugComposed
 
 " ============================== Coc-explorer =================================
 nmap <space>e :CocCommand explorer<CR>
-autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+autocmd BufWinEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " Automatically open coc-explorer
-autocmd BufEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list') | exe 'let dir = getcwd()' | endif
+autocmd BufWinEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list') | exe 'let dir = getcwd()' | endif
 "autocmd VimEnter * if argc() == 1 | exe 'CocCommand explorer --no-focus ' . fnameescape(dir) | endif
 autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-focus ' . fnameescape(dir) | endif
 
