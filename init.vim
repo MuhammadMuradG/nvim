@@ -25,7 +25,16 @@ set termguicolors
 " tabstop: Number of spaces that a <Tab> in the file counts for.
 " softtabstop: Number of spaces that a <Tab> counts in editing mode.
 " shiftwidth: The size of an 'indent'. It's also measured in spaces
-set list tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab listchars=tab:│\ 
+set list tabstop=4 softtabstop=4 noexpandtab listchars=tab:│\ 
+if exists('*shiftwidth')
+	func s:sw()
+	    return shiftwidth()
+	endfunc
+else
+	func s:sw()
+	    return &sw
+	endfunc
+endif
 "set listchars=eol:¬,tab:▸\ 
 "set listchars=eol:⏎,tab:\|\ 
 
@@ -397,8 +406,8 @@ let g:indentLine_enabled = 1
 let g:indentLine_char = '│'
 let g:indentLine_first_char = '│'
 let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_fileTypeExclude = ['text', 'sh', 'coc-explorer', 'startify']
-let g:indentLine_bufTypeExclude = ['help', 'terminal', 'list']
+let g:indentLine_fileTypeExclude = ['text', 'coc-explorer', 'list', 'startify', '']
+let g:indentLine_bufTypeExclude = ['help', 'terminal']
 
 
 "###############################################################################
