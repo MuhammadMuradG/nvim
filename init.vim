@@ -4,7 +4,8 @@
 "===============================General Settings================================
 "You can enable loading the plugin files and the indent file for specific file types with:
 filetype on
-filetype plugin indent on
+filetype plugin on
+filetype indent on
 
 set encoding=utf-8
 syntax on
@@ -13,20 +14,6 @@ set ruler
 set mouse=a
 set colorcolumn=80
 
-" Reference for tab https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
-set tabstop=4                                 " Number of spaces that a <Tab> in the file counts for.
-set softtabstop=4                             " Number of spaces that a <Tab> counts in editing mode.
-" The size of an 'indent'. It's also measured in spaces
-if exists('*shiftwidth')
-	func s:sw()
-		return shiftwidth()
-	endfunc
-else
-	func s:sw()
-		return &sw
-	endfunc
-endif
-
 " Required by CtrlSpace and coc.nvim
 set nocompatible
 set hidden
@@ -34,8 +21,13 @@ set hidden
 " Color correction
 set termguicolors
 
-set list
-set lcs=tab:\|\ 
+" Reference for tab https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
+" tabstop: Number of spaces that a <Tab> in the file counts for.
+" softtabstop: Number of spaces that a <Tab> counts in editing mode.
+" shiftwidth: The size of an 'indent'. It's also measured in spaces
+set list tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab listchars=tab:│\ 
+"set listchars=eol:¬,tab:▸\ 
+"set listchars=eol:⏎,tab:\|\ 
 
 
 "=========================vim-plugin Manager settings==========================
@@ -68,6 +60,7 @@ Plug 'sheerun/vim-polyglot'                              " Syntax highlighting
 Plug 'tpope/vim-fugitive'                                " The premier Git plugin for Vim, it is illegal.
 Plug 'scrooloose/nerdcommenter'
 Plug '907th/vim-auto-save'
+Plug 'Yggdroot/indentLine'
 
 " TODO: adjust the following plugins:
 "Plug 'kana/vim-arpeggio'                                 " Key mapping plugin.
@@ -157,11 +150,11 @@ let g:airline_detect_crypt=1
 
 " Define the set of names to be displayed instead of a specific filetypes (for section a and b):
 let g:airline_filetype_overrides = {
-      \ 'coc-explorer':  [ 'CoC Explorer', '' ],
-      \ 'help':  [ 'Help', '%f' ],
-      \ 'startify': [ 'startify', '' ],
-      \ 'vim-plug': [ 'Plugins', '' ],
-      \ }
+	\ 'coc-explorer':  [ 'CoC Explorer', '' ],
+	\ 'help':  [ 'Help', '%f' ],
+	\ 'startify': [ 'startify', '' ],
+	\ 'vim-plug': [ 'Plugins', '' ],
+	\ }
 
 " Enable/Disable tabline
 let g:airline#extensions#tabline#enabled = 1
@@ -219,14 +212,14 @@ let g:startify_fortune_use_unicode = 1
 " `2>/dev/null` makes the command fail quietly, so that when we are not
 " in a git repo, the list will be empty
 function! s:gitModified()
-    let files = systemlist('git ls-files -m 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
+	let files = systemlist('git ls-files -m 2>/dev/null')
+	return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
 " same as above, but show untracked files, honouring .gitignore
 function! s:gitUntracked()
-    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
+	let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+	return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
 " default boxed random quote, but not the ASCII art cow.
@@ -398,6 +391,17 @@ let g:auto_save_events = ["CursorHoldI", "CursorHold"]
 
 
 "###############################################################################
+" Indent-Line plugin settings
+"###############################################################################
+let g:indentLine_enabled = 1
+let g:indentLine_char = '│'
+let g:indentLine_first_char = '│'
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_fileTypeExclude = ['text', 'sh', 'coc-explorer', 'startify']
+let g:indentLine_bufTypeExclude = ['help', 'terminal', 'list']
+
+
+"###############################################################################
 " MarkDown settings
 "###############################################################################
 " set to 1, nvim will open the preview window after entering the markdown buffer
@@ -454,15 +458,15 @@ let g:mkdp_browserfunc = ''
 " sequence_diagrams: js-sequence-diagrams options
 let g:mkdp_preview_options = {
 	\ 'mkit': {},
-    \ 'katex': {},
-    \ 'uml': {},
-    \ 'maid': {},
-    \ 'disable_sync_scroll': 0,
-    \ 'sync_scroll_type': 'middle',
-    \ 'hide_yaml_meta': 1,
-    \ 'sequence_diagrams': {},
-    \ 'flowchart_diagrams': {}
-    \ }
+	\ 'katex': {},
+	\ 'uml': {},
+	\ 'maid': {},
+	\ 'disable_sync_scroll': 0,
+	\ 'sync_scroll_type': 'middle',
+	\ 'hide_yaml_meta': 1,
+	\ 'sequence_diagrams': {},
+	\ 'flowchart_diagrams': {}
+	\ }
 
 " use a custom markdown style must be absolute path
 " like '/Users/username/markdown.css' or expand('~/markdown.css')
