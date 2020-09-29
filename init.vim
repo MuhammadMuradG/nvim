@@ -21,20 +21,14 @@ set hidden
 " Color correction
 set termguicolors
 
+" Enable tabline
+set showtabline=2
+
 " Reference for tab https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
 " tabstop: Number of spaces that a <Tab> in the file counts for.
 " softtabstop: Number of spaces that a <Tab> counts in editing mode.
 " shiftwidth: The size of an 'indent'. It's also measured in spaces
-set list tabstop=4 softtabstop=4 noexpandtab listchars=tab:│\ 
-if exists('*shiftwidth')
-	func s:sw()
-	    return shiftwidth()
-	endfunc
-else
-	func s:sw()
-	    return &sw
-	endfunc
-endif
+set list tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab listchars=tab:│\ 
 "set listchars=eol:¬,tab:▸\ 
 "set listchars=eol:⏎,tab:\|\ 
 
@@ -53,11 +47,11 @@ Plug 'jalvesaq/vimcmdline'                               " REPL plugin
 
 Plug 'puremourning/vimspector',  { 'branch': 'master' }  " Debugger plugin
 
-Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'mhinz/vim-startify'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'ryanoasis/vim-devicons'                            " Provided graphical icon
+Plug 'sainnhe/artify.vim'                                " Provided customizable font
+Plug 'itchyny/lightline.vim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/forest-night'
@@ -148,67 +142,193 @@ colorscheme gruvbox-material                 " Available choice gruvbox-material
 
 
 "###############################################################################
-" Vim-Airline settings
+" lightline.vim settings
 "###############################################################################
-let g:airline_powerline_fonts = 1
+" You can use the following lines to set color of the specific characters.
+"highlight User1 term=bold cterm=bold ctermfg=red ctermbg=darkblue guifg=darkblue guibg=red
+"let g:lightline.component = {
+"    \ 'fileformat': '%1*%{&fileformat}%*',
+"    \ }
 
-" This option theme for status line and related thing, the best choice is 'papercolor', 'solarized', 'gruvbox_material', 'edge' or 'forest_night'
-let g:airline_theme = 'gruvbox_material'
+" You can use the following icons with concatnate with string.
+"    ⚡ ☰  Ɇ  ✎
 
-let g:airline_detect_crypt=1
+function! CocStatus() abort
+	let status = get(g:, 'coc_status', '')
+	return status
+endfunction
 
-" Define the set of names to be displayed instead of a specific filetypes (for section a and b):
-let g:airline_filetype_overrides = {
-	\ 'coc-explorer':  [ 'CoC Explorer', '' ],
-	\ 'help':  [ 'Help', '%f' ],
-	\ 'startify': [ 'startify', '' ],
-	\ 'vim-plug': [ 'Plugins', '' ],
+function! ErrorDiagnostic() abort
+	let info = get(b:, 'coc_diagnostic_info', {})
+	if get(info, 'error', 0)
+		let msg = 'E' . get(info, 'error', 0)
+	else
+		return ''
+	endif
+	return msg
+endfunction
+
+function! WarningDiagnostic() abort
+	let info = get(b:, 'coc_diagnostic_info', {})
+	if get(info, 'warning', 0)
+		let msg = 'W' . get(info, 'warning', 0)
+	else
+		return ''
+	endif
+	return msg
+endfunction
+
+function! GitStatus() abort
+	let status = get(g:, 'coc_git_status', '')
+	if matchstr(status,'*')!='' | let status = substitute(status, '*', '⚡', '') | endif
+	return status
+endfunction
+
+function! ArtifyBuffer() abort
+	return Artify('B U F F E R S', 'sans_serif_bold')
+endfunction
+
+function! ArtifyTab() abort
+	return Artify('T A B S ', 'sans_serif_bold')
+endfunction
+
+function! EnhancedFileName() abort
+	let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+	if &readonly==0 && &modified==1
+		let filesstate = ' ✎'
+	elseif &readonly==0 && &modified==0
+		let filesstate = ''
+	else
+		let filesstate = ' '
+	endif
+	let enhancedfilename = WebDevIconsGetFileTypeSymbol() . ' ' . filename . filesstate
+	return enhancedfilename
+endfunction
+
+function! CtrlSpaceTabs() abort
+	let Tabslist = g:ctrlspace#api#TabList()
+	let tab_right = []
+	let tab_middle = []
+	let tab_left = []
+	let tabs = [ tab_left, tab_middle, tab_right ]
+	for SelectedTab in Tabslist
+		if SelectedTab['current']==1
+			call add(tab_middle, Artify(SelectedTab['index'], 'bold') . " \ue0bb\ " . Artify(SelectedTab['title'], 'monospace'))
+			for Tab in Tabslist
+				if SelectedTab['index']<Tab['index']
+					call add(tab_left, Artify(Tab['index'], 'double_struck') . " \ue0bb\ " . Tab['title'])
+				elseif SelectedTab['index']>Tab['index']
+					call add(tab_right, Artify(Tab['index'], 'double_struck') . " \ue0bb\ " . Tab['title'])
+				endif
+			endfor
+			break
+		endif
+	endfor
+	return tabs
+endfunction
+
+function! CtrlSpaceBuffers() abort
+	let DicBuffers = g:ctrlspace#api#Buffers(tabpagenr())
+	let filename = expand('%:t')
+	let tab_right = []
+	let tab_middle = []
+	let tab_left = []
+	let tabs = [ tab_left, tab_middle, tab_right ]
+	for [index1, bufname1] in items(DicBuffers)
+		if bufname1==filename
+			call add(tab_middle, Artify(index1, 'bold') . " \ue0bb\ " . Artify(bufname1, 'monospace'))
+			for [index2, bufname2] in items(DicBuffers)
+				if index1<index2
+					call add(tab_right, Artify(index2, 'double_struck') . " \ue0bb\ " . bufname2)
+				elseif index1>index2
+					call add(tab_left, Artify(index2, 'double_struck') . " \ue0bb\ " . bufname2)
+				endif
+			endfor
+			break
+		endif
+	endfor
+	return tabs
+endfunction
+
+let g:lightline = {}
+let g:lightline.colorscheme = 'gruvbox_material'
+let g:lightline.enable = { 'statusline': 1, 'tabline': 1 }
+let g:lightline.separator = { 'left': '', 'right': '' }
+let g:lightline.subseparator = { 'left': '', 'right': '' }
+let g:lightline.tabline_separator = g:lightline.separator
+let g:lightline.tabline_subseparator = g:lightline.subseparator
+
+let g:lightline.active = {
+	\ 'left': [ 
+			\ [ 'mode', 'paste' ],
+			\ [ 'git' ],
+			\ [ 'enhancedfilename', 'method', 'cocstatus' ]
+		\ ],
+	\ 'right': [ 
+			\ [ 'errordiagnostic', 'warningdiagnostic', 'lineinfo' ],
+			\ [ 'fileformat' ],
+			\ [ 'filetype' ],
+		\ ],
 	\ }
 
-" Enable/Disable tabline
-let g:airline#extensions#tabline#enabled = 1
-" Show buffers section in tabline
-let g:airline#extensions#tabline#show_buffers = 1
-" Show tabs section in tabline
-let g:airline#extensions#tabline#show_tabs = 1
-" Displaying tab number in tabs mode for ctrlspace.
-let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 1
-" Rename label for buffers
-let g:airline#extensions#tabline#buffers_label = 'buffers'
-" Rename label for tabs
-let g:airline#extensions#tabline#tabs_label = 'tabs'
-" Defines the name of a formatter for how buffer names are displayed.
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:lightline.inactive = {
+	\ 'left': [
+			\ [ 'filename' ]
+		\ ],
+	\ 'right': [ 
+			\ [ 'lineinfo'],
+		\ ],
+	\ }
 
-" Defines whether the preview window should be excluded from have its window statusline modified
-let g:airline_exclude_preview = 0
+let g:lightline.tabline = {
+	\ 'left': [
+			\ [ 'BuffersLeading', 'buffers' ],
+		\ ],
+	\ 'right': [ 
+			\ [ 'TabsLeading' ],
+			\ [  ],
+			\ [ 'tabs' ]
+		\ ],
+	\ }
 
-" Integerate with coc.nvim
-let g:airline#extensions#coc#enabled = 1
+let g:lightline.component = {
+	\ 'lineinfo': '☰  %p' . "\uf295\ " . " \ue0bb\ " . '' . '%3l:%-2v%<',
+	\ 'fileformat': '%{&fileformat}' . ' ' . '%{WebDevIconsGetFileFormatSymbol()}',
+	\ 'filetype': '%{&filetype}' . ' ' . '%{WebDevIconsGetFileTypeSymbol()}',
+	\ }
 
-" Integerate with ctrlSpace
-let g:airline#extensions#ctrlspace#enabled = 1
+let g:lightline.component_function = {
+	\ 'cocstatus': 'CocStatus',
+	\ 'git': 'GitStatus',
+	\ 'enhancedfilename': 'EnhancedFileName',
+	\ }
 
-"" enable/disable tagbar integration
-"let g:airline#extensions#tagbar#enabled = 0
+let g:lightline.component_expand = {
+	\ 'errordiagnostic': 'ErrorDiagnostic',
+	\ 'warningdiagnostic': 'WarningDiagnostic',
+	\ 'TabsLeading': 'ArtifyTab',
+	\ 'BuffersLeading': 'ArtifyBuffer',
+	\ 'tabs':  'CtrlSpaceTabs',
+	\ 'buffers': 'CtrlSpaceBuffers',
+	\ }
 
-"" To enable/disable bufferline integration with vim-bufferline
-"let g:airline#extensions#bufferline#enabled = 0
+let g:lightline.component_type = {
+	\ 'TabsLeading': 'tabsector',
+	\ 'BuffersLeading': 'tabsector',
+	\ 'tabs': 'tabsel',
+	\ 'buffers': 'tabsel',
+	\ 'errordiagnostic': 'error',
+	\ 'warningdiagnostic': 'warning',
+	\ }
 
-"" To enable/disable bufferline integration with fugitive
-"let g:airline#extensions#fugitiveline#enabled = 0
+augroup LightlineUpdate
+	autocmd!
+	autocmd BufWritePost * silent CocCommand git.refresh
+	autocmd User CocDiagnosticChange call lightline#update()
+augroup End
 
-"" To enable/disable bufferline integration with gina
-"let g:airline#extensions#gina#enabled = 0
-
-"" enable/disable syntastic integration
-"let g:airline#extensions#syntastic#enabled = 0
-
-"" enable/disable searchcount integration >
-"let g:airline#extensions#searchcount#enabled = 0
-
-"" enable/disable poetv integration
-"let g:airline#extensions#poetv#enabled = 0
+let s:palette = g:lightline#colorscheme#gruvbox_material#palette
+let s:palette.normal.tabsector = [['#32302f', '#e77728', 0, 21]]
 
 
 "##############################################################################
@@ -333,7 +453,7 @@ set nowritebackup
 set signcolumn=yes:2
 
 " Set shorter updatetime
-set updatetime=300
+set updatetime=500
 
 " Map <tab> to trigger completion and navigate to the next item:
 function! s:check_back_space() abort
