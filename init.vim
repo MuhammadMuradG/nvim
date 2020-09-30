@@ -202,7 +202,7 @@ function! GitStatus() abort
 endfunction
 
 function! ArtifyBuffer() abort
-	return Artify('B U F F E R S', 'sans_serif') . " \ue0bb\ " . "\ue003"
+	return Artify('B U F F E R S', 'sans_serif') . " \ue0bb\ " . "\ue001"
 endfunction
 
 function! ArtifyTab() abort
