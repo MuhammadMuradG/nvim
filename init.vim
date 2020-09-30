@@ -285,10 +285,17 @@ function! CtrlSpaceBuffers() abort
 			let modified = buffer['modified']==1 ? ' ✎' : ''
 			call add(tab_middle, Artify(index1, 'bold') . " \ue0bb\ " . bufname1 . modified)
 			for [index2, bufname2] in items(BuffersDic)
+				for Detailedbuffer in BuffersList
+					if index2 == Detailedbuffer['index']
+						let buffer2 = Detailedbuffer
+						break
+					endif
+				endfor
+				let modified2 = buffer2['modified']==1 ? ' ✎' : ''
 				if index1<index2
-					call add(tab_right, Artify(index2, 'double_struck') . " \ue0bb\ " . bufname2)
+					call add(tab_right, Artify(index2, 'double_struck') . " \ue0bb\ " . bufname2 . modified2)
 				elseif index1>index2
-					call add(tab_left, Artify(index2, 'double_struck') . " \ue0bb\ " . bufname2)
+					call add(tab_left, Artify(index2, 'double_struck') . " \ue0bb\ " . bufname2 . modified2)
 				endif
 			endfor
 			break
