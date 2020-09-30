@@ -267,16 +267,24 @@ function! CtrlSpaceTabs() abort
 endfunction
 
 function! CtrlSpaceBuffers() abort
-	let DicBuffers = g:ctrlspace#api#Buffers(tabpagenr())
+	let BuffersDic = g:ctrlspace#api#Buffers(tabpagenr())
+	let BuffersList = g:ctrlspace#api#BufferList(tabpagenr())
 	let filename = expand('%:t')
 	let tab_right = []
 	let tab_middle = []
 	let tab_left = []
 	let tabs = [ tab_left, tab_middle, tab_right ]
-	for [index1, bufname1] in items(DicBuffers)
+	for [index1, bufname1] in items(BuffersDic)
+		for Detailedbuffer in BuffersList
+			if index1 == Detailedbuffer['index']
+				let buffer = Detailedbuffer
+				break
+			endif
+		endfor
 		if bufname1==filename
-			call add(tab_middle, Artify(index1, 'bold') . " \ue0bb\ " . bufname1)
-			for [index2, bufname2] in items(DicBuffers)
+			let modified = buffer['modified']==1 ? ' ✎' : ''
+			call add(tab_middle, Artify(index1, 'bold') . " \ue0bb\ " . bufname1 . modified)
+			for [index2, bufname2] in items(BuffersDic)
 				if index1<index2
 					call add(tab_right, Artify(index2, 'double_struck') . " \ue0bb\ " . bufname2)
 				elseif index1>index2
