@@ -153,8 +153,24 @@ colorscheme gruvbox-material                 " Available choice gruvbox-material
 " You can use the following icons with concatnate with string.
 "    ⚡ ☰  Ɇ  ✎
 
+function! LinghtLineMode() abort
+	return &filetype!='coc-explorer' ? Artify(lightline#mode(), 'monospace') : ''
+endfunction
+
+function! LineInfo() abort
+	return &filetype!='coc-explorer' ? '☰  %p' . "\uf295" . "  " . '%3l:%-2v%<' . '' : ''
+endfunction
+
+function! FileFormat() abort
+	return &filetype!='coc-explorer' ? &fileformat . " " . WebDevIconsGetFileFormatSymbol() : ''
+endfunction
+
+function! FileType() abort
+	return &filetype!='coc-explorer' ? &filetype . " " . WebDevIconsGetFileTypeSymbol() : ''
+endfunction
+
 function! CocStatus() abort
-	let status = get(g:, 'coc_status', '')
+	let status = &filetype!='coc-explorer' ? get(g:, 'coc_status', '') : ''
 	return status
 endfunction
 
@@ -185,11 +201,11 @@ function! GitStatus() abort
 endfunction
 
 function! ArtifyBuffer() abort
-	return Artify('B U F F E R S', 'sans_serif')
+	return Artify('B U F F E R S', 'sans_serif') . " \ue0bb\ " . "\ue003"
 endfunction
 
 function! ArtifyTab() abort
-	return Artify('T A B S ', 'sans_serif')
+	return "\ue001" . " \ue0bb\ " . Artify('T A B S ', 'sans_serif')
 endfunction
 
 function! EnhancedFileName() abort
@@ -213,12 +229,12 @@ function! CtrlSpaceTabs() abort
 	let tabs = [ tab_left, tab_middle, tab_right ]
 	for SelectedTab in Tabslist
 		if SelectedTab['current']==1
-			call add(tab_middle, Artify(SelectedTab['index'], 'bold') . " \ue0bb\ " . Artify(SelectedTab['title'], 'bold'))
+			call add(tab_middle, SelectedTab['title'] . " \ue0bb\ " . Artify(SelectedTab['index'], 'bold'))
 			for Tab in Tabslist
 				if SelectedTab['index']<Tab['index']
-					call add(tab_left, Artify(Tab['index'], 'double_struck') . " \ue0bb\ " . Tab['title'])
+					call add(tab_right, Tab['title'] . " \ue0bb\ " . Artify(Tab['index'], 'double_struck'))
 				elseif SelectedTab['index']>Tab['index']
-					call add(tab_right, Artify(Tab['index'], 'double_struck') . " \ue0bb\ " . Tab['title'])
+					call add(tab_left, Tab['title'] . " \ue0bb\ " . Artify(Tab['index'], 'double_struck'))
 				endif
 			endfor
 			break
@@ -236,7 +252,7 @@ function! CtrlSpaceBuffers() abort
 	let tabs = [ tab_left, tab_middle, tab_right ]
 	for [index1, bufname1] in items(DicBuffers)
 		if bufname1==filename
-			call add(tab_middle, Artify(index1, 'bold') . " \ue0bb\ " . Artify(bufname1, 'bold'))
+			call add(tab_middle, Artify(index1, 'bold') . " \ue0bb\ " . bufname1)
 			for [index2, bufname2] in items(DicBuffers)
 				if index1<index2
 					call add(tab_right, Artify(index2, 'double_struck') . " \ue0bb\ " . bufname2)
@@ -255,8 +271,8 @@ let g:lightline.colorscheme = 'gruvbox_material'
 let g:lightline.enable = { 'statusline': 1, 'tabline': 1 }
 let g:lightline.separator = { 'left': '', 'right': '' }
 let g:lightline.subseparator = { 'left': '', 'right': '' }
-let g:lightline.tabline_separator = g:lightline.separator
-let g:lightline.tabline_subseparator = g:lightline.subseparator
+let g:lightline.tabline_separator = { 'left': "\ue0bc", 'right': "\ue0ba" }
+let g:lightline.tabline_subseparator = { 'left': "\ue0bb", 'right': "\ue0bb" }
 
 let g:lightline.active = {
 	\ 'left': [ 
@@ -289,13 +305,11 @@ let g:lightline.tabline = {
 		\ ],
 	\ }
 
-let g:lightline.component = {
-	\ 'lineinfo': '☰  %p' . "\uf295\ " . " \ue0bb\ " . '%3l:%-2v%<' . '',
-	\ 'fileformat': '%{&fileformat}' . ' ' . '%{WebDevIconsGetFileFormatSymbol()}',
-	\ 'filetype': '%{&filetype}' . ' ' . '%{WebDevIconsGetFileTypeSymbol()}',
-	\ }
-
 let g:lightline.component_function = {
+	\ 'mode': 'LinghtLineMode',
+	\ 'lineinfo': 'LineInfo',
+	\ 'fileformat': 'FileFormat',
+	\ 'filetype': 'FileType',
 	\ 'cocstatus': 'CocStatus',
 	\ 'git': 'GitStatus',
 	\ 'enhancedfilename': 'EnhancedFileName',
@@ -326,8 +340,8 @@ augroup LightlineUpdate
 augroup End
 
 let s:palette = g:lightline#colorscheme#gruvbox_material#palette
-let s:palette.normal.tabsector = [['#32302f', '#FE8019', '0', '21', 'bold']]
 let s:palette.tabline = {'right': [['#ddc7a1', '#5b534d', '223', '241'], ['#ddc7a1', '#5b534d', '223', '241']], 'middle': [['#ddc7a1', '#3c3836', '223', '237']], 'left': [['#ddc7a1', '#5b534d', '223', '241'], ['#ddc7a1', '#5b534d', '223', '241']], 'tabsel': [['#32302f', '#a89984', '236', '246', 'bold']]}
+let s:palette.tabline.tabsector = [['#32302f', '#E78A4E', '0', '21', 'bold']]
 
 
 "##############################################################################
