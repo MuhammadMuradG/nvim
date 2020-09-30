@@ -185,11 +185,11 @@ function! GitStatus() abort
 endfunction
 
 function! ArtifyBuffer() abort
-	return Artify('B U F F E R S', 'sans_serif_bold')
+	return Artify('B U F F E R S', 'sans_serif')
 endfunction
 
 function! ArtifyTab() abort
-	return Artify('T A B S ', 'sans_serif_bold')
+	return Artify('T A B S ', 'sans_serif')
 endfunction
 
 function! EnhancedFileName() abort
@@ -213,7 +213,7 @@ function! CtrlSpaceTabs() abort
 	let tabs = [ tab_left, tab_middle, tab_right ]
 	for SelectedTab in Tabslist
 		if SelectedTab['current']==1
-			call add(tab_middle, Artify(SelectedTab['index'], 'bold') . " \ue0bb\ " . Artify(SelectedTab['title'], 'monospace'))
+			call add(tab_middle, Artify(SelectedTab['index'], 'bold') . " \ue0bb\ " . Artify(SelectedTab['title'], 'bold'))
 			for Tab in Tabslist
 				if SelectedTab['index']<Tab['index']
 					call add(tab_left, Artify(Tab['index'], 'double_struck') . " \ue0bb\ " . Tab['title'])
@@ -236,7 +236,7 @@ function! CtrlSpaceBuffers() abort
 	let tabs = [ tab_left, tab_middle, tab_right ]
 	for [index1, bufname1] in items(DicBuffers)
 		if bufname1==filename
-			call add(tab_middle, Artify(index1, 'bold') . " \ue0bb\ " . Artify(bufname1, 'monospace'))
+			call add(tab_middle, Artify(index1, 'bold') . " \ue0bb\ " . Artify(bufname1, 'bold'))
 			for [index2, bufname2] in items(DicBuffers)
 				if index1<index2
 					call add(tab_right, Artify(index2, 'double_struck') . " \ue0bb\ " . bufname2)
@@ -285,14 +285,12 @@ let g:lightline.tabline = {
 			\ [ 'BuffersLeading', 'buffers' ],
 		\ ],
 	\ 'right': [ 
-			\ [ 'TabsLeading' ],
-			\ [  ],
-			\ [ 'tabs' ]
+			\ [ 'TabsLeading', 'tabs' ],
 		\ ],
 	\ }
 
 let g:lightline.component = {
-	\ 'lineinfo': '☰  %p' . "\uf295\ " . " \ue0bb\ " . '' . '%3l:%-2v%<',
+	\ 'lineinfo': '☰  %p' . "\uf295\ " . " \ue0bb\ " . '%3l:%-2v%<' . '',
 	\ 'fileformat': '%{&fileformat}' . ' ' . '%{WebDevIconsGetFileFormatSymbol()}',
 	\ 'filetype': '%{&filetype}' . ' ' . '%{WebDevIconsGetFileTypeSymbol()}',
 	\ }
@@ -328,7 +326,8 @@ augroup LightlineUpdate
 augroup End
 
 let s:palette = g:lightline#colorscheme#gruvbox_material#palette
-let s:palette.normal.tabsector = [['#32302f', '#e77728', 0, 21]]
+let s:palette.normal.tabsector = [['#32302f', '#FE8019', '0', '21', 'bold']]
+let s:palette.tabline = {'right': [['#ddc7a1', '#5b534d', '223', '241'], ['#ddc7a1', '#5b534d', '223', '241']], 'middle': [['#ddc7a1', '#3c3836', '223', '237']], 'left': [['#ddc7a1', '#5b534d', '223', '241'], ['#ddc7a1', '#5b534d', '223', '241']], 'tabsel': [['#32302f', '#a89984', '236', '246', 'bold']]}
 
 
 "##############################################################################
