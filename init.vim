@@ -148,6 +148,7 @@ colorscheme gruvbox-material                 " Available choice gruvbox-material
 "highlight User1 term=bold cterm=bold ctermfg=red ctermbg=darkblue guifg=darkblue guibg=red
 "let g:lightline.component = {
 "    \ 'fileformat': '%1*%{&fileformat}%*',
+"    \ 'lineinfo': '☰  %p' . "\uf295" . "  " . '%3l:%-2v%<'
 "    \ }
 
 " You can use the following icons with concatnate with string.
@@ -158,7 +159,7 @@ function! LinghtLineMode() abort
 endfunction
 
 function! LineInfo() abort
-	return &filetype!='coc-explorer' ? '☰  %p' . "\uf295" . "  " . '%3l:%-2v%<' . '' : ''
+	return &filetype!='coc-explorer' ? string((100*line('.'))/line('$')) . "\uf295" . " ☰ " . "  " . string(line('.')) . ":" . string(getcurpos()[2]) . ' ' : ''
 endfunction
 
 function! FileFormat() abort
