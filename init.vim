@@ -155,7 +155,7 @@ colorscheme gruvbox-material                 " Available choice gruvbox-material
 "    ⚡ ☰  Ɇ  ✎
 
 function! LinghtLineMode() abort
-	return &filetype!='coc-explorer' ? Artify(lightline#mode(), 'monospace') : ''
+	return &filetype!='coc-explorer' ? Artify(lightline#mode(), 'monospace') : SmallStatusLine()
 endfunction
 
 function! LineInfo() abort
@@ -168,11 +168,6 @@ endfunction
 
 function! FileType() abort
 	return &filetype!='coc-explorer' ? &filetype . " " . WebDevIconsGetFileTypeSymbol() : ''
-endfunction
-
-function! CocStatus() abort
-	let status = &filetype!='coc-explorer' ? get(g:, 'coc_status', '') : ''
-	return status
 endfunction
 
 function! ErrorDiagnostic() abort
@@ -209,8 +204,11 @@ function! ArtifyTab() abort
 	return "\ue001" . " \ue0bb\ " . Artify('T A B S ', 'sans_serif')
 endfunction
 
-function! EnhancedFileName() abort
+function! SmallStatusLine() abort
 	let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+
+	let cocstatus = &filetype!='coc-explorer' ? get(g:, 'coc_status', '') : ''
+
 	if &readonly==0 && &modified==1
 		let filesstate = ' ✎'
 	elseif &readonly==0 && &modified==0
@@ -218,7 +216,31 @@ function! EnhancedFileName() abort
 	else
 		let filesstate = ' '
 	endif
+
 	let enhancedfilename = WebDevIconsGetFileTypeSymbol() . ' ' . filename . filesstate
+	
+	return enhancedfilename
+endfunction
+
+function! EnhancedFileName() abort
+	let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+
+	let cocstatus = &filetype!='coc-explorer' ? get(g:, 'coc_status', '') : ''
+
+	if &readonly==0 && &modified==1
+		let filesstate = ' ✎'
+	elseif &readonly==0 && &modified==0
+		let filesstate = ''
+	else
+		let filesstate = ' '
+	endif
+
+	if filename[0]=='[' && filename!='[No Name]'
+		let enhancedfilename = ''
+	else
+		let enhancedfilename = WebDevIconsGetFileTypeSymbol() . ' ' . filename . filesstate . " \ue0bb " . "\ue001" . " \ue0bb\ " . cocstatus
+	endif
+
 	return enhancedfilename
 endfunction
 
@@ -279,7 +301,7 @@ let g:lightline.active = {
 	\ 'left': [ 
 			\ [ 'mode', 'paste' ],
 			\ [ 'git' ],
-			\ [ 'enhancedfilename', 'method', 'cocstatus' ]
+			\ [ 'enhancedfilename', 'cocstatus' ]
 		\ ],
 	\ 'right': [ 
 			\ [ 'errordiagnostic', 'warningdiagnostic', 'lineinfo' ],
