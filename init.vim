@@ -238,7 +238,7 @@ function! EnhancedFileName() abort
 	if filename[0]=='[' && filename!='[No Name]'
 		let enhancedfilename = ''
 	else
-		let enhancedfilename = WebDevIconsGetFileTypeSymbol() . ' ' . filename . filesstate . " \ue0bb " . "\ue001" . " \ue0bb\ " . cocstatus
+		let enhancedfilename = WebDevIconsGetFileTypeSymbol() . ' ' . filename . filesstate . ' >>' . cocstatus
 	endif
 
 	return enhancedfilename
@@ -316,7 +316,7 @@ let g:lightline.active = {
 	\ 'left': [ 
 			\ [ 'mode', 'paste' ],
 			\ [ 'git' ],
-			\ [ 'enhancedfilename', 'cocstatus' ]
+			\ [ 'enhancedfilename' ]
 		\ ],
 	\ 'right': [ 
 			\ [ 'errordiagnostic', 'warningdiagnostic', 'lineinfo' ],
@@ -343,14 +343,16 @@ let g:lightline.tabline = {
 		\ ],
 	\ }
 
+let g:lightline.component = {
+	\ 'enhancedfilename': '%<%{EnhancedFileName()}',
+	\ }
+
 let g:lightline.component_function = {
 	\ 'mode': 'LinghtLineMode',
 	\ 'lineinfo': 'LineInfo',
 	\ 'fileformat': 'FileFormat',
 	\ 'filetype': 'FileType',
-	\ 'cocstatus': 'CocStatus',
 	\ 'git': 'GitStatus',
-	\ 'enhancedfilename': 'EnhancedFileName',
 	\ }
 
 let g:lightline.component_expand = {
