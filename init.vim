@@ -215,7 +215,7 @@ function! SmallStatusLine() abort
 	let cocstatus = &filetype!='coc-explorer' ? get(g:, 'coc_status', '') : ''
 
 	if &readonly==0 && &modified==1
-		let filesstate = ' ✎'
+		let filesstate = ' ✍️'
 	elseif &readonly==0 && &modified==0
 		let filesstate = ''
 	else
@@ -231,7 +231,7 @@ function! EnhancedFileName() abort
 	let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
 
 	if &readonly==0 && &modified==1
-		let filesstate = ' ✎'
+		let filesstate = ' ✍️ '
 	elseif &readonly==0 && &modified==0
 		let filesstate = ''
 	else
@@ -255,12 +255,12 @@ function! CtrlSpaceTabs() abort
 	let tabs = [ tab_left, tab_middle, tab_right ]
 	for SelectedTab in Tabslist
 		if SelectedTab['current']==1
-			call add(tab_middle, SelectedTab['title'] . " \ue0bb\ " . Artify(SelectedTab['index'], 'bold'))
+			call add(tab_middle, SelectedTab['title'] . " \ue0bb " . Artify(SelectedTab['index'], 'bold'))
 			for Tab in Tabslist
 				if SelectedTab['index']<Tab['index']
-					call add(tab_right, Tab['title'] . " \ue0bb\ " . Artify(Tab['index'], 'double_struck'))
+					call add(tab_right, Tab['title'] . " \ue0bb " . Artify(Tab['index'], 'double_struck'))
 				elseif SelectedTab['index']>Tab['index']
-					call add(tab_left, Tab['title'] . " \ue0bb\ " . Artify(Tab['index'], 'double_struck'))
+					call add(tab_left, Tab['title'] . " \ue0bb " . Artify(Tab['index'], 'double_struck'))
 				endif
 			endfor
 			break
@@ -285,7 +285,7 @@ function! CtrlSpaceBuffers() abort
 			endif
 		endfor
 		if bufname1==filename
-			let modified = buffer['modified']==1 ? ' ✎' : ''
+			let modified = buffer['modified']==1 ? ' ✍️' : ''
 			call add(tab_middle, Artify(index1, 'bold') . " \ue0bb\ " . bufname1 . modified)
 			for [index2, bufname2] in items(BuffersDic)
 				for Detailedbuffer in BuffersList
@@ -294,16 +294,28 @@ function! CtrlSpaceBuffers() abort
 						break
 					endif
 				endfor
-				let modified2 = buffer2['modified']==1 ? ' ✎' : ''
+				let modified2 = buffer2['modified']==1 ? ' ✍️' : ''
 				if index1<index2
-					call add(tab_right, Artify(index2, 'double_struck') . " \ue0bb\ " . bufname2 . modified2)
+					call add(tab_right, Artify(index2, 'double_struck') . " \ue0bb " .bufname2.modified2)
 				elseif index1>index2
-					call add(tab_left, Artify(index2, 'double_struck') . " \ue0bb\ " . bufname2 . modified2)
+					call add(tab_left, Artify(index2, 'double_struck') . " \ue0bb " .bufname2.modified2)
 				endif
 			endfor
 			break
 		endif
 	endfor
+	if filename==''
+		for [index3, bufname3] in items(BuffersDic)
+			for Detailedbuffer in BuffersList
+				if index3 == Detailedbuffer['index']
+					let buffer3 = Detailedbuffer
+					break
+				endif
+			endfor
+			let modified3 = buffer3['modified']==1 ? ' ✍️' : ''
+			call add(tab_left, Artify(index3, 'double_struck') . " \ue0bb\ " . bufname3 . modified3)
+		endfor
+	endif
 	return tabs
 endfunction
 
