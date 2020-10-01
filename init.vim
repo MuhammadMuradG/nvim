@@ -190,6 +190,11 @@ function! WarningDiagnostic() abort
 	return msg
 endfunction
 
+function CocStatus() abort
+	let cocstatus = &filetype!='coc-explorer' ? get(g:, 'coc_status', '') : ''
+	return cocstatus
+endfunction
+
 function! GitStatus() abort
 	let status = get(g:, 'coc_git_status', '')
 	if matchstr(status,'*')!='' | let status = substitute(status, '*', '⚡', '') | endif
@@ -225,8 +230,6 @@ endfunction
 function! EnhancedFileName() abort
 	let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
 
-	let cocstatus = &filetype!='coc-explorer' ? get(g:, 'coc_status', '') : ''
-
 	if &readonly==0 && &modified==1
 		let filesstate = ' ✎'
 	elseif &readonly==0 && &modified==0
@@ -238,7 +241,7 @@ function! EnhancedFileName() abort
 	if filename[0]=='[' && filename!='[No Name]'
 		let enhancedfilename = ''
 	else
-		let enhancedfilename = WebDevIconsGetFileTypeSymbol() . ' ' . filename . filesstate . ' >>' . cocstatus
+		let enhancedfilename = WebDevIconsGetFileTypeSymbol() . ' ' . filename . filesstate . ' >> '
 	endif
 
 	return enhancedfilename
@@ -344,7 +347,7 @@ let g:lightline.tabline = {
 	\ }
 
 let g:lightline.component = {
-	\ 'enhancedfilename': '%<%{EnhancedFileName()}',
+	\ 'enhancedfilename': '%{EnhancedFileName()}' . '%<%{CocStatus()}',
 	\ }
 
 let g:lightline.component_function = {
