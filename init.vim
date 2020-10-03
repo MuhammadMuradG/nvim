@@ -271,11 +271,14 @@ function! CtrlSpaceBuffers() abort
 	let l:BufferList = []
 	for buffer1 in g:ctrlspace#api#BufferList(tabpagenr())
 		for buffer2 in g:ctrlspace#api#BufferList(tabpagenr())
-			if (buffer1['index'] >= buffer2['index']) && (index(BufferList, buffer2)==-1)
-				let buffer1 = buffer2
+			if (index(BufferList, buffer2) == -1)
+				if (buffer2['index'] <= buffer1['index'])
+					call add(BufferList, buffer2)
+				endif
+			else
+				continue
 			endif
 		endfor
-		call add(BufferList, buffer1)
 	endfor
 	let l:right_tab = []
 	let l:middle_tab = []
