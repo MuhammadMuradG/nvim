@@ -191,7 +191,7 @@ function! WarningDiagnostic() abort
 endfunction
 
 function! CocStatus() abort
-	let cocstatus = &filetype!='coc-explorer' ? get(g:, 'coc_status', '') : ''
+	let cocstatus = get(g:, 'coc_status')!='' ? '  👽️'.get(g:, 'coc_status', '') : ''
 	return cocstatus
 endfunction
 
@@ -202,7 +202,7 @@ function! GitStatus() abort
 endfunction
 
 function! ArtifyBuffer() abort
-	return Artify('B U F F E R S', 'sans_serif') . " \ue0bb\ " . "\ue001"
+	return Artify('B U F F E R S', 'sans_serif') . " \ue0bb " . "\ue001"
 endfunction
 
 function! ArtifyTab() abort
@@ -212,8 +212,6 @@ endfunction
 function! SmallStatusLine() abort
 	let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
 
-	let cocstatus = &filetype!='coc-explorer' ? get(g:, 'coc_status', '') : ''
-
 	if &readonly==0 && &modified==1
 		let filesstate = ' ✍️'
 	elseif &readonly==0 && &modified==0
@@ -222,7 +220,7 @@ function! SmallStatusLine() abort
 		let filesstate = ' '
 	endif
 
-	let enhancedfilename = WebDevIconsGetFileTypeSymbol() . ' ' . filename . filesstate
+	let enhancedfilename = WebDevIconsGetFileTypeSymbol().' '.filename.filesstate
 	
 	return enhancedfilename
 endfunction
@@ -241,7 +239,7 @@ function! EnhancedFileName() abort
 	if filename[0]=='[' && filename!='[No Name]'
 		let enhancedfilename = ''
 	else
-		let enhancedfilename = WebDevIconsGetFileTypeSymbol() . ' ' . filename . filesstate . ' >> '
+		let enhancedfilename = WebDevIconsGetFileTypeSymbol().' '.filename.filesstate
 	endif
 
 	return enhancedfilename
@@ -255,12 +253,12 @@ function! CtrlSpaceTabs() abort
 	let tabs = [ tab_left, tab_middle, tab_right ]
 	for SelectedTab in Tabslist
 		if SelectedTab['current']==1
-			call add(tab_middle, SelectedTab['title'] . " \ue0bb " . Artify(SelectedTab['index'], 'bold'))
+			call add(tab_middle, SelectedTab['title']." \ue0bb ".Artify(SelectedTab['index'], 'bold'))
 			for Tab in Tabslist
 				if SelectedTab['index']<Tab['index']
-					call add(tab_right, Tab['title'] . " \ue0bb " . Artify(Tab['index'], 'double_struck'))
+					call add(tab_right, Tab['title']." \ue0bb ".Artify(Tab['index'], 'double_struck'))
 				elseif SelectedTab['index']>Tab['index']
-					call add(tab_left, Tab['title'] . " \ue0bb " . Artify(Tab['index'], 'double_struck'))
+					call add(tab_left, Tab['title']." \ue0bb ".Artify(Tab['index'], 'double_struck'))
 				endif
 			endfor
 			break
@@ -290,22 +288,18 @@ function! CtrlSpaceBuffers() abort
 		for unselected_buffer in BuffersList
 			let l:modified = unselected_buffer['modified']==1 ? ' ✍️' : ''
 			let SmartPath = ShortestPath(unselected_buffer['text'])
-			call add(left_tab, Artify(unselected_buffer['index'], 'double_struck').
-				\ " \ue0bb ".SmartPath.modified)
+			call add(left_tab, SmartPath.modified)
 		endfor
 	else
 		let l:modified = selected_buffer['modified']==1 ? ' ✍️' : ''
-		call add(middle_tab, Artify(selected_buffer['index'], 'bold').
-			\ " \ue0bb\ ".split(selected_buffer['text'], '/')[-1].modified)
+		call add(middle_tab, split(selected_buffer['text'], '/')[-1].modified)
 		for unselected_buffer in BuffersList
 			let l:modified = unselected_buffer['modified']==1 ? ' ✍️' : ''
 			let SmartPath = ShortestPath(unselected_buffer['text'])
 			if selected_buffer['index']<unselected_buffer['index']
-				call add(right_tab, Artify(unselected_buffer['index'], 'double_struck').
-					\ " \ue0bb ".SmartPath.modified)
+				call add(right_tab, SmartPath.modified)
 			elseif selected_buffer['index']>unselected_buffer['index']
-				call add(left_tab, Artify(unselected_buffer['index'], 'double_struck').
-					\ " \ue0bb ".SmartPath.modified)
+				call add(left_tab, SmartPath.modified)
 			endif
 		endfor
 	endif
