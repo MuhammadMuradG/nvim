@@ -268,7 +268,15 @@ function! CtrlSpaceTabs() abort
 endfunction
 
 function! CtrlSpaceBuffers() abort
-	let l:BuffersList = g:ctrlspace#api#BufferList(tabpagenr())
+	let l:BufferList = []
+	for buffer1 in g:ctrlspace#api#BufferList(tabpagenr())
+		for buffer2 in g:ctrlspace#api#BufferList(tabpagenr())
+			if (buffer1['index'] >= buffer2['index']) && (index(BufferList, buffer2)==-1)
+				let buffer1 = buffer2
+			endif
+		endfor
+		call add(BufferList, buffer1)
+	endfor
 	let l:right_tab = []
 	let l:middle_tab = []
 	let l:left_tab = []
@@ -276,7 +284,7 @@ function! CtrlSpaceBuffers() abort
 
 	" Keep buffer list visible
 	let l:invisible_buffers = 0
-	for buffer in BuffersList
+	for buffer in BufferList
 		if buffer['visible']
 			let selected_buffer = buffer
 		else
@@ -284,8 +292,8 @@ function! CtrlSpaceBuffers() abort
 		endif
 	endfor
 
-	if invisible_buffers == len(BuffersList) || expand('%:p')==''
-		for unselected_buffer in BuffersList
+	if invisible_buffers == len(BufferList) || expand('%:p')==''
+		for unselected_buffer in BufferList
 			let l:modified = unselected_buffer['modified']==1 ? ' ✍️' : ''
 			let SmartPath = ShortestPath(unselected_buffer['text'])
 			call add(left_tab, SmartPath.modified)
@@ -293,7 +301,7 @@ function! CtrlSpaceBuffers() abort
 	else
 		let l:modified = selected_buffer['modified']==1 ? ' ✍️' : ''
 		call add(middle_tab, split(selected_buffer['text'], '/')[-1].modified)
-		for unselected_buffer in BuffersList
+		for unselected_buffer in BufferList
 			let l:modified = unselected_buffer['modified']==1 ? ' ✍️' : ''
 			let SmartPath = ShortestPath(unselected_buffer['text'])
 			if selected_buffer['index']<unselected_buffer['index']
