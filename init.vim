@@ -190,7 +190,7 @@ function! WarningDiagnostic() abort
 	return msg
 endfunction
 
-function CocStatus() abort
+function! CocStatus() abort
 	let cocstatus = &filetype!='coc-explorer' ? get(g:, 'coc_status', '') : ''
 	return cocstatus
 endfunction
@@ -270,53 +270,96 @@ function! CtrlSpaceTabs() abort
 endfunction
 
 function! CtrlSpaceBuffers() abort
-	let BuffersDic = g:ctrlspace#api#Buffers(tabpagenr())
-	let BuffersList = g:ctrlspace#api#BufferList(tabpagenr())
-	let filename = expand('%:t')
-	let tab_right = []
-	let tab_middle = []
-	let tab_left = []
-	let tabs = [ tab_left, tab_middle, tab_right ]
-	for [index1, bufname1] in items(BuffersDic)
-		for Detailedbuffer in BuffersList
-			if index1 == Detailedbuffer['index']
-				let buffer = Detailedbuffer
-				break
-			endif
-		endfor
-		if bufname1==filename
-			let modified = buffer['modified']==1 ? ' ✍️' : ''
-			call add(tab_middle, Artify(index1, 'bold') . " \ue0bb\ " . bufname1 . modified)
-			for [index2, bufname2] in items(BuffersDic)
-				for Detailedbuffer in BuffersList
-					if index2 == Detailedbuffer['index']
-						let buffer2 = Detailedbuffer
-						break
-					endif
-				endfor
-				let modified2 = buffer2['modified']==1 ? ' ✍️' : ''
-				if index1<index2
-					call add(tab_right, Artify(index2, 'double_struck') . " \ue0bb " .bufname2.modified2)
-				elseif index1>index2
-					call add(tab_left, Artify(index2, 'double_struck') . " \ue0bb " .bufname2.modified2)
-				endif
-			endfor
-			break
+	let l:BuffersList = g:ctrlspace#api#BufferList(tabpagenr())
+	let l:right_tab = []
+	let l:middle_tab = []
+	let l:left_tab = []
+	let l:tabs = [ left_tab, middle_tab, right_tab ]
+
+	" Keep buffer list visible
+	let l:invisible_buffers = 0
+	for buffer in BuffersList
+		if buffer['visible']
+			let selected_buffer = buffer
+		else
+			let invisible_buffers += 1
 		endif
 	endfor
-	if filename==''
-		for [index3, bufname3] in items(BuffersDic)
-			for Detailedbuffer in BuffersList
-				if index3 == Detailedbuffer['index']
-					let buffer3 = Detailedbuffer
-					break
-				endif
-			endfor
-			let modified3 = buffer3['modified']==1 ? ' ✍️' : ''
-			call add(tab_left, Artify(index3, 'double_struck') . " \ue0bb\ " . bufname3 . modified3)
+
+	if invisible_buffers == len(BuffersList) || expand('%:p')==''
+		for unselected_buffer in BuffersList
+			let l:modified = unselected_buffer['modified']==1 ? ' ✍️' : ''
+			let SmartPath = ShortestPath(unselected_buffer['text'])
+			call add(left_tab, Artify(unselected_buffer['index'], 'double_struck').
+				\ " \ue0bb ".SmartPath.modified)
+		endfor
+	else
+		let l:modified = selected_buffer['modified']==1 ? ' ✍️' : ''
+		call add(middle_tab, Artify(selected_buffer['index'], 'bold').
+			\ " \ue0bb\ ".split(selected_buffer['text'], '/')[-1].modified)
+		for unselected_buffer in BuffersList
+			let l:modified = unselected_buffer['modified']==1 ? ' ✍️' : ''
+			let SmartPath = ShortestPath(unselected_buffer['text'])
+			if selected_buffer['index']<unselected_buffer['index']
+				call add(right_tab, Artify(unselected_buffer['index'], 'double_struck').
+					\ " \ue0bb ".SmartPath.modified)
+			elseif selected_buffer['index']>unselected_buffer['index']
+				call add(left_tab, Artify(unselected_buffer['index'], 'double_struck').
+					\ " \ue0bb ".SmartPath.modified)
+			endif
 		endfor
 	endif
 	return tabs
+endfunction
+
+function! ShortestPath(buffer)
+	let l:cur_buffer = expand('%:p')=='' ? expand('#:p') : expand('%:p')
+	let l:cur_path = split(cur_buffer, '/')
+	let l:path = split(a:buffer, '/')
+	let l:smart_path = ''
+	if len(path)<=len(cur_path)
+		for i in range(len(path))
+			if i+1 == len(path)
+				" Keep the name of tail
+				let l:smart_path = smart_path . '/' . path[i]
+			else
+				if path[i] == cur_path[i]
+						let l:smart_path = smart_path . '/' . path[i][0]
+				else
+					let l:smart_path = smart_path . '/' . path[i]
+					for s in range(i+1, len(path)-1)
+						if s == len(path)-1
+							let l:smart_path = smart_path . '/' . path[s]
+						else
+							let l:smart_path = smart_path . '/' . path[s][0]
+						endif
+					endfor
+					break
+				endif
+			endif
+		endfor
+	else
+		for i in range(len(path))
+			if i == len(path)-1
+				let l:smart_path = smart_path . '/' . path[i]
+			else
+				if index(cur_path, path[i]) >= 0
+					let l:smart_path = smart_path . '/' . path[i][0]
+				else
+					let l:smart_path = smart_path . '/' . path[i]
+					for s in range(i+1, len(path)-1)
+						if s == len(path)-1
+							let l:smart_path = smart_path . '/' . path[s]
+						else
+							let l:smart_path = smart_path . '/' . path[s][0]
+						endif
+					endfor
+					break
+				endif
+			endif
+		endfor
+	endif
+	return smart_path
 endfunction
 
 let g:lightline = {}
