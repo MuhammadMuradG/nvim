@@ -191,7 +191,7 @@ function! WarningDiagnostic() abort
 endfunction
 
 function! CocStatus() abort
-	let cocstatus = get(g:, 'coc_status')!='' ? '  👽️'.get(g:, 'coc_status', '') : ''
+	let cocstatus = get(g:, 'coc_status')!='' ? '👽️'.get(g:, 'coc_status', '') : ''
 	return cocstatus
 endfunction
 
@@ -403,7 +403,7 @@ let g:lightline.tabline = {
 	\ }
 
 let g:lightline.component = {
-	\ 'enhancedfilename': '%{EnhancedFileName()}' . '%<%{CocStatus()}',
+	\ 'enhancedfilename': '%{EnhancedFileName()} ' . '%<%{CocStatus()}',
 	\ }
 
 let g:lightline.component_function = {
