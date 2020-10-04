@@ -283,7 +283,7 @@ function! CtrlSpaceBuffers() abort
 
 	" Keep buffer list visible
 	let l:invisible_buffers = 0
-	for l:buffer in BufferList
+	for l:buffer in l:BufferList
 		if buffer['visible']
 			let l:selected_buffer = l:buffer
 		else
@@ -291,7 +291,7 @@ function! CtrlSpaceBuffers() abort
 		endif
 	endfor
 
-	if l:invisible_buffers == len(l:BufferList) || expand('%:p')==''
+	if l:invisible_buffers == len(l:BufferList) || &filetype=='startify'
 		for l:unselected_buffer in BufferList
 			let l:modified = l:unselected_buffer['modified']==1 ? ' ✍️' : ''
 			let l:SmartPath = ShortestPath(l:unselected_buffer['text'])
