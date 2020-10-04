@@ -253,12 +253,12 @@ function! CtrlSpaceTabs() abort
 	let l:tabs = [ l:tab_left, l:tab_middle, l:tab_right ]
 	for l:SelectedTab in l:Tabslist
 		if l:SelectedTab['current']==1
-			call add(l:tab_middle, l:SelectedTab['title']." \ue0bb ".Artify(l:SelectedTab['index'], 'bold'))
+			call add(l:tab_middle, l:SelectedTab['title'].Artify(l:SelectedTab['index'], 'bold'))
 			for l:Tab in l:Tabslist
 				if l:SelectedTab['index']<l:Tab['index']
-					call add(l:tab_right, l:Tab['title']." \ue0bb ".Artify(l:Tab['index'], 'double_struck'))
+					call add(l:tab_right, l:Tab['title'].Artify(l:Tab['index'], 'double_struck'))
 				elseif l:SelectedTab['index']>l:Tab['index']
-					call add(l:tab_left, l:Tab['title']." \ue0bb ".Artify(l:Tab['index'], 'double_struck'))
+					call add(l:tab_left, l:Tab['title'].Artify(l:Tab['index'], 'double_struck'))
 				endif
 			endfor
 			break
@@ -295,18 +295,18 @@ function! CtrlSpaceBuffers() abort
 		for l:unselected_buffer in BufferList
 			let l:modified = l:unselected_buffer['modified']==1 ? ' ✍️' : ''
 			let l:SmartPath = ShortestPath(l:unselected_buffer['text'])
-			call add(left_tab, l:SmartPath.l:modified)
+			call add(left_tab, l:unselected_buffer['index'].': '.l:SmartPath.l:modified)
 		endfor
 	else
 		let l:modified = l:selected_buffer['modified']==1 ? ' ✍️' : ''
-		call add(middle_tab, split(l:selected_buffer['text'], '/')[-1].l:modified)
+		call add(middle_tab, Artify(l:selected_buffer['index'], 'bold').': '.split(l:selected_buffer['text'], '/')[-1].l:modified)
 		for l:unselected_buffer in l:BufferList
-			let l:modified = unselected_buffer['modified']==1 ? ' ✍️' : ''
+			let l:modified = l:unselected_buffer['modified']==1 ? ' ✍️' : ''
 			let l:SmartPath = ShortestPath(unselected_buffer['text'])
 			if l:selected_buffer['index']<l:unselected_buffer['index']
-				call add(l:right_tab, l:SmartPath.l:modified)
+				call add(l:right_tab, l:unselected_buffer['index'].': '.l:SmartPath.l:modified)
 			elseif selected_buffer['index']>l:unselected_buffer['index']
-				call add(l:left_tab, l:SmartPath.l:modified)
+				call add(l:left_tab, l:unselected_buffer['index'].': '.l:SmartPath.l:modified)
 			endif
 		endfor
 	endif
@@ -368,8 +368,8 @@ let g:lightline.colorscheme = 'gruvbox_material'
 let g:lightline.enable = { 'statusline': 1, 'tabline': 1 }
 let g:lightline.separator = { 'left': '', 'right': '' }
 let g:lightline.subseparator = { 'left': '', 'right': '' }
-let g:lightline.tabline_separator = { 'left': "\ue0bc", 'right': "\ue0ba" }
-let g:lightline.tabline_subseparator = { 'left': "\ue0bb", 'right': "\ue0bb" }
+let g:lightline.tabline_separator = g:lightline.separator
+let g:lightline.tabline_subseparator = g:lightline.subseparator
 
 let g:lightline.active = {
 	\ 'left': [ 
