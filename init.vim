@@ -268,15 +268,11 @@ function! CtrlSpaceTabs() abort
 endfunction
 
 function! CtrlSpaceBuffers() abort
-	let l:BufferList = []
-	for buffer1 in g:ctrlspace#api#BufferList(tabpagenr())
-		for buffer2 in g:ctrlspace#api#BufferList(tabpagenr())
-			if (index(BufferList, buffer2) == -1)
-				if (buffer2['index'] <= buffer1['index'])
-					call add(BufferList, buffer2)
-				endif
-			else
-				continue
+	let l:BufferList = []	
+	for bufferkey in keys(g:ctrlspace#api#Buffers(tabpagenr()))
+		for buffer in g:ctrlspace#api#BufferList(tabpagenr())
+			if buffer['index'] == eval(bufferkey)
+				call add(BufferList, buffer)
 			endif
 		endfor
 	endfor
