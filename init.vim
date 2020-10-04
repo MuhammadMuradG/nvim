@@ -246,33 +246,33 @@ function! EnhancedFileName() abort
 endfunction
 
 function! CtrlSpaceTabs() abort
-	let Tabslist = g:ctrlspace#api#TabList()
-	let tab_right = []
-	let tab_middle = []
-	let tab_left = []
-	let tabs = [ tab_left, tab_middle, tab_right ]
-	for SelectedTab in Tabslist
-		if SelectedTab['current']==1
-			call add(tab_middle, SelectedTab['title']." \ue0bb ".Artify(SelectedTab['index'], 'bold'))
-			for Tab in Tabslist
-				if SelectedTab['index']<Tab['index']
-					call add(tab_right, Tab['title']." \ue0bb ".Artify(Tab['index'], 'double_struck'))
-				elseif SelectedTab['index']>Tab['index']
-					call add(tab_left, Tab['title']." \ue0bb ".Artify(Tab['index'], 'double_struck'))
+	let l:Tabslist = g:ctrlspace#api#TabList()
+	let l:tab_right = []
+	let l:tab_middle = []
+	let l:tab_left = []
+	let l:tabs = [ l:tab_left, l:tab_middle, l:tab_right ]
+	for l:SelectedTab in l:Tabslist
+		if l:SelectedTab['current']==1
+			call add(l:tab_middle, l:SelectedTab['title']." \ue0bb ".Artify(l:SelectedTab['index'], 'bold'))
+			for l:Tab in l:Tabslist
+				if l:SelectedTab['index']<l:Tab['index']
+					call add(l:tab_right, l:Tab['title']." \ue0bb ".Artify(l:Tab['index'], 'double_struck'))
+				elseif l:SelectedTab['index']>l:Tab['index']
+					call add(l:tab_left, l:Tab['title']." \ue0bb ".Artify(l:Tab['index'], 'double_struck'))
 				endif
 			endfor
 			break
 		endif
 	endfor
-	return tabs
+	return l:tabs
 endfunction
 
 function! CtrlSpaceBuffers() abort
-	let l:BufferList = []	
-	for bufferkey in keys(g:ctrlspace#api#Buffers(tabpagenr()))
-		for buffer in g:ctrlspace#api#BufferList(tabpagenr())
-			if buffer['index'] == eval(bufferkey)
-				call add(BufferList, buffer)
+	let l:BufferList = []
+	for l:bufferindex in sort(keys(g:ctrlspace#api#Buffers(tabpagenr())), 'N')
+		for l:buffer in g:ctrlspace#api#BufferList(tabpagenr())
+			if buffer['index'] == l:bufferindex
+				call add(l:BufferList, l:buffer)
 			endif
 		endfor
 	endfor
@@ -283,34 +283,34 @@ function! CtrlSpaceBuffers() abort
 
 	" Keep buffer list visible
 	let l:invisible_buffers = 0
-	for buffer in BufferList
+	for l:buffer in BufferList
 		if buffer['visible']
-			let selected_buffer = buffer
+			let l:selected_buffer = l:buffer
 		else
-			let invisible_buffers += 1
+			let l:invisible_buffers += 1
 		endif
 	endfor
 
-	if invisible_buffers == len(BufferList) || expand('%:p')==''
-		for unselected_buffer in BufferList
-			let l:modified = unselected_buffer['modified']==1 ? ' ✍️' : ''
-			let SmartPath = ShortestPath(unselected_buffer['text'])
-			call add(left_tab, SmartPath.modified)
+	if l:invisible_buffers == len(l:BufferList) || expand('%:p')==''
+		for l:unselected_buffer in BufferList
+			let l:modified = l:unselected_buffer['modified']==1 ? ' ✍️' : ''
+			let l:SmartPath = ShortestPath(l:unselected_buffer['text'])
+			call add(left_tab, l:SmartPath.l:modified)
 		endfor
 	else
-		let l:modified = selected_buffer['modified']==1 ? ' ✍️' : ''
-		call add(middle_tab, split(selected_buffer['text'], '/')[-1].modified)
-		for unselected_buffer in BufferList
+		let l:modified = l:selected_buffer['modified']==1 ? ' ✍️' : ''
+		call add(middle_tab, split(l:selected_buffer['text'], '/')[-1].l:modified)
+		for l:unselected_buffer in l:BufferList
 			let l:modified = unselected_buffer['modified']==1 ? ' ✍️' : ''
-			let SmartPath = ShortestPath(unselected_buffer['text'])
-			if selected_buffer['index']<unselected_buffer['index']
-				call add(right_tab, SmartPath.modified)
-			elseif selected_buffer['index']>unselected_buffer['index']
-				call add(left_tab, SmartPath.modified)
+			let l:SmartPath = ShortestPath(unselected_buffer['text'])
+			if l:selected_buffer['index']<l:unselected_buffer['index']
+				call add(l:right_tab, l:SmartPath.l:modified)
+			elseif selected_buffer['index']>l:unselected_buffer['index']
+				call add(l:left_tab, l:SmartPath.l:modified)
 			endif
 		endfor
 	endif
-	return tabs
+	return l:tabs
 endfunction
 
 function! ShortestPath(buffer)
@@ -318,21 +318,21 @@ function! ShortestPath(buffer)
 	let l:cur_path = split(cur_buffer, '/')
 	let l:path = split(a:buffer, '/')
 	let l:smart_path = ''
-	if len(path)<=len(cur_path)
-		for i in range(len(path))
-			if i+1 == len(path)
+	if len(l:path)<=len(l:cur_path)
+		for l:i in range(len(l:path))
+			if l:i+1 == len(l:path)
 				" Keep the name of tail
-				let l:smart_path = smart_path . '/' . path[i]
+				let l:smart_path = l:smart_path . '/' . l:path[i]
 			else
-				if path[i] == cur_path[i]
-						let l:smart_path = smart_path . '/' . path[i][0]
+				if l:path[i] == l:cur_path[i]
+						let l:smart_path = l:smart_path . '/' . l:path[i][0]
 				else
-					let l:smart_path = smart_path . '/' . path[i]
-					for s in range(i+1, len(path)-1)
-						if s == len(path)-1
-							let l:smart_path = smart_path . '/' . path[s]
+					let l:smart_path = l:smart_path . '/' . l:path[i]
+					for l:s in range(i+1, len(l:path)-1)
+						if l:s == len(l:path)-1
+							let l:smart_path = l:smart_path . '/' . l:path[s]
 						else
-							let l:smart_path = smart_path . '/' . path[s][0]
+							let l:smart_path = l:smart_path . '/' . l:path[s][0]
 						endif
 					endfor
 					break
@@ -340,19 +340,19 @@ function! ShortestPath(buffer)
 			endif
 		endfor
 	else
-		for i in range(len(path))
-			if i == len(path)-1
-				let l:smart_path = smart_path . '/' . path[i]
+		for l:i in range(len(l:path))
+			if l:i == len(l:path)-1
+				let l:smart_path = l:smart_path . '/' . l:path[i]
 			else
-				if index(cur_path, path[i]) >= 0
-					let l:smart_path = smart_path . '/' . path[i][0]
+				if index(l:cur_path, l:path[i]) >= 0
+					let l:smart_path = l:smart_path . '/' . l:path[i][0]
 				else
-					let l:smart_path = smart_path . '/' . path[i]
-					for s in range(i+1, len(path)-1)
-						if s == len(path)-1
-							let l:smart_path = smart_path . '/' . path[s]
+					let l:smart_path = l:smart_path . '/' . l:path[i]
+					for l:s in range(i+1, len(l:path)-1)
+						if l:s == len(l:path)-1
+							let l:smart_path = l:smart_path . '/' . l:path[s]
 						else
-							let l:smart_path = smart_path . '/' . path[s][0]
+							let l:smart_path = l:smart_path . '/' . l:path[s][0]
 						endif
 					endfor
 					break
@@ -360,7 +360,7 @@ function! ShortestPath(buffer)
 			endif
 		endfor
 	endif
-	return smart_path
+	return l:smart_path
 endfunction
 
 let g:lightline = {}
