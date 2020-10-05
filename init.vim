@@ -301,7 +301,8 @@ function! CtrlSpaceBuffers() abort
 		endfor
 	else
 		let l:modified = l:selected_buffer['modified']==1 ? ' ✍️' : ''
-		call add(middle_tab, Artify(l:selected_buffer['index'], 'bold').': '.split(l:selected_buffer['text'], '/')[-1].l:modified)
+		call add(middle_tab, Artify(l:selected_buffer['index'], 'bold').': '.
+			\ split(l:selected_buffer['text'], '/')[-1].l:modified)
 		for l:unselected_buffer in l:BufferList
 			let l:modified = l:unselected_buffer['modified']==1 ? ' ✍️' : ''
 			let l:SmartPath = ShortestPath(unselected_buffer['text'])
@@ -321,12 +322,10 @@ function! ShortestPath(buffer)
 	let l:path = split(a:buffer, '/')
 	let l:smart_path = ''
 	for l:i in range(len(l:path))
-		if l:i == len(l:path)-1
-			if len(l:path)==1
-				let l:smart_path = l:path[i]
-			else
-				let l:smart_path = l:smart_path . '/' . l:path[i]
-			endif
+		if (l:i == len(l:path)-1) && (len(l:path)==1)
+			let l:smart_path = l:path[i]
+		elseif l:i == len(l:path)-1
+			let l:smart_path = l:smart_path . '/' . l:path[i]
 		else
 			if (index(l:cur_path, l:path[i]) >= 0) && (l:cur_path[i]==l:path[i])
 				let l:smart_path = l:smart_path . '/' . l:path[i][0]
