@@ -204,11 +204,11 @@ function! GitStatus() abort
 endfunction
 
 function! ArtifyBuffer() abort
-	return Artify('B U F F E R S ', 'sans_serif')
+	return Artify('B U F F E R S', 'sans_serif')
 endfunction
 
 function! ArtifyTab() abort
-	return Artify('T A B S ', 'sans_serif')
+	return Artify('T A B S', 'sans_serif')
 endfunction
 
 function! SmallStatusLine() abort
