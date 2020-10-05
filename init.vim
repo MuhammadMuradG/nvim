@@ -89,8 +89,10 @@ nnoremap <C-j> <C-W>j
 
 " Go to next buffer, also you can use :bdelete in the following command
 nnoremap <Tab> :bnext<CR>
+" Go to previous buffer
+nnoremap <S-Tab> :bprevious<CR>
 " Go to next tab
-nnoremap <S-Tab> :tabnext<CR>
+nnoremap <S-Tab><Tab> :tabnext<CR>
 
 " Delete the current buffer completely and close its window
 nnoremap <silent><C-q><C-q> :bwipe!<bar>if bufname()==""<bar>q<bar>endif<CR>
