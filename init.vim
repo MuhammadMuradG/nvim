@@ -317,51 +317,32 @@ endfunction
 
 function! ShortestPath(buffer)
 	let l:cur_buffer = expand('%:p')=='' ? expand('#:p') : expand('%:p')
-	let l:cur_path = split(cur_buffer, '/')
+	let l:cur_path = split(l:cur_buffer, '/')
 	let l:path = split(a:buffer, '/')
 	let l:smart_path = ''
-	if len(l:path)<=len(l:cur_path)
-		for l:i in range(len(l:path))
-			if l:i+1 == len(l:path)
-				" Keep the name of tail
-				let l:smart_path = l:smart_path . '/' . l:path[i]
+	for l:i in range(len(l:path))
+		if l:i == len(l:path)-1
+			if len(l:path)==1
+				let l:smart_path = l:path[i]
 			else
-				if l:path[i] == l:cur_path[i]
-						let l:smart_path = l:smart_path . '/' . l:path[i][0]
-				else
-					let l:smart_path = l:smart_path . '/' . l:path[i]
-					for l:s in range(i+1, len(l:path)-1)
-						if l:s == len(l:path)-1
-							let l:smart_path = l:smart_path . '/' . l:path[s]
-						else
-							let l:smart_path = l:smart_path . '/' . l:path[s][0]
-						endif
-					endfor
-					break
-				endif
-			endif
-		endfor
-	else
-		for l:i in range(len(l:path))
-			if l:i == len(l:path)-1
 				let l:smart_path = l:smart_path . '/' . l:path[i]
-			else
-				if index(l:cur_path, l:path[i]) >= 0
-					let l:smart_path = l:smart_path . '/' . l:path[i][0]
-				else
-					let l:smart_path = l:smart_path . '/' . l:path[i]
-					for l:s in range(i+1, len(l:path)-1)
-						if l:s == len(l:path)-1
-							let l:smart_path = l:smart_path . '/' . l:path[s]
-						else
-							let l:smart_path = l:smart_path . '/' . l:path[s][0]
-						endif
-					endfor
-					break
-				endif
 			endif
-		endfor
-	endif
+		else
+			if (index(l:cur_path, l:path[i]) >= 0) && (l:cur_path[i]==l:path[i])
+				let l:smart_path = l:smart_path . '/' . l:path[i][0]
+			else
+				let l:smart_path = l:smart_path . '/' . l:path[i]
+				for l:s in range(i+1, len(l:path)-1)
+					if l:s == len(l:path)-1
+						let l:smart_path = l:smart_path . '/' . l:path[s]
+					else
+						let l:smart_path = l:smart_path . '/' . l:path[s][0]
+					endif
+				endfor
+				break
+			endif
+		endif
+	endfor
 	return l:smart_path
 endfunction
 
