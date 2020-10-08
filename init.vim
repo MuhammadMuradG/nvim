@@ -317,8 +317,7 @@ function! CtrlSpaceBuffers() abort
 endfunction
 
 function! ShortestPath(buffer)
-	let l:cur_buffer = expand('%:p')=='' ? expand('#:p') : expand('%:p')
-	let l:cur_path = split(l:cur_buffer, '/')
+	let l:cur_path = expand('%:p')=='' ? split(expand('#:p'), '/') : split(expand('%:p'), '/')
 	let l:path = split(a:buffer, '/')
 	if l:path[0]=='home' && l:path[1]=='muhammadmouradpos'
 		let l:smart_path = '~'
@@ -332,20 +331,18 @@ function! ShortestPath(buffer)
 			let l:smart_path = l:path[i]
 		elseif l:i == len(l:path)-1
 			let l:smart_path = l:smart_path . '/' . l:path[i]
+		elseif (index(l:cur_path, l:path[i]) >= 0)
+			let l:smart_path = l:smart_path . '/' . l:path[i][0]
 		else
-			if (index(l:cur_path, l:path[i]) >= 0) && (l:cur_path[i]==l:path[i])
-				let l:smart_path = l:smart_path . '/' . l:path[i][0]
-			else
-				let l:smart_path = l:smart_path . '/' . l:path[i]
-				for l:s in range(i+1, len(l:path)-1)
-					if l:s == len(l:path)-1
-						let l:smart_path = l:smart_path . '/' . l:path[s]
-					else
-						let l:smart_path = l:smart_path . '/' . l:path[s][0]
-					endif
-				endfor
-				break
-			endif
+			let l:smart_path = l:smart_path . '/' . l:path[i]
+			for l:s in range(i+1, len(l:path)-1)
+				if l:s == len(l:path)-1
+					let l:smart_path = l:smart_path . '/' . l:path[s]
+				else
+					let l:smart_path = l:smart_path . '/' . l:path[s][0]
+				endif
+			endfor
+			break
 		endif
 	endfor
 	return l:smart_path
