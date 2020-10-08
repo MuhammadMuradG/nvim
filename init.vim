@@ -320,7 +320,13 @@ function! ShortestPath(buffer)
 	let l:cur_buffer = expand('%:p')=='' ? expand('#:p') : expand('%:p')
 	let l:cur_path = split(l:cur_buffer, '/')
 	let l:path = split(a:buffer, '/')
-	let l:smart_path = ''
+	if l:path[0]=='home' && l:path[1]=='muhammadmouradpos'
+		let l:smart_path = '~'
+		let l:cur_path = l:cur_path[2:]
+		let l:path = l:path[2:]
+	else
+		let l:smart_path = ''
+	endif
 	for l:i in range(len(l:path))
 		if (l:i == len(l:path)-1) && (len(l:path)==1)
 			let l:smart_path = l:path[i]
