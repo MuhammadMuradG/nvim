@@ -255,12 +255,12 @@ function! CtrlSpaceTabs() abort
 	let l:tabs = [ l:tab_left, l:tab_middle, l:tab_right ]
 	for l:SelectedTab in l:Tabslist
 		if l:SelectedTab['current']==1
-			call add(l:tab_middle, l:SelectedTab['title'].Artify(l:SelectedTab['index'], 'bold'))
+			call add(l:tab_middle, l:SelectedTab['title'])
 			for l:Tab in l:Tabslist
 				if l:SelectedTab['index']<l:Tab['index']
-					call add(l:tab_right, l:Tab['title'].Artify(l:Tab['index'], 'double_struck'))
+					call add(l:tab_right, l:Tab['title'])
 				elseif l:SelectedTab['index']>l:Tab['index']
-					call add(l:tab_left, l:Tab['title'].Artify(l:Tab['index'], 'double_struck'))
+					call add(l:tab_left, l:Tab['title'])
 				endif
 			endfor
 			break
@@ -592,7 +592,7 @@ highlight link CocHighlightWrite RedrawDebugComposed
 
 " ============================== Coc-explorer =================================
 nmap <space>e :CocCommand explorer<CR>
-autocmd BufWinEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " Automatically open coc-explorer
 autocmd BufWinEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list') | exe 'let dir = getcwd()' | endif
