@@ -121,7 +121,7 @@ inoremap <S-Tab> <C-d>
 " Gruvbox-material settings
 "###############################################################################
 " For dark or light scheme
-set background=light                         " dark or light
+set background=dark                          " dark or light
 
 let g:gruvbox_material_background = 'soft'   " hard, soft or medium
 let g:gruvbox_material_enable_italic = 1
