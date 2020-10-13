@@ -121,7 +121,7 @@ inoremap <S-Tab> <C-d>
 " Gruvbox-material settings
 "###############################################################################
 " For dark or light scheme
-set background=dark                          " dark or light
+set background=light                         " dark or light
 
 let g:gruvbox_material_background = 'soft'   " hard, soft or medium
 let g:gruvbox_material_enable_italic = 1
@@ -424,7 +424,21 @@ augroup LightlineUpdate
 augroup End
 
 let s:palette = g:lightline#colorscheme#gruvbox_material#palette
-let s:palette.tabline = {'right': [['#ddc7a1', '#5b534d', '223', '241'], ['#ddc7a1', '#5b534d', '223', '241']], 'middle': [['#ddc7a1', '#3c3836', '223', '237']], 'left': [['#ddc7a1', '#5b534d', '223', '241'], ['#ddc7a1', '#5b534d', '223', '241']], 'tabsel': [['#32302f', '#a89984', '236', '246', 'bold']]}
+if &background == 'dark'
+	let s:palette.tabline = {
+		\ 'right': [['#ddc7a1', '#5b534d', '223', '241'], ['#ddc7a1', '#5b534d', '223', '241']],
+		\ 'middle': [['#ddc7a1', '#3c3836', '223', '237']],
+		\ 'left': [['#ddc7a1', '#5b534d', '223', '241'], ['#ddc7a1', '#5b534d', '223', '241']],
+		\ 'tabsel': [['#32302f', '#a89984', '236', '246', 'bold']]
+		\ }
+else
+	let s:palette.tabline = {
+		\ 'right': [['#4f3829', '#dac9a5', '237', '250'], ['#4f3829', '#dac9a5', '237', '250']],
+		\ 'middle': [['#4f3829', '#ebdbb2', '237', '223']],
+		\ 'left': [['#4f3829', '#dac9a5', '237', '250'], ['#4f3829', '#dac9a5', '237', '250']],
+		\ 'tabsel': [['#32302f', '#a89984', '236', '246', 'bold']]
+		\ }
+endif
 let s:palette.tabline.tabsector = [['#32302f', '#E78A4E', '0', '21', 'bold']]
 
 
