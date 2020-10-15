@@ -37,6 +37,7 @@
 	"explorer.position": "left",
 	"explorer.width": 30,
 	"explorer.file.tabCD": true,
+	"explorer.buffer.tabOnly": true,
 	"explorer.previewAction.onHover": true,
 	"explorer.icon.enableNerdfont": true,
 
