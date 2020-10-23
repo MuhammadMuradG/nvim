@@ -296,7 +296,7 @@ function! CtrlSpaceBuffers() abort
 	if l:invisible_buffers == len(l:BufferList) || &filetype=='startify'
 		for l:unselected_buffer in BufferList
 			let l:modified = l:unselected_buffer['modified']==1 ? ' ✍️' : ''
-			let l:SmartPath = ShortestPath(l:unselected_buffer['text'])
+			let l:SmartPath = SmartPath(l:unselected_buffer['text'])
 			call add(left_tab, l:unselected_buffer['index'].': '.l:SmartPath.l:modified)
 		endfor
 	else
@@ -305,7 +305,7 @@ function! CtrlSpaceBuffers() abort
 			\ split(l:selected_buffer['text'], '/')[-1].l:modified)
 		for l:unselected_buffer in l:BufferList
 			let l:modified = l:unselected_buffer['modified']==1 ? ' ✍️' : ''
-			let l:SmartPath = ShortestPath(unselected_buffer['text'])
+			let l:SmartPath = SmartPath(unselected_buffer['text'])
 			if l:selected_buffer['index']<l:unselected_buffer['index']
 				call add(l:right_tab, l:unselected_buffer['index'].': '.l:SmartPath.l:modified)
 			elseif selected_buffer['index']>l:unselected_buffer['index']
@@ -316,7 +316,7 @@ function! CtrlSpaceBuffers() abort
 	return l:tabs
 endfunction
 
-function! ShortestPath(buffer)
+function! SmartPath(buffer)
 	let l:cur_path = expand('%:p')=='' ? split(expand('#:p'), '/') : split(expand('%:p'), '/')
 	let l:path = split(a:buffer, '/')
 	if l:path[0]=='home' && l:path[1]=='muhammadmouradpos'
@@ -327,8 +327,8 @@ function! ShortestPath(buffer)
 		let l:smart_path = ''
 	endif
 	for l:i in range(len(l:path))
-		if (l:i == len(l:path)-1) && (len(l:path)==1)
-			let l:smart_path = l:path[i]
+		if (len(l:smart_path)==0)
+			let l:smart_path = '.'.'/'.l:path[i]
 		elseif l:i == len(l:path)-1
 			let l:smart_path = l:smart_path . '/' . l:path[i]
 		elseif (index(l:cur_path, l:path[i]) >= 0)
