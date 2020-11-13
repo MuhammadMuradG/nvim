@@ -58,7 +58,7 @@ Plug 'sainnhe/forest-night'
 Plug 'sainnhe/edge'
 
 Plug 'honza/vim-snippets'                                " Provide snippets for coc-snippets
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } } 
 Plug 'sheerun/vim-polyglot'                              " Syntax highlighting
 Plug 'tpope/vim-fugitive'                                " The premier Git plugin for Vim, it is illegal.
 Plug 'scrooloose/nerdcommenter'
@@ -633,6 +633,7 @@ let g:auto_save_events = ["CursorHoldI", "CursorHold"]
 "###############################################################################
 " Indent-Line plugin settings
 "###############################################################################
+let g:indentLine_setConceal = 0
 let g:indentLine_enabled = 1
 let g:indentLine_char = '│'
 let g:indentLine_first_char = '│'
