@@ -192,8 +192,8 @@
 	// C/C++/Objective-C
 	"clangd.enabled": true,
 	"clangd.checkUpdates": true,
-	"clangd.semanticHighlighting": false,
-	"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd",
+	"clangd.semanticHighlighting": true,
+	"clangd.path": "/bin/clangd-11",
 
 	// Manual Settings
 	"languageserver": {
