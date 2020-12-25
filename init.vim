@@ -617,7 +617,8 @@ autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-foc
 function s:explorer_inited()
 	let w:has_coc_explorer = v:true
 	autocmd BufWinLeave * let prevDir = getcwd()
-	autocmd BufWinEnter * if (exists('w:has_coc_explorer') && (&filetype != 'coc-explorer') && (&filetype != 'list') && (prevDir != dir)) | call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "cd", "args": [dir]}) | call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "refresh"}) | endif
+	autocmd BufWinEnter * if (exists('w:has_coc_explorer') && (&filetype != 'coc-explorer') && (&filetype != 'list') && (prevDir != dir)) | call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "cd", "args": [dir]}) | endif
+	autocmd BufEnter * call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "refresh"})
 endfunction
 
 autocmd User CocExplorerOpenPost call s:explorer_inited()
@@ -638,7 +639,7 @@ let g:indentLine_enabled = 1
 let g:indentLine_char = '│'
 let g:indentLine_first_char = '│'
 let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_fileType = ['python']
+let g:indentLine_fileType = ['python', 'c']
 
 "###############################################################################
 " MarkDown settings
