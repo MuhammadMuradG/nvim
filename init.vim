@@ -26,9 +26,10 @@ set showtabline=2
 
 " Reference for tab https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
 " tabstop: Number of spaces that a <Tab> in the file counts for.
-" softtabstop: Number of spaces that a <Tab> counts in editing mode.
+" softtabstop: Number of spaces that a <Tab> counts in editing mode (if using
+" tab character in code).
 " shiftwidth: The size of an 'indent'. It's also measured in spaces
-set list tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab listchars=tab:│\ 
+set list indentexpr tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab listchars=eol:⏎,tab:│\ 
 "set listchars=eol:¬,tab:▸\ 
 "set listchars=eol:⏎,tab:\|\ 
 
