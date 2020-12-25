@@ -29,7 +29,7 @@ set showtabline=2
 " softtabstop: Number of spaces that a <Tab> counts in editing mode (if using
 " tab character in code).
 " shiftwidth: The size of an 'indent'. It's also measured in spaces
-set list indentexpr tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab listchars=eol:⏎,tab:│\ 
+set list indentexpr tabstop=4 shiftwidth=4 softtabstop=4 expandtab listchars=eol:⏎,tab:│\ 
 "set listchars=eol:¬,tab:▸\ 
 "set listchars=eol:⏎,tab:\|\ 
 
