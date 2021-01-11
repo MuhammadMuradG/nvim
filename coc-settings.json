@@ -46,63 +46,6 @@
 	"suggest.noselect": true,
 
 	// LSP Configurations
-	// coc-diagnostic
-	"diagnostic-languageserver.filetypes": {
-		"python": "pylint"
-	},
-	"diagnostic-languageserver.linters": {
-		"pylint": {
-			"sourceName": "pylint",
-			"command": "pylint",
-			"args": [
-				"--output-format",
-				"text",
-				"--score",
-				"no",
-				"--msg-template",
-				"'{line}:{column}:{category}:{msg} ({msg_id}:{symbol})'",
-				"%file"
-			],
-			"formatPattern": [
-				"^(\\d+?):(\\d+?):([a-z]+?):(.*)$",
-				{
-					"line": 1,
-					"column": 2,
-					"security": 3,
-					"message": 4
-				}
-			],
-			"rootPatterns": [".git", "pyproject.toml", "setup.py"],
-			"securities": {
-				"informational": "hint",
-				"refactor": "info",
-				"convention": "info",
-				"warning": "warning",
-				"error": "error",
-				"fatal": "error"
-			},
-			"offsetColumn": 1,
-			"formatLines": 1
-		}
-	},
-	"diagnostic-languageserver.formatFiletypes": {
-		"python": ["black", "isort", "docformatter"]
-	},
-	"diagnostic-languageserver.formatters": {
-		"black": {
-			"command": "black",
-			"args": ["black", "-q", "-"]
-		},
-		"isort": {
-			"command": "isort",
-			"args": ["-q", "-"]
-		},
-		"docformatter": {
-			"command": "docformatter",
-			"args": ["-"]
-		}
-	},
-
 	// coc-Prettier configuration
 	"prettier.tabWidth": 4,
 	"prettier.useTabs": true,
@@ -153,19 +96,15 @@
 	"tabnine.shortcut": "TN",
 
 	// Python
-	"jedi.enable": true,
-	"jedi.startupMessage": true,
-	"jedi.markupKindPreferred": "plaintext",
-	"jedi.trace.server": true,
-	"jedi.jediSettings.autoImportModules": [],
-	"jedi.executable.command": "jedi-language-server",
-	"jedi.executable.args": [],
-	"jedi.completion.disableSnippets": false,
-	"jedi.diagnostics.enable": true,
-	"jedi.diagnostics.didOpen": true,
-	"jedi.diagnostics.didChange": true,
-	"jedi.diagnostics.didSave": true,
-	"jedi.workspace.extraPaths": [],
+    "python.pythonPath": "python3",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.diagnosticMode": "openFilesOnly",
+    "python.formatting.provider": "black",
+    "python.formatting.blackPath": "black",
+    "python.formatting.blackArgs": [],
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
 
 	// Latex
 	"latex.build.executable": "latexmk",
