@@ -29,7 +29,7 @@ set showtabline=2
 " softtabstop: Number of spaces that a <Tab> counts in editing mode (if using
 " tab character in code).
 " shiftwidth: The size of an 'indent'. It's also measured in spaces
-set list tabstop=4 shiftwidth=4 softtabstop=4 expandtab listchars=eol:⏎,tab:│\ 
+set list tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab listchars=eol:⏎,tab:│\ 
 "set listchars=eol:¬,tab:▸\ 
 "set listchars=eol:⏎,tab:\|\ 
 
@@ -641,6 +641,7 @@ let g:indentLine_char = '│'
 let g:indentLine_first_char = '│'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_fileType = ['python', 'c']
+
 
 "###############################################################################
 " MarkDown settings

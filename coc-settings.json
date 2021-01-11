@@ -96,15 +96,15 @@
 	"tabnine.shortcut": "TN",
 
 	// Python
-    "python.pythonPath": "python3",
-    "python.analysis.autoImportCompletions": true,
-    "python.analysis.autoSearchPaths": true,
-    "python.analysis.diagnosticMode": "openFilesOnly",
-    "python.formatting.provider": "black",
-    "python.formatting.blackPath": "black",
-    "python.formatting.blackArgs": [],
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
+	"python.pythonPath": "python3",
+	"python.analysis.autoImportCompletions": true,
+	"python.analysis.autoSearchPaths": true,
+	"python.analysis.diagnosticMode": "openFilesOnly",
+	"python.formatting.provider": "black",
+	"python.formatting.blackPath": "black",
+	"python.formatting.blackArgs": [],
+	"python.linting.enabled": true,
+	"python.linting.pylintEnabled": true,
 
 	// Latex
 	"latex.build.executable": "latexmk",
