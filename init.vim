@@ -12,7 +12,6 @@ syntax on
 set number
 set ruler
 set mouse=a
-set colorcolumn=80
 
 " Required by CtrlSpace and coc.nvim
 set nocompatible
@@ -24,7 +23,20 @@ set termguicolors
 " Enable tabline
 set showtabline=2
 
-" Reference for tab https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
+" Auto word wrap to 80 characters
+"set textwidth=80
+"set formatoptions+=t
+
+" show soft vertical line at 80+1
+set colorcolumn=80
+
+" Show .... characters at warped line (sbr)
+set showbreak=....\ 
+
+" indent wrapped lines
+set breakindentopt=shift:4,min:40,sbr
+
+" Referenc for tab https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
 " tabstop: Number of spaces that a <Tab> in the file counts for.
 " softtabstop: Number of spaces that a <Tab> counts in editing mode (if using
 " tab character in code).
