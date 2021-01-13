@@ -619,6 +619,8 @@ highlight link CocHighlightWrite RedrawDebugComposed
 
 " ============================== Coc-explorer =================================
 nmap <space>e :CocCommand explorer<CR>
+
+" Automatically close coc-explorer if quit from last buffer
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " Automatically open coc-explorer
@@ -631,7 +633,7 @@ function s:explorer_inited()
 	let w:has_coc_explorer = v:true
 	autocmd BufWinLeave * let prevDir = getcwd()
 	autocmd BufWinEnter * if (exists('w:has_coc_explorer') && (&filetype != 'coc-explorer') && (&filetype != 'list') && (prevDir != dir)) | call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "cd", "args": [dir]}) | endif
-	autocmd BufEnter * call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "refresh"})
+	autocmd BufWinEnter * call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "refresh"})
 endfunction
 
 autocmd User CocExplorerOpenPost call s:explorer_inited()
