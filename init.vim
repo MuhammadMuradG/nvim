@@ -332,7 +332,7 @@ endfunction
 function! SmartPath(buffer)
 	let l:cur_path = expand('%:p')=='' ? split(expand('#:p'), '/') : split(expand('%:p'), '/')
 	let l:path = split(a:buffer, '/')
-	if l:path[0]=='home' && l:path[1]=='muhammadmouradpos'
+	if (l:path[0]=="home" && l:path[1]==$USER)
 		let l:smart_path = '~'
 		let l:cur_path = l:cur_path[2:]
 		let l:path = l:path[2:]
