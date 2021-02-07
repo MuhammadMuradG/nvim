@@ -244,7 +244,7 @@ function! EnhancedFileName() abort
 	let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
 
 	if &readonly==0 && &modified==1
-		let filesstate = ' ✍️ '
+		let filesstate = ' ✍️'
 	elseif &readonly==0 && &modified==0
 		let filesstate = ''
 	else
