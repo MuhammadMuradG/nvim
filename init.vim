@@ -170,7 +170,7 @@ colorscheme gruvbox-material                 " Available choice gruvbox-material
 "    ⚡ ☰  Ɇ  ✎
 
 function! LinghtLineMode() abort
-	return &filetype!='coc-explorer' ? Artify(lightline#mode(), 'monospace') : SmallStatusLine()
+	return &filetype!='coc-explorer' ? artify#convert(lightline#mode(), 'monospace') : SmallStatusLine()
 endfunction
 
 function! LineInfo() abort
@@ -217,11 +217,11 @@ function! GitStatus() abort
 endfunction
 
 function! ArtifyBuffer() abort
-	return Artify('B U F F E R S', 'sans_serif')
+	return artify#convert('B U F F E R S', 'sans_serif')
 endfunction
 
 function! ArtifyTab() abort
-	return Artify('T A B S', 'sans_serif')
+	return artify#convert('T A B S', 'sans_serif')
 endfunction
 
 function! SmallStatusLine() abort
@@ -314,7 +314,7 @@ function! CtrlSpaceBuffers() abort
 		endfor
 	else
 		let l:modified = l:selected_buffer['modified']==1 ? ' ✍️' : ''
-		call add(middle_tab, Artify(l:selected_buffer['index'], 'bold').': '.
+		call add(middle_tab, artify#convert(l:selected_buffer['index'], 'bold').': '.
 			\ split(l:selected_buffer['text'], '/')[-1].l:modified)
 		for l:unselected_buffer in l:BufferList
 			let l:modified = l:unselected_buffer['modified']==1 ? ' ✍️' : ''
@@ -434,6 +434,7 @@ augroup LightlineUpdate
 	autocmd!
 	autocmd BufWritePost * silent CocCommand git.refresh
 	autocmd User CocDiagnosticChange call lightline#update()
+	autocmd BufWritePost * silent mode
 augroup End
 
 let s:palette = g:lightline#colorscheme#gruvbox_material#palette
@@ -546,7 +547,7 @@ let cmdline_auto_scroll = 1      " Keep the cursor at the end of terminal (nvim)
 let cmdline_app           = {}
 let cmdline_app['ruby']   = 'pry'
 let cmdline_app['sh']     = 'bash'
-let cmdline_app['python'] = 'ipython3'
+let cmdline_app['python'] = 'ipython'
 
 
 "###############################################################################

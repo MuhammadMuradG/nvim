@@ -132,7 +132,7 @@
 	"clangd.enabled": true,
 	"clangd.checkUpdates": true,
 	"clangd.semanticHighlighting": true,
-	"clangd.path": "/bin/clangd-11",
+	"clangd.path": "/usr/local/bin/clangd11",
 
 	// Manual Settings
 	"languageserver": {
