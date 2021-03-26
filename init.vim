@@ -100,6 +100,16 @@ nnoremap <C-l> <C-W>l
 nnoremap <C-k> <C-W>k
 nnoremap <C-j> <C-W>j
 
+" Map keypad when numlock is off to arrows
+noremap <kUp> <Up>
+noremap <kDown> <Down>
+noremap <kRight> <Right>
+noremap <kLeft> <Left>
+noremap! <kUp> <Up>
+noremap! <kDown> <Down>
+noremap! <kRight> <Right>
+noremap! <kLeft> <Left>
+
 " Go to next buffer, also you can use :bdelete in the following command
 nnoremap <Tab> :bnext<CR>
 " Go to previous buffer
@@ -734,7 +744,7 @@ let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 
 " use a custom port to start server or random for empty
-let g:mkdp_port = ''
+let g:mkdp_port = '5000'
 
 " preview page title
 " ${name} will be replace with the file name
