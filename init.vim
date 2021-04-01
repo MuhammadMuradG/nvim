@@ -72,6 +72,7 @@ Plug 'sainnhe/edge'
 
 Plug 'honza/vim-snippets'                                " Provide snippets for coc-snippets
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'goerz/jupytext.vim'                                " Enable editing .ipynb ft as a script
 Plug 'jackguo380/vim-lsp-cxx-highlight'                  " Syntax highlighting for C family
 Plug 'tpope/vim-fugitive'                                " The premier Git plugin for Vim, it is illegal.
 Plug 'scrooloose/nerdcommenter'
@@ -105,6 +106,10 @@ noremap <kUp> <Up>
 noremap <kDown> <Down>
 noremap <kRight> <Right>
 noremap <kLeft> <Left>
+tnoremap <kUp> <Up>
+tnoremap <kDown> <Down>
+tnoremap <kRight> <Right>
+tnoremap <kLeft> <Left>
 noremap! <kUp> <Up>
 noremap! <kDown> <Down>
 noremap! <kRight> <Right>
@@ -534,6 +539,15 @@ let g:NERDDefaultAlign = 'left'
 
 
 "###############################################################################
+" jupytext settings
+"###############################################################################
+let g:jupytext_enable = 1
+let g:jupytext_command = 'jupytext'
+let g:jupytext_fmt = 'py'                         " Format to which to convert the ipynb data
+let g:jupytext_filetype_map = {'py': 'python'}    " A mapping of fmt to the &filetype of the buffer
+
+
+"###############################################################################
 " Vimcmdline settings
 "###############################################################################
 " vimcmdline mappings
@@ -556,7 +570,6 @@ let cmdline_auto_scroll = 1      " Keep the cursor at the end of terminal (nvim)
 
 let cmdline_app           = {}
 let cmdline_app['ruby']   = 'pry'
-let cmdline_app['sh']     = 'bash'
 let cmdline_app['python'] = 'ipython'
 
 
