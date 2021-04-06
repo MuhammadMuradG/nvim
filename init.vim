@@ -141,9 +141,6 @@ tnoremap <C-q><C-q> <C-\><C-n><bar>:q!<CR>
 " Set the path of current file as a working directory local for current window
 autocmd BufWinEnter * silent! lcd %:p:h
 
-" Shift + Tab does inverse tab
-inoremap <S-Tab> <C-d>
-
 
 "###############################################################################
 " Gruvbox-material settings
