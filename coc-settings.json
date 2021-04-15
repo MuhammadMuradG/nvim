@@ -38,7 +38,7 @@
 	"explorer.width": 30,
 	"explorer.file.tabCD": true,
 	"explorer.buffer.tabOnly": true,
-	"explorer.previewAction.onHover": true,
+	"explorer.previewAction.onHover": "labeling",
 	"explorer.icon.enableNerdfont": true,
 	"explorer.filename.colored.enable": true,
 
@@ -94,6 +94,7 @@
 
 	// TabNine Configurations for AI code completion
 	"tabnine.shortcut": "TN",
+	"tabnine.priority": 10,
 
 	// Python
 	"python.pythonPath": "python3",

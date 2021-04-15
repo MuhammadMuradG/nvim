@@ -54,12 +54,7 @@ if !has('nvim')
 	Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-Plug 'jalvesaq/vimcmdline'                               " REPL plugin
-
-Plug 'puremourning/vimspector',  { 'branch': 'master' }  " Debugger plugin
-
+" Plugins for themes and appearances
 Plug 'mhinz/vim-startify'
 Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'ryanoasis/vim-devicons'                            " Provided graphical icon
@@ -70,19 +65,24 @@ Plug 'morhetz/gruvbox'
 Plug 'sainnhe/forest-night'
 Plug 'sainnhe/edge'
 
+" Autocompletion plugins and LSP support
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'                                " Provide snippets for coc-snippets
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+
+" REPL and Debugger plugins
+Plug 'jalvesaq/vimcmdline'                               " REPL plugin
+Plug 'puremourning/vimspector',  { 'branch': 'master' }  " Debugger plugin
+
+" Helper plugins for productivity
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'goerz/jupytext.vim'                                " Enable editing .ipynb ft as a script
-Plug 'jackguo380/vim-lsp-cxx-highlight'                  " Syntax highlighting for C family
 Plug 'tpope/vim-fugitive'                                " The premier Git plugin for Vim, it is illegal.
+Plug 'jackguo380/vim-lsp-cxx-highlight'                  " Syntax highlighting for C family
 Plug 'scrooloose/nerdcommenter'
 Plug '907th/vim-auto-save'
 Plug 'Yggdroot/indentLine'
-
-" TODO: adjust the following plugins:
-"Plug 'kana/vim-arpeggio'                                 " Key mapping plugin.
-"Plug 'easymotion/vim-easymotion'
-"Plug 'tpope/vim-fugitive'                                " Plugin for command line git, can be integerate with airline
 
 call plug#end()
 
@@ -140,6 +140,9 @@ tnoremap <C-q><C-q> <C-\><C-n><bar>:q!<CR>
 
 " Set the path of current file as a working directory local for current window
 autocmd BufWinEnter * silent! lcd %:p:h
+
+" Shift + Tab does inverse tab
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 
 "###############################################################################
