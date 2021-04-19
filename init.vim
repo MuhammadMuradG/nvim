@@ -62,7 +62,7 @@ Plug 'sainnhe/artify.vim'                                " Provided customizable
 Plug 'itchyny/lightline.vim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'morhetz/gruvbox'
-Plug 'sainnhe/forest-night'
+Plug 'sainnhe/everforest'
 Plug 'sainnhe/edge'
 
 " Autocompletion plugins and LSP support
@@ -168,7 +168,7 @@ let g:gruvbox_material_palette = 'material'  " Available choice material, mix, o
 " available values: 'hard', 'medium'(default), 'soft'
 let g:gruvbox_material_background = 'soft'
 
-colorscheme gruvbox-material                 " Available choice gruvbox-material, forest-night, edge or gruvbox, solarized
+colorscheme gruvbox-material                 " Available choice gruvbox-material, everforest, edge or gruvbox, solarized
 
 
 "###############################################################################
@@ -232,11 +232,11 @@ function! GitStatus() abort
 endfunction
 
 function! ArtifyBuffer() abort
-	return artify#convert('B U F F E R S', 'sans_serif')
+	return artify#convert('B U F F E R S', 'script_bold')
 endfunction
 
 function! ArtifyTab() abort
-	return artify#convert('T A B S', 'sans_serif')
+	return artify#convert('T A B S', 'script_bold')
 endfunction
 
 function! SmallStatusLine() abort
@@ -458,17 +458,18 @@ if &background == 'dark'
 		\ 'right': [['#ddc7a1', '#5b534d', '223', '241'], ['#ddc7a1', '#5b534d', '223', '241']],
 		\ 'middle': [['#ddc7a1', '#3c3836', '223', '237']],
 		\ 'left': [['#ddc7a1', '#5b534d', '223', '241'], ['#ddc7a1', '#5b534d', '223', '241']],
-		\ 'tabsel': [['#32302f', '#a89984', '236', '246', 'bold']]
+		\ 'tabsel': [['#32302f', '#a89984', '236', '246', 'bold']],
+		\ 'tabsector': [['#32302f', '#E78A4E', '0', '21', 'bold']]
 		\ }
 else
 	let s:palette.tabline = {
 		\ 'right': [['#4f3829', '#dac9a5', '237', '250'], ['#4f3829', '#dac9a5', '237', '250']],
 		\ 'middle': [['#4f3829', '#ebdbb2', '237', '223']],
 		\ 'left': [['#4f3829', '#dac9a5', '237', '250'], ['#4f3829', '#dac9a5', '237', '250']],
-		\ 'tabsel': [['#32302f', '#a89984', '236', '246', 'bold']]
+		\ 'tabsel': [['#32302f', '#a89984', '236', '246', 'bold']],
+		\ 'tabsector': [['#32302f', '#E78A4E', '0', '21', 'bold']]
 		\ }
 endif
-let s:palette.tabline.tabsector = [['#32302f', '#E78A4E', '0', '21', 'bold']]
 
 
 "##############################################################################
