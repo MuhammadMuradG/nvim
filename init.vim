@@ -243,7 +243,7 @@ function! SmallStatusLine() abort
 	let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
 
 	if &readonly==0 && &modified==1
-		let filesstate = ' ✍️'
+		let filesstate = ' '
 	elseif &readonly==0 && &modified==0
 		let filesstate = ''
 	else
@@ -259,7 +259,7 @@ function! EnhancedFileName() abort
 	let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
 
 	if &readonly==0 && &modified==1
-		let filesstate = ' ✍️'
+		let filesstate = ' '
 	elseif &readonly==0 && &modified==0
 		let filesstate = ''
 	else
@@ -323,16 +323,16 @@ function! CtrlSpaceBuffers() abort
 
 	if l:invisible_buffers == len(l:BufferList) || &filetype=='startify'
 		for l:unselected_buffer in BufferList
-			let l:modified = l:unselected_buffer['modified']==1 ? ' ✍️' : ''
+			let l:modified = l:unselected_buffer['modified']==1 ? ' ' : ''
 			let l:SmartPath = SmartPath(l:unselected_buffer['text'])
 			call add(left_tab, l:unselected_buffer['index'].': '.l:SmartPath.l:modified)
 		endfor
 	else
-		let l:modified = l:selected_buffer['modified']==1 ? ' ✍️' : ''
+		let l:modified = l:selected_buffer['modified']==1 ? ' ' : ''
 		call add(middle_tab, artify#convert(l:selected_buffer['index'], 'bold').': '.
 			\ split(l:selected_buffer['text'], '/')[-1].l:modified)
 		for l:unselected_buffer in l:BufferList
-			let l:modified = l:unselected_buffer['modified']==1 ? ' ✍️' : ''
+			let l:modified = l:unselected_buffer['modified']==1 ? ' ' : ''
 			let l:SmartPath = SmartPath(unselected_buffer['text'])
 			if l:selected_buffer['index']<l:unselected_buffer['index']
 				call add(l:right_tab, l:unselected_buffer['index'].': '.l:SmartPath.l:modified)
