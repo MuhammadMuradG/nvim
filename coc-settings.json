@@ -5,7 +5,7 @@
 	"diagnostic.level": "hint",
 	"diagnostic.refreshOnInsertMode": true,
 	"diagnostic.checkCurrentLine": false,
-	"diagnostic.signOffset": 999999,
+	"diagnostic.signPriority": 0,
 	"diagnostic.enableSign": true,
 	"diagnostic.errorSign": "Ⓧ",
 	"diagnostic.warningSign": "⚠",
@@ -22,7 +22,6 @@
 	"suggest.echodocSupport": false,
 
 	"coc.preferences.previewAutoClose": true,
-	"coc.preferences.hoverTarget": "float",
 	"coc.preferences.colorSupport": true,
 	"coc.preferences.enableFloatHighlight": true,
 
@@ -36,7 +35,7 @@
 	"explorer.file.autoReveal": true,
 	"explorer.position": "left",
 	"explorer.width": 30,
-	"explorer.file.tabCD": true,
+	"explorer.file.cdCommand": false,
 	"explorer.buffer.tabOnly": true,
 	"explorer.previewAction.onHover": "labeling",
 	"explorer.icon.enableNerdfont": true,
