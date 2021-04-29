@@ -74,9 +74,7 @@ Plug 'jalvesaq/vimcmdline'                               " REPL plugin
 Plug 'puremourning/vimspector',  { 'branch': 'master' }  " Debugger plugin
 
 " Helper plugins for productivity
-Plug 'tpope/vim-dadbod'
-Plug 'kristijanhusak/vim-dadbod-ui'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install', 'for': ['markdown', 'vim-plug'] }
 Plug 'goerz/jupytext.vim'                                " Enable editing .ipynb ft as a script
 Plug 'tpope/vim-fugitive'                                " The premier Git plugin for Vim, it is illegal.
 Plug 'jackguo380/vim-lsp-cxx-highlight'                  " Syntax highlighting for C family
