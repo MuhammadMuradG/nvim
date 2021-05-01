@@ -345,22 +345,28 @@ endfunction
 function! SmartPath(buffer)
 	let l:cur_path = expand('%:p')=='' ? split(expand('#:p'), '/') : split(expand('%:p'), '/')
 	let l:path = split(a:buffer, '/')
-	if (l:path[0]=="home" && l:path[1]==$USER)
-		let l:smart_path = '~'
-		let l:cur_path = l:cur_path[2:]
-		let l:path = l:path[2:]
-	else
-		let l:smart_path = ''
-	endif
+	let l:smart_path = ''
+
 	for l:i in range(len(l:path))
-		if (len(l:smart_path)==0)
-			let l:smart_path = '.'.'/'.l:path[i]
-		elseif l:i == len(l:path)-1
-			let l:smart_path = l:smart_path . '/' . l:path[i]
-		elseif (index(l:cur_path, l:path[i]) >= 0)
+		if (l:path[i]=="home" && l:path[i+1]==$USER)
+			let l:smart_path = '~'
+			let l:cur_path = l:cur_path[i+2:]
+			let l:path = l:path[i+2:]
+			break
+		endif
+	endfor
+
+	for l:i in range(len(l:path))
+		if (index(l:cur_path, l:path[i])==i && len(l:path)<len(l:cur_path))
+			let l:smart_path = '..'
+		elseif (index(l:cur_path, l:path[i]) == i)
 			let l:smart_path = l:smart_path . '/' . l:path[i][0]
 		else
-			let l:smart_path = l:smart_path . '/' . l:path[i]
+			if a:buffer[0] == '/'
+				let l:smart_path = l:smart_path . '/' . l:path[i]
+			else
+				let l:smart_path = '.' . '/' . l:path[i]
+			endif
 			for l:s in range(i+1, len(l:path)-1)
 				if l:s == len(l:path)-1
 					let l:smart_path = l:smart_path . '/' . l:path[s]
@@ -371,6 +377,7 @@ function! SmartPath(buffer)
 			break
 		endif
 	endfor
+
 	return l:smart_path
 endfunction
 
