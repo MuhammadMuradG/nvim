@@ -322,7 +322,7 @@ function! CtrlSpaceBuffers() abort
 	if l:invisible_buffers == len(l:BufferList) || &filetype=='startify'
 		for l:unselected_buffer in BufferList
 			let l:modified = l:unselected_buffer['modified']==1 ? ' ' : ''
-			let l:SmartPath = SmartPath(l:unselected_buffer['text'])
+			let l:SmartPath = g:fileNameOnly==1 ? split(unselected_buffer['text'], '/')[-1] : SmartPath(l:unselected_buffer['text'])
 			call add(left_tab, l:unselected_buffer['index'].': '.l:SmartPath.l:modified)
 		endfor
 	else
@@ -331,7 +331,7 @@ function! CtrlSpaceBuffers() abort
 			\ split(l:selected_buffer['text'], '/')[-1].l:modified)
 		for l:unselected_buffer in l:BufferList
 			let l:modified = l:unselected_buffer['modified']==1 ? ' ' : ''
-			let l:SmartPath = SmartPath(unselected_buffer['text'])
+			let l:SmartPath = g:fileNameOnly==1 ? split(unselected_buffer['text'], '/')[-1] : SmartPath(l:unselected_buffer['text'])
 			if l:selected_buffer['index']<l:unselected_buffer['index']
 				call add(l:right_tab, l:unselected_buffer['index'].': '.l:SmartPath.l:modified)
 			elseif selected_buffer['index']>l:unselected_buffer['index']
@@ -454,6 +454,9 @@ augroup LightlineUpdate
 	autocmd User CocDiagnosticChange call lightline#update()
 	autocmd BufWritePost * silent mode
 augroup End
+
+let g:fileNameOnly=1
+nnoremap <C-f><C-n> :let g:fileNameOnly=xor(g:fileNameOnly, 1)<CR>
 
 let s:palette = g:lightline#colorscheme#gruvbox_material#palette
 if &background == 'dark'
