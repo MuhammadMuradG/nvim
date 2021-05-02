@@ -455,8 +455,8 @@ augroup LightlineUpdate
 	autocmd BufWritePost * silent mode
 augroup End
 
-let g:fileNameOnly=1
-nnoremap <C-f><C-n> :let g:fileNameOnly=xor(g:fileNameOnly, 1)<CR>
+let g:fileNameOnly=0
+nnoremap <silent><C-f><C-n> :let g:fileNameOnly=xor(g:fileNameOnly, 1)<bar>:mode<CR>
 
 let s:palette = g:lightline#colorscheme#gruvbox_material#palette
 if &background == 'dark'
