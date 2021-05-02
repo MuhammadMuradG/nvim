@@ -357,9 +357,7 @@ function! SmartPath(buffer)
 	endfor
 
 	for l:i in range(len(l:path))
-		if (index(l:cur_path, l:path[i])==i && len(l:path)<len(l:cur_path))
-			let l:smart_path = '..'
-		elseif (index(l:cur_path, l:path[i]) == i)
+		if (index(l:cur_path, l:path[i]) == i)
 			let l:smart_path = l:smart_path . '/' . l:path[i][0]
 		else
 			if a:buffer[0] == '/'
