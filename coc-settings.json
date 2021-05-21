@@ -96,7 +96,7 @@
 	"tabnine.priority": 10,
 
 	// Python
-	"python.pythonPath": "python3",
+	"python.pythonPath": "python3.7",
 	"python.analysis.autoImportCompletions": true,
 	"python.analysis.autoSearchPaths": true,
 	"python.analysis.diagnosticMode": "openFilesOnly",
