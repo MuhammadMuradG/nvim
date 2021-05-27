@@ -107,26 +107,20 @@
 	"python.linting.pylintEnabled": true,
 
 	// Latex
-	"latex.build.executable": "latexmk",
-	"latex.build.args": [
+	"texlab.build.executable": "latexmk",
+	"texlab.build.args": [
 		"-cd",
 		"-pdf",
+		"-lualatex",
 		"-interaction=nonstopmode",
 		"-synctex=1",
 		"%f"
 	],
-	// Use this for the packages that need lualatex engine
-	//"latex.build.args": [
-	//	"-cd",
-	//	"-lualatex",
-	//	"-interaction=nonstopmode",
-	//	"-synctex=1"
-	//],
-	"latex.build.onSave": true,
-	"latex.lint.onSave": true,
-	"latex.lint.onChange": true,
-	"latex.forwardSearch.executable": "/usr/bin/zathura",
-	"latex.forwardSearch.args": ["--synctex-forward", "%l:1:%f", "%p"],
+	"texlab.build.onSave": true,
+	"texlab.chktex.onOpenAndSave": true,
+	"texlab.chktex.onEdit": true,
+	"texlab.forwardSearch.executable": "zathura",
+	"texlab.forwardSearch.args": ["%p"],
 
 	// C/C++/Objective-C
 	"clangd.enabled": true,
