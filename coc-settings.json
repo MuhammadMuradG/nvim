@@ -8,7 +8,7 @@
 	"diagnostic.signPriority": 0,
 	"diagnostic.enableSign": true,
 	"diagnostic.errorSign": "✘",
-	"diagnostic.warningSign": "⚠",
+	"diagnostic.warningSign": "",
 	"diagnostic.infoSign": "𝓲",
 	"diagnostic.hintSign": "𝒉",
 	"diagnostic.enableHighlightLineNumber": false,
