@@ -510,7 +510,7 @@ let g:ascii = [
 			\ '                                                      ',
 			\ ]
 let g:startify_custom_header = 'startify#center(g:ascii + startify#fortune#boxed())'
-let g:startify_custom_footer = 'startify#center(startify#fortune#boxed())'
+"let g:startify_custom_footer = 'startify#center(startify#fortune#boxed())'
 
 
 "###############################################################################
@@ -685,7 +685,7 @@ let g:indentLine_enabled = 1
 let g:indentLine_char = '│'
 let g:indentLine_first_char = '│'
 let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_fileType = ['python', 'c']
+let g:indentLine_fileType = ['python', 'c', 'yaml']
 
 
 "###############################################################################
