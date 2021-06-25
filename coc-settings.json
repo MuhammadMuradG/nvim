@@ -101,12 +101,12 @@
 	"tabnine.priority": 10,
 
 	// Python
-	"python.pythonPath": "python3.7",
+	"python.pythonPath": "python3",
 	"python.analysis.autoImportCompletions": true,
 	"python.analysis.autoSearchPaths": true,
 	"python.analysis.diagnosticMode": "openFilesOnly",
 	"python.formatting.provider": "black",
-	"python.formatting.blackPath": "/usr/local/bin/black",
+	"python.formatting.blackPath": "black",
 	"python.formatting.blackArgs": [],
 	"python.linting.enabled": true,
 	"python.linting.pylintEnabled": true,
@@ -131,7 +131,7 @@
 	"clangd.enabled": true,
 	"clangd.checkUpdates": true,
 	"clangd.semanticHighlighting": true,
-	"clangd.path": "/usr/local/bin/clangd11",
+	"clangd.path": "clangd11",
 
 	// Manual Settings
 	"languageserver": {
