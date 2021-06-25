@@ -156,12 +156,6 @@ let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_cursor = 'auto'
 let g:gruvbox_material_palette = 'material'  " Available choice material, mix, original
 
-" To enable gruvbox-material color scheme for leaderf Plugin
-"let g:Lf_StlColorscheme = 'gruvbox_material'
-
-" To enable lightline color scheme
-"let g:lightline = {'colorscheme' : 'gruvbox_material'}
-
 " This configuration option should be placed before `colorscheme gruvbox-material`
 " available values: 'hard', 'medium'(default), 'soft'
 let g:gruvbox_material_background = 'soft'
