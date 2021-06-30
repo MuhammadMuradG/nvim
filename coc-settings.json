@@ -2,6 +2,7 @@
 	// Target to show hover information, default is floating window when possible.
 	// diagnostic related configurations
 	"diagnostic.enable": true,
+	"diagnostic.enableMessage": "always",
 	"diagnostic.level": "hint",
 	"diagnostic.refreshOnInsertMode": true,
 	"diagnostic.checkCurrentLine": false,
@@ -110,6 +111,8 @@
 	"python.formatting.blackArgs": [],
 	"python.linting.enabled": true,
 	"python.linting.pylintEnabled": true,
+	"python.linting.pylintPath": "pylint",
+	"python.linting.pylintUseMinimalCheckers": true,
 
 	// Latex
 	"texlab.build.executable": "latexmk",
