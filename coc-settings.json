@@ -110,9 +110,9 @@
 	"python.formatting.blackPath": "black",
 	"python.formatting.blackArgs": [],
 	"python.linting.enabled": true,
-	"python.linting.pylintEnabled": true,
+	"python.linting.flake8Enabled": true,
 	"python.linting.pylintPath": "pylint",
-	"python.linting.pylintUseMinimalCheckers": true,
+	"python.linting.pylintUseMinimalCheckers": false,
 
 	// Latex
 	"texlab.build.executable": "latexmk",
