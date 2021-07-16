@@ -91,7 +91,7 @@
 		"yml"
 	],
 
-	// Python
+	// Pyright, these settings adjusted for venv
 	"python.pythonPath": "python3",
 	"python.analysis.autoImportCompletions": true,
 	"python.analysis.autoSearchPaths": true,
