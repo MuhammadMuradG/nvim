@@ -1,8 +1,10 @@
 --------------------------------------------------------------------------------
 -- packer plugin Manager settings
 --------------------------------------------------------------------------------
-return require('packer').startup(
+local packer = require'packer'
+packer.startup(
 	function()
+		local use = use
 		-- Packer can manage itself
 		use 'wbthomason/packer.nvim'
 
