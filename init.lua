@@ -22,7 +22,7 @@ return require('packer').startup(
 		use 'sainnhe/edge'
 
 		-- Autocompletion plugins and LSP support
-		use {'noclide/coc.nvim', branch = 'release'}
+		use {'neoclide/coc.nvim', branch = 'release'}
 		use 'honza/vim-snippets'                                -- Provide snippets for coc-snippets
 
 		-- REPL and Debugger plugins
