@@ -6,8 +6,8 @@ vim.g.mapleader = '\\'
 
 -- noremap: non recursive normal, visual, select and operating-pending map
 vim.api.nvim_set_keymap('', '<C-c><C-c>', '"+y', {noremap = true})
-vim.api.nvim_set_keymap('', '<C-c><C-c>', '"+x', {noremap = true})
-vim.api.nvim_set_keymap('', '<C-c><C-c>', '"+p', {noremap = true})
+vim.api.nvim_set_keymap('', '<C-x><C-x>', '"+x', {noremap = true})
+vim.api.nvim_set_keymap('', '<C-v><C-v>', '"+p', {noremap = true})
 
 -- Navigate between opened windows
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-W>h', {noremap = true})

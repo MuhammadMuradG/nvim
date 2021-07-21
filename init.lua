@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 -- packer plugin Manager settings
 --------------------------------------------------------------------------------
-local packer = require'packer'
+local packer = require 'packer'
 packer.startup(
 	function()
 		local use = use
