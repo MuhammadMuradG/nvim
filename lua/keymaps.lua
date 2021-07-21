@@ -27,10 +27,10 @@ vim.api.nvim_set_keymap('t', '<kDown>', '<Down>', {noremap = true})
 vim.api.nvim_set_keymap('t', '<kRight>', '<Right>', {noremap = true})
 vim.api.nvim_set_keymap('t', '<kLeft>', '<Left>', {noremap = true})
 -- -- For insert, command-line and lang-Arg modes
-vim.api.nvim_set_keymap('l', '<kUp>', '<Up>', {noremap = true})
-vim.api.nvim_set_keymap('l', '<kDown>', '<Down>', {noremap = true})
-vim.api.nvim_set_keymap('l', '<kRight>', '<Right>', {noremap = true})
-vim.api.nvim_set_keymap('l', '<kLeft>', '<Left>', {noremap = true})
+vim.api.nvim_set_keymap('!', '<kUp>', '<Up>', {noremap = true})
+vim.api.nvim_set_keymap('!', '<kDown>', '<Down>', {noremap = true})
+vim.api.nvim_set_keymap('!', '<kRight>', '<Right>', {noremap = true})
+vim.api.nvim_set_keymap('!', '<kLeft>', '<Left>', {noremap = true})
 
 -- Go to next buffer, also you can use :bdelete in the following command
 vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', {noremap = true})
