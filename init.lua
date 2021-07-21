@@ -46,3 +46,7 @@ packer.startup(
 -- Set Options and Keymaps
 require("options")
 require("keymaps")
+
+
+-- source a vimscript file
+vim.cmd('source ~/.config/nvim/plugins-settings.vim')
