@@ -40,14 +40,14 @@ vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<S-Tab><Tab>', ':tabnext<CR>', {noremap = true})
 
 -- Delete the current buffer completely and close its window
-vim.api.nvim_set_keymap('n', '<silent><C-q><C-q>', ':bwipe!<bar>if bufname()==""<bar>q<bar>endif<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<C-q><C-q>', ':bwipe!<bar>if bufname()==""<bar>q<bar>endif<CR>', {noremap = true, silent = true})
 -- Close the buffer without changing the layout of windows
-vim.api.nvim_set_keymap('n', '<silent><C-f><C-f>', ':bp<bar>sp<bar>bn<bar>bwipe!<bar>if bufname()==""<bar>Startify<bar>endif<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<C-f><C-f>', ':bp<bar>sp<bar>bn<bar>bwipe!<bar>if bufname()==""<bar>Startify<bar>endif<CR>', {noremap = true, silent = true})
 -- Close the current tab
 vim.api.nvim_set_keymap('n', '<C-t><C-t>', ':tabclose<CR>', {noremap = true})
 
 -- Open terminal split
-vim.api.nvim_set_keymap('n', '<silent><Leader>t', ':belowright 10split +terminal<CR>', {})
+vim.api.nvim_set_keymap('n', '<Leader>t', ':belowright 10split +terminal<CR>', {silent = true})
 -- Set any terminal buffer into non listed buffers
 vim.cmd[[autocmd TermOpen * setlocal nobuflisted winfixheight]]
 -- Leave terminal mode
@@ -59,5 +59,4 @@ vim.api.nvim_set_keymap('t', '<C-q><C-q>', '<C-\\><C-n><bar>:q!<CR>', {noremap =
 vim.cmd[[autocmd BufWinEnter * silent! lcd %:p:h]]
 
 -- Shift + Tab does inverse tab
-vim.api.nvim_set_keymap('i', '<expr><S-TAB>', 'pumvisible() ? "\\<C-p>" : "\\<C-h>"', {noremap = true, expr = true})
- 
+vim.api.nvim_set_keymap('i', '<S-TAB>', 'pumvisible() ? "\\<C-p>" : "\\<C-h>"', {noremap = true, expr = true})
