@@ -49,14 +49,14 @@ vim.api.nvim_set_keymap('n', '<C-t><C-t>', ':tabclose<CR>', {noremap = true})
 -- Open terminal split
 vim.api.nvim_set_keymap('n', '<Leader>t', ':belowright 10split +terminal<CR>', {silent = true})
 -- Set any terminal buffer into non listed buffers
-vim.cmd[[autocmd TermOpen * setlocal nobuflisted winfixheight]]
+vim.cmd('autocmd TermOpen * setlocal nobuflisted winfixheight')
 -- Leave terminal mode
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true})
 -- Close terminal split
 vim.api.nvim_set_keymap('t', '<C-q><C-q>', '<C-\\><C-n><bar>:q!<CR>', {noremap = true})
 
 -- Set the path of current file as a working directory local for current window
-vim.cmd[[autocmd BufWinEnter * silent! lcd %:p:h]]
+vim.cmd('autocmd BufWinEnter * silent! lcd %:p:h')
 
 -- Shift + Tab does inverse tab
 vim.api.nvim_set_keymap('i', '<S-TAB>', 'pumvisible() ? "\\<C-p>" : "\\<C-h>"', {noremap = true, expr = true})
