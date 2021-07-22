@@ -57,17 +57,17 @@ packer.startup(
 require('options')
 require('keymaps')
 
--- Load vimscript config
-vim.cmd('source ~/.config/nvim/vim/coc-nvim.vim')
-vim.cmd('source ~/.config/nvim/vim/vim-startify.vim')
-vim.cmd('source ~/.config/nvim/vim/lightline.vim')
-vim.cmd('source ~/.config/nvim/vim/markdown.vim')
-vim.cmd('source ~/.config/nvim/vim/vimspector.vim')
-
 -- Load lua plugins configurations
 require('plugins-config/ts')
 require('plugins-config/other')
-require('plugins-config/blackline')
 require('plugins-config/colorizer')
+require('plugins-config/blackline')
 require('plugins-config/nvim-comment')
 require('plugins-config/AutoSave')
+
+-- Load vimscript config
+vim.cmd('source ~/.config/nvim/vim/lightline.vim')
+vim.cmd('source ~/.config/nvim/vim/vim-startify.vim')
+vim.cmd('source ~/.config/nvim/vim/coc-nvim.vim')
+vim.cmd('source ~/.config/nvim/vim/vimspector.vim')
+vim.cmd('source ~/.config/nvim/vim/markdown.vim')
