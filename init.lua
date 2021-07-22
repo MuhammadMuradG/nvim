@@ -42,7 +42,6 @@ packer.startup(
 
 		-- Helper plugins for productivity
 		use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
-		use 'goerz/jupytext.vim'                                -- Enable editing .ipynb ft as a script
 		use 'tpope/vim-fugitive'                                -- The premier Git plugin for Vim, it is illegal.
 		use 'jackguo380/vim-lsp-cxx-highlight'                  -- Syntax highlighting for C family
 		use 'norcalli/nvim-colorizer.lua'

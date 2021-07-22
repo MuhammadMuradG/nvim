@@ -385,15 +385,6 @@ endif
 
 
 "###############################################################################
-" jupytext settings
-"###############################################################################
-let g:jupytext_enable = 1
-let g:jupytext_command = 'jupytext'
-let g:jupytext_fmt = 'py'                         " Format to which to convert the ipynb data
-let g:jupytext_filetype_map = {'py': 'python'}    " A mapping of fmt to the &filetype of the buffer
-
-
-"###############################################################################
 " Vimcmdline settings
 "###############################################################################
 " vimcmdline mappings
