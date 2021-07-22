@@ -42,8 +42,8 @@ packer.startup(
 
 		-- Helper plugins for productivity
 		use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
+		use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 		use 'tpope/vim-fugitive'                                -- The premier Git plugin for Vim, it is illegal.
-		use 'jackguo380/vim-lsp-cxx-highlight'                  -- Syntax highlighting for C family
 		use 'norcalli/nvim-colorizer.lua'
 		use 'terrortylor/nvim-comment'
 		use 'AndrewRadev/splitjoin.vim'
@@ -61,6 +61,7 @@ require('keymaps')
 vim.cmd('source ~/.config/nvim/plugins-settings.vim')
 
 -- Load lua plugins configurations
-require('plugin/blackline')
-require('plugin/colorizer')
-require('plugin/nvim-comment')
+require('plugins-config/ts')
+require('plugins-config/blackline')
+require('plugins-config/colorizer')
+require('plugins-config/nvim-comment')
