@@ -47,7 +47,7 @@ packer.startup(
 		use 'norcalli/nvim-colorizer.lua'
 		use 'terrortylor/nvim-comment'
 		use 'AndrewRadev/splitjoin.vim'
-		use '907th/vim-auto-save'
+		use "Pocco81/AutoSave.nvim"
 		use 'lukas-reineke/indent-blankline.nvim'
 	end
 )
@@ -66,3 +66,4 @@ require('plugins-config/other')
 require('plugins-config/blackline')
 require('plugins-config/colorizer')
 require('plugins-config/nvim-comment')
+require('plugins-config/AutoSave')
