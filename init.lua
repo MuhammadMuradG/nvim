@@ -46,6 +46,7 @@ packer.startup(
 		use 'tpope/vim-fugitive'                                -- The premier Git plugin for Vim, it is illegal.
 		use 'jackguo380/vim-lsp-cxx-highlight'                  -- Syntax highlighting for C family
 		use 'scrooloose/nerdcommenter'
+		use 'AndrewRadev/splitjoin.vim'
 		use '907th/vim-auto-save'
 		use 'lukas-reineke/indent-blankline.nvim'
 	end
