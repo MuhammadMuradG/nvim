@@ -527,6 +527,13 @@ let g:auto_save_events = ["CursorHoldI", "CursorHold"]
 
 
 "###############################################################################
+" indent-blackline plugin settings
+"###############################################################################
+let g:indent_blankline_filetype_exclude = ['help', 'startify', "coc-explorer"]
+let g:indent_blankline_buftype_exclude = ['terminal']
+
+
+"###############################################################################
 " MarkDown settings
 "###############################################################################
 " set to 1, nvim will open the preview window after entering the markdown buffer
