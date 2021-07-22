@@ -2,6 +2,15 @@
 -- packer plugin Manager settings
 --------------------------------------------------------------------------------
 local packer = require 'packer'
+
+packer.init(
+	{
+		git = {
+			clone_timeout = 120, -- Timeout, in seconds, for git clones
+		},
+	}
+)
+
 packer.startup(
 	function()
 		local use = use
