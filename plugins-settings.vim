@@ -433,13 +433,6 @@ autocmd User CocExplorerOpenPost call s:explorer_inited()
 
 
 "###############################################################################
-" Auto-Save plugin settings
-"###############################################################################
-let g:auto_save = 1
-let g:auto_save_events = ["CursorHoldI", "CursorHold"]
-
-
-"###############################################################################
 " MarkDown settings
 "###############################################################################
 " set to 1, nvim will open the preview window after entering the markdown buffer
