@@ -37,7 +37,6 @@ packer.startup(
 		use 'honza/vim-snippets'                                -- Provide snippets for coc-snippets
 
 		-- REPL and Debugger plugins
-		use 'jalvesaq/vimcmdline'                               -- REPL plugin
 		use {'puremourning/vimspector', branch = 'master'}      -- Debugger plugin
 
 		-- Helper plugins for productivity
