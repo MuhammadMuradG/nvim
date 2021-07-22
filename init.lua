@@ -57,7 +57,11 @@ require('options')
 require('keymaps')
 
 -- Load vimscript config
-vim.cmd('source ~/.config/nvim/plugins-settings.vim')
+vim.cmd('source ~/.config/nvim/vim/coc-nvim.vim')
+vim.cmd('source ~/.config/nvim/vim/vim-startify.vim')
+vim.cmd('source ~/.config/nvim/vim/lightline.vim')
+vim.cmd('source ~/.config/nvim/vim/markdown.vim')
+vim.cmd('source ~/.config/nvim/vim/vimspector.vim')
 
 -- Load lua plugins configurations
 require('plugins-config/ts')

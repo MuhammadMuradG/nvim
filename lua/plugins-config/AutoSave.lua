@@ -1,4 +1,4 @@
-require("autosave").setup(
+require('autosave').setup(
 	{
 		enabled = true,
 		execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
