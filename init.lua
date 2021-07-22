@@ -46,6 +46,7 @@ packer.startup(
 		use 'norcalli/nvim-colorizer.lua'
 		use 'terrortylor/nvim-comment'
 		use 'AndrewRadev/splitjoin.vim'
+		use 'matze/vim-move'
 		use "Pocco81/AutoSave.nvim"
 		use 'lukas-reineke/indent-blankline.nvim'
 	end
