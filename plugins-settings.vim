@@ -385,16 +385,6 @@ endif
 
 
 "###############################################################################
-" NerdCommenter settings
-"###############################################################################
-"Default mapping for comment toggle: [count]|<Leader>|c<space>
-let g:NERDSpaceDelims = 0
-let g:NERDToggleCheckAllLines = 1
-let g:NERDCompactSexyComs = 1
-let g:NERDDefaultAlign = 'left'
-
-
-"###############################################################################
 " jupytext settings
 "###############################################################################
 let g:jupytext_enable = 1
@@ -524,13 +514,6 @@ autocmd User CocExplorerOpenPost call s:explorer_inited()
 "###############################################################################
 let g:auto_save = 1
 let g:auto_save_events = ["CursorHoldI", "CursorHold"]
-
-
-"###############################################################################
-" indent-blackline plugin settings
-"###############################################################################
-let g:indent_blankline_filetype_exclude = ['help', 'startify', "coc-explorer"]
-let g:indent_blankline_buftype_exclude = ['terminal']
 
 
 "###############################################################################

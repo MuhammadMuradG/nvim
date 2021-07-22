@@ -55,26 +55,13 @@ packer.startup(
 
 
 -- Set Options and Keymaps
-require("options")
-require("keymaps")
+require('options')
+require('keymaps')
 
-
--- Attaches to every FileType mode
-require('nvim_comment').setup(
-	{
-		-- Linters prefer comment and line to have a space in between markers
-		marker_padding = true,
-		-- should comment out empty or whitespace only lines
-		comment_empty = true,
-		-- Should key mappings be created
-		create_mappings = true,
-		-- Normal mode mapping left hand side
-		line_mapping = '<leader>c',
-		-- Visual/Operator mapping left hand side
-		operator_mapping = '<leader>cc'
-	}
-)
-
-
--- source a vimscript file
+-- Load vimscript config
 vim.cmd('source ~/.config/nvim/plugins-settings.vim')
+
+-- Load lua plugins configurations
+require('plugin/blackline')
+require('plugin/colorizer')
+require('plugin/nvim-comment')
