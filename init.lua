@@ -45,7 +45,7 @@ packer.startup(
 		use 'goerz/jupytext.vim'                                -- Enable editing .ipynb ft as a script
 		use 'tpope/vim-fugitive'                                -- The premier Git plugin for Vim, it is illegal.
 		use 'jackguo380/vim-lsp-cxx-highlight'                  -- Syntax highlighting for C family
-		use 'scrooloose/nerdcommenter'
+		use 'terrortylor/nvim-comment'
 		use 'AndrewRadev/splitjoin.vim'
 		use '907th/vim-auto-save'
 		use 'lukas-reineke/indent-blankline.nvim'
@@ -56,6 +56,23 @@ packer.startup(
 -- Set Options and Keymaps
 require("options")
 require("keymaps")
+
+
+-- Attaches to every FileType mode
+require('nvim_comment').setup(
+	{
+		-- Linters prefer comment and line to have a space in between markers
+		marker_padding = true,
+		-- should comment out empty or whitespace only lines
+		comment_empty = true,
+		-- Should key mappings be created
+		create_mappings = true,
+		-- Normal mode mapping left hand side
+		line_mapping = '<leader>c',
+		-- Visual/Operator mapping left hand side
+		operator_mapping = '<leader>cc'
+	}
+)
 
 
 -- source a vimscript file
