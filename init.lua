@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 -- packer plugin Manager settings
 --------------------------------------------------------------------------------
-local packer = require 'packer'
+local packer = require('packer')
 
 packer.init(
 	{
@@ -47,7 +47,7 @@ packer.startup(
 		use 'jackguo380/vim-lsp-cxx-highlight'                  -- Syntax highlighting for C family
 		use 'scrooloose/nerdcommenter'
 		use '907th/vim-auto-save'
-		use 'Yggdroot/indentLine'
+		use 'lukas-reineke/indent-blankline.nvim'
 	end
 )
 

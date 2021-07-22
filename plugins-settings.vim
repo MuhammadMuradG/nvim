@@ -527,17 +527,6 @@ let g:auto_save_events = ["CursorHoldI", "CursorHold"]
 
 
 "###############################################################################
-" Indent-Line plugin settings
-"###############################################################################
-let g:indentLine_setConceal = 1
-let g:indentLine_enabled = 1
-let g:indentLine_char = '│'
-let g:indentLine_first_char = '│'
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_fileType = ['python', 'c', 'yaml', 'markdown', 'javascript']
-
-
-"###############################################################################
 " MarkDown settings
 "###############################################################################
 " set to 1, nvim will open the preview window after entering the markdown buffer
