@@ -21,7 +21,7 @@ vim.opt.hidden = true
 vim.opt.termguicolors = true
 
 -- Enable tabline
---vim.opt.showtabline = 2
+vim.opt.showtabline = 2
 
 -- Auto word wrap to 80 characters
 --vim.opt.textwidth = 80
