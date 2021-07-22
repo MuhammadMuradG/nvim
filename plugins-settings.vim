@@ -1,24 +1,4 @@
 "###############################################################################
-" Gruvbox-material settings
-"###############################################################################
-" For dark or light scheme
-set background=dark                          " dark or light
-
-let g:gruvbox_material_background = 'soft'   " hard, soft or medium
-let g:gruvbox_material_enable_italic = 1
-let g:gruvbox_material_disable_italic_comment = 0
-let g:gruvbox_material_enable_bold = 1
-let g:gruvbox_material_cursor = 'auto'
-let g:gruvbox_material_palette = 'material'  " Available choice material, mix, original
-
-" This configuration option should be placed before `colorscheme gruvbox-material`
-" available values: 'hard', 'medium'(default), 'soft'
-let g:gruvbox_material_background = 'soft'
-
-colorscheme gruvbox-material                 " Available choice gruvbox-material, everforest, edge or gruvbox, solarized
-
-
-"###############################################################################
 " lightline.vim settings
 "###############################################################################
 " You can use the following lines to set color of the specific characters.
@@ -360,28 +340,6 @@ let g:ascii = [
 			\ ]
 let g:startify_custom_header = 'startify#center(g:ascii + startify#fortune#boxed())'
 "let g:startify_custom_footer = 'startify#center(startify#fortune#boxed())'
-
-
-"###############################################################################
-" vim-ctrlspace settings
-"###############################################################################
-let g:CtrlSpaceDefaultMappingKey = "<C-space> "   " Required in Neovim
-
-" Enable Tabline
-let g:CtrlSpaceUseTabline = 1
-
-" Detect your os and architecture faster
-if has('win32')
-	let s:vimfiles = '~/vimfiles'
-	let s:os   = 'windows'
-else
-	let s:vimfiles = '~/.vim'
-	if has('mac') || has('gui_macvim')
-		let s:os = 'darwin'
-	else
-		let s:os = 'linux'
-	endif
-endif
 
 
 "###############################################################################

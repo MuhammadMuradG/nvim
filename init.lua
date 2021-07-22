@@ -62,6 +62,7 @@ vim.cmd('source ~/.config/nvim/plugins-settings.vim')
 
 -- Load lua plugins configurations
 require('plugins-config/ts')
+require('plugins-config/other')
 require('plugins-config/blackline')
 require('plugins-config/colorizer')
 require('plugins-config/nvim-comment')
