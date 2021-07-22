@@ -49,11 +49,6 @@
 	"prettier.tabWidth": 4,
 	"prettier.useTabs": true,
 
-	// YAML configurations
-	"yaml.format.enable": true,
-	"yaml.format.bracketSpacing": true,
-	"yaml.format.printWidth": 80,
-
 	// spell checker configuration
 	"cSpell.showStatus": true,
 	"cSpell.enabledLanguageIds": [
@@ -95,10 +90,6 @@
 		"yaml",
 		"yml"
 	],
-
-	// TabNine Configurations for AI code completion
-	"tabnine.shortcut": "TN",
-	"tabnine.priority": 10,
 
 	// Python
 	"python.pythonPath": "python3",
