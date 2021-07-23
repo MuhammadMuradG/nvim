@@ -61,7 +61,7 @@ require('keymaps')
 require('plugins-config/ts')
 require('plugins-config/other')
 require('plugins-config/colorizer')
-require('plugins-config/blackline')
+require('plugins-config/blankline')
 require('plugins-config/nvim-comment')
 require('plugins-config/AutoSave')
 
