@@ -1,4 +1,4 @@
-# A Fancy Neovim Config
+## A Fancy Neovim Config with Lua
 This repo is my configuration for neovim text editor.
 
 ### Install
