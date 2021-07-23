@@ -21,20 +21,20 @@ packer.startup(
 		-- the following package will loaded only if file type is markdown.
 		-- use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install', ft = {'markdown'}}
 
-		-- Simple plugins can be specified as strings
-		use 'mhinz/vim-startify'
+		-- Autocompletion plugins and LSP support
+		use {'neoclide/coc.nvim', branch = 'release'}
+		use 'honza/vim-snippets'                                -- Provide snippets for coc-snippets
+
+		-- Appearance and themes
+		use 'itchyny/lightline.vim'
 		use 'vim-ctrlspace/vim-ctrlspace'
+		use 'mhinz/vim-startify'
 		use 'ryanoasis/vim-devicons'                            -- Provided graphical icon
 		use 'sainnhe/artify.vim'                                -- Provided customizable font
-		use 'itchyny/lightline.vim'
 		use 'sainnhe/gruvbox-material'
 		use 'morhetz/gruvbox'
 		use 'sainnhe/everforest'
 		use 'sainnhe/edge'
-
-		-- Autocompletion plugins and LSP support
-		use {'neoclide/coc.nvim', branch = 'release'}
-		use 'honza/vim-snippets'                                -- Provide snippets for coc-snippets
 
 		-- REPL and Debugger plugins
 		use {'puremourning/vimspector', branch = 'master'}      -- Debugger plugin
