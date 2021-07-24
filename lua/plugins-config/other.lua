@@ -15,7 +15,7 @@ vim.g.gruvbox_material_palette = 'material'      -- Available choice material, m
 -- available values: 'hard', 'medium'(default), 'soft'
 vim.g.gruvbox_material_bakground = 'soft'
 
-vim.cmd('colorscheme gruvbox-material')          -- Available choice gruvbox-material, everforest, edge or gruvbox, solarizedc
+vim.cmd('colorscheme gruvbox-material')          -- Available choice gruvbox-material, everforest, edge or gruvbox
 
 
 --------------------------------------------------------------------------------
