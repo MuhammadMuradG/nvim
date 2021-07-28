@@ -88,6 +88,7 @@
 		"typescript",
 		"typescriptreact",
 		"yaml",
+		"sh",
 		"yml"
 	],
 
