@@ -1,6 +1,3 @@
---------------------------------------------------------------------------------
--- Gruvbox-material settings
---------------------------------------------------------------------------------
 -- For dark or light scheme
 vim.opt.background = 'dark'                      -- dark or light
 
@@ -16,12 +13,3 @@ vim.g.gruvbox_material_palette = 'material'      -- Available choice material, m
 vim.g.gruvbox_material_bakground = 'soft'
 
 vim.cmd('colorscheme gruvbox-material')          -- Available choice gruvbox-material, everforest, edge or gruvbox
-
-
---------------------------------------------------------------------------------
--- vim-ctrlspace settings
---------------------------------------------------------------------------------
-vim.g.CtrlSpaceDefaultMappingKey = '<C-space> '  -- Required in Neovim
-
--- Enable Tabline
-vim.g.CtrlSpaceUseTabline = 1
