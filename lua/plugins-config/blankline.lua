@@ -1,12 +1,14 @@
-vim.g.indent_blankline_filetype_exclude = {
-	'help',
-	'startify',
-	'coc-explorer',
-	'packer'
-}
+require("indent_blankline").setup {
+    char = "│",
 
-vim.g.indent_blankline_buftype_exclude = {
-	'terminal'
-}
+    buftype_exclude = {
+		"terminal"
+	},
 
-vim.g.indent_blankline_char = '│'
+	filetype_exclude = {
+		'help',
+		'startify',
+		'coc-explorer',
+		'packer'
+	}
+}
