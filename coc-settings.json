@@ -22,7 +22,6 @@
 	"suggest.autoTrigger": "always",
 	"suggest.echodocSupport": false,
 
-	"coc.preferences.colorSupport": true,
 	"coc.preferences.enableFloatHighlight": true,
 	"coc.preferences.semanticTokensHighlights": true,
 
@@ -103,9 +102,9 @@
 	"python.linting.enabled": true,
 	"python.linting.flake8Enabled": true,
 	"python.linting.pylintPath": "pylint",
-	"python.linting.pylintUseMinimalCheckers": false,
 
 	// Latex
+	"texlab.path": "/usr/local/bin/texlab",
 	"texlab.build.executable": "latexmk",
 	"texlab.build.args": [
 		"-cd",
