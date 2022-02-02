@@ -38,9 +38,9 @@ vim.api.nvim_set_keymap('', 'k', 'gk',{noremap = true})
 vim.api.nvim_set_keymap('', 'j', 'gj', {noremap = true})
 vim.api.nvim_set_keymap('', '<kUp>', 'gk', {noremap = true})
 vim.api.nvim_set_keymap('', '<kDown>', 'gj', {noremap = true})
--- -- For insert, command-line and lang-Arg modes
-vim.api.nvim_set_keymap('!', '<kUp>', '<C-\\><C-O>gk', {noremap = true})
-vim.api.nvim_set_keymap('!', '<kDown>', '<C-\\><C-O>gj', {noremap = true})
+-- -- For insert mode
+vim.api.nvim_set_keymap('i', '<kUp>', '<C-\\><C-O>gk', {noremap = true})
+vim.api.nvim_set_keymap('i', '<kDown>', '<C-\\><C-O>gj', {noremap = true})
 
 -- Go to next buffer, also you can use :bdelete in the following command
 vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', {noremap = true})
