@@ -27,8 +27,8 @@ vim.opt.showtabline = 2
 --vim.opt.textwidth = 80
 --vim.opt.formatoptions = formatoptions + t
 
--- Show soft vertical line at 80+1
-vim.opt.colorcolumn = string.format(81)
+-- Show soft vertical line at 80
+vim.opt.colorcolumn = string.format(80)
 
 -- Show .... characters at warped line (sbr)
 vim.opt.showbreak = ".... "
