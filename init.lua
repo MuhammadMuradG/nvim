@@ -47,7 +47,7 @@ packer.startup(
 		use 'terrortylor/nvim-comment'
 		use 'AndrewRadev/splitjoin.vim'
 		use 'matze/vim-move'
-		use "Pocco81/AutoSave.nvim"
+		use "Pocco81/auto-save.nvim"
 		use 'lukas-reineke/indent-blankline.nvim'
 	end
 )
@@ -64,7 +64,7 @@ require('plugins-config/ctrlspace')
 require('plugins-config/colorizer')
 require('plugins-config/blankline')
 require('plugins-config/nvim-comment')
-require('plugins-config/AutoSave')
+require('plugins-config/auto-save')
 
 -- Load vimscript config
 vim.cmd('source ~/.config/nvim/vim/lightline.vim')
