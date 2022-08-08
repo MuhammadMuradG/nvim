@@ -605,14 +605,14 @@ set signcolumn=yes:2
 set updatetime=500
 
 " Map <tab> to trigger completion and navigate to the next item:
-function! s:check_back_space() abort
+function! CheckBackSpace() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : CheckBackSpace() ? "\<TAB>" : coc#refresh()
 
 " Using <CR> to confirm completion:
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use sd to show documentation in hover preview window.
 nnoremap <silent> sd :call CocAction('doHover')<CR>
