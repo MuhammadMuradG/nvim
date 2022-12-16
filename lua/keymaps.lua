@@ -1,6 +1,15 @@
 --------------------------------------------------------------------------------
 -- Remap Keys. Use :mapclear command to reset all key map to default
 --------------------------------------------------------------------------------
+-- Mapping for arabic support
+vim.api.nvim_set_keymap(
+	'n',
+	'<C-^><C-^>',
+	':set arabic! keymap=arabic! delcombine!<CR>', -- Using ! for enable toggling
+	{noremap = true}
+)
+vim.cmd('autocmd BufWinEnter * :set noarabic')
+
 -- Map leader
 vim.g.mapleader = '\\'
 
