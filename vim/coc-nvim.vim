@@ -72,4 +72,6 @@ function s:init_explorer()
 	autocmd BufWinEnter * if ((&filetype != 'coc-explorer') && (&filetype != 'list')) | call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "cd", "args": [getcwd()]}) | endif
 	autocmd BufEnter * call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "refresh"})
 endfunction
-autocmd User CocExplorerOpenPost call s:init_explorer()
+"autocmd User CocExplorerOpenPost call s:init_explorer()
+
+nnoremap <silent> <C-r>x :call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "cd", "args": [getcwd()]})<CR>
