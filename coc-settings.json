@@ -103,6 +103,9 @@
 	"python.linting.flake8Enabled": true,
 	"python.linting.pylintPath": "pylint",
 
+	// coc-snippets configurations
+	"snippets.ultisnips.pythonPrompt": false,
+
 	// Latex
 	"texlab.path": "/usr/local/bin/texlab",
 	"texlab.build.executable": "latexmk",
@@ -135,6 +138,5 @@
 			"args": ["--lsp"],
 			"filetypes": ["vhdl", "verilog", "systemverilog"]
 		}
-  },
-  "snippets.ultisnips.pythonPrompt": false
+	},
 }
