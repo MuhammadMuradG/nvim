@@ -135,5 +135,6 @@
 			"args": ["--lsp"],
 			"filetypes": ["vhdl", "verilog", "systemverilog"]
 		}
-	}
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }
