@@ -63,16 +63,13 @@ nmap <space>e :CocCommand explorer<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " Automatically open coc-explorer
-autocmd BufWinEnter * if (&filetype !=? 'coc-explorer' && &filetype !=? 'list') | exe 'let dir = getcwd()' | endif
 "autocmd VimEnter * if argc() != 0 | exe 'CocCommand explorer --no-focus ' . fnameescape(dir) | endif
-autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-focus ' . fnameescape(dir) | endif
+autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-focus ' . fnameescape(getcwd()) | endif
 
 " Sure the following script is called after CocExplorerOpenPost
-function s:explorer_inited()
-	let w:has_coc_explorer = v:true
-	autocmd BufWinLeave * let prevDir = getcwd()
-	autocmd BufWinEnter * if (exists('w:has_coc_explorer') && (&filetype != 'coc-explorer') && (&filetype != 'list') && (prevDir != dir)) | call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "cd", "args": [dir]}) | endif
+" to automatically refresh explorer current directory
+function s:init_explorer()
+	autocmd BufWinEnter * if ((&filetype != 'coc-explorer') && (&filetype != 'list')) | call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "cd", "args": [getcwd()]}) | endif
 	autocmd BufEnter * call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "refresh"})
 endfunction
-
-autocmd User CocExplorerOpenPost call s:explorer_inited()
+autocmd User CocExplorerOpenPost call s:init_explorer()
