@@ -37,8 +37,8 @@ nmap <silent> gc <Plug>(coc-declaration)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> cl <Plug>(coc-codelens-action)
-nmap <silent> caa <Plug>(coc-codeaction)
-nmap <silent> ca <Plug>(coc-codeaction-selected)<CR>
+nmap <silent> caa <Plug>(coc-codeaction-source)
+nmap <silent> ca <Plug>(coc-codeaction-cursor)
 nmap <silent> df <Plug>(coc-format)
 nmap <silent> <F2> <Plug>(coc-rename)
 

@@ -17,13 +17,8 @@
 	"diagnostic.virtualTextPrefix": "⎧Msg⎭❱ ",
 
 	// completion related configuration
-	"suggest.enablePreview": true,
-	"suggest.floatEnable": true,
+	"suggest.enableFloat": true,
 	"suggest.autoTrigger": "always",
-	"suggest.echodocSupport": false,
-
-	"coc.preferences.enableFloatHighlight": true,
-	"coc.preferences.semanticTokensHighlights": true,
 
 	"codeLens.enable": true,
 	"codeLens.separator": "‣",
@@ -102,6 +97,7 @@
 	"python.linting.enabled": true,
 	"python.linting.flake8Enabled": true,
 	"python.linting.pylintPath": "pylint",
+	"pyright.organizeimports.provider": "isort",
 
 	// coc-snippets configurations
 	"snippets.ultisnips.pythonPrompt": false,
@@ -126,7 +122,6 @@
 	// C/C++/Objective-C
 	"clangd.enabled": true,
 	"clangd.checkUpdates": true,
-	"clangd.semanticHighlighting": true,
 	"clangd.path": "clangd11",
 
 	// Manual Settings
