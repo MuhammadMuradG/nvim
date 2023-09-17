@@ -67,11 +67,12 @@ autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | end
 autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-focus ' . fnameescape(getcwd()) | endif
 
 " Sure the following script is called after CocExplorerOpenPost
-" to automatically refresh explorer current directory
+" to automatically refresh explorer to current directory
 function s:init_explorer()
 	autocmd BufWinEnter * if ((&filetype != 'coc-explorer') && (&filetype != 'list')) | call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "cd", "args": [getcwd()]}) | endif
 	autocmd BufEnter * call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "refresh"})
 endfunction
 "autocmd User CocExplorerOpenPost call s:init_explorer()
 
+" Manually refresh explorer to current directory of opened buffer
 nnoremap <silent> <C-r>x :call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "cd", "args": [getcwd()]})<CR>
