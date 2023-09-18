@@ -6,6 +6,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 -- Setup with some options
+vim.api.nvim_set_keymap('n', '<Space>e', ':NvimTreeToggle<CR>', {silent = true})
 require("nvim-tree").setup({
 	sort_by = "case_sensitive",
 	view = {
