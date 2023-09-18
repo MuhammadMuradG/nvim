@@ -21,6 +21,9 @@ packer.startup(
 		-- the following package will loaded only if file type is markdown.
 		-- use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install', ft = {'markdown'}}
 
+		-- Install directory explorer plugin
+		use {"nvim-tree/nvim-tree.lua", requires = {"nvim-tree/nvim-web-devicons"}}
+
 		-- Autocompletion plugins and LSP support
 		use {'neoclide/coc.nvim', branch = 'release'}
 		use 'honza/vim-snippets'                                -- Provide snippets for coc-snippets
@@ -59,6 +62,7 @@ require('keymaps')
 
 -- Load lua plugins configurations
 require('plugins-config/ts')
+require('plugins-config/nvim-tree')
 require('plugins-config/theme-config')
 require('plugins-config/ctrlspace')
 require('plugins-config/colorizer')

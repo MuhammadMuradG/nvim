@@ -55,24 +55,3 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 highlight link CocHighlightText RedrawDebugRecomposed
 highlight link CocHighlightRead RedrawDebugClear
 highlight link CocHighlightWrite RedrawDebugComposed
-
-" ============================== Coc-explorer =================================
-nmap <space>e :CocCommand explorer<CR>
-
-" Automatically close coc-explorer if quit from last buffer
-autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
-
-" Automatically open coc-explorer
-"autocmd VimEnter * if argc() != 0 | exe 'CocCommand explorer --no-focus ' . fnameescape(dir) | endif
-autocmd VimEnter * if argc() == 0 | Startify | exe 'CocCommand explorer --no-focus ' . fnameescape(getcwd()) | endif
-
-" Sure the following script is called after CocExplorerOpenPost
-" to automatically refresh explorer to current directory
-function s:init_explorer()
-	autocmd BufWinEnter * if ((&filetype != 'coc-explorer') && (&filetype != 'list')) | call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "cd", "args": [getcwd()]}) | endif
-	autocmd BufEnter * call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "refresh"})
-endfunction
-"autocmd User CocExplorerOpenPost call s:init_explorer()
-
-" Manually refresh explorer to current directory of opened buffer
-nnoremap <silent> <C-r>x :call CocActionAsync("runCommand", "explorer.doAction", 2, {"name": "cd", "args": [getcwd()]})<CR>

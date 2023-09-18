@@ -23,18 +23,6 @@
 	"codeLens.enable": true,
 	"codeLens.separator": "‣",
 
-	// Explorer
-	"explorer.toggle": true,
-	"explorer.focus": true,
-	"explorer.file.reveal.auto": true,
-	"explorer.position": "left",
-	"explorer.width": 30,
-	"explorer.file.cdCommand": false,
-	"explorer.buffer.tabOnly": true,
-	"explorer.previewAction.onHover": "labeling",
-	"explorer.icon.enableNerdfont": true,
-	"explorer.filename.colored.enable": true,
-
 	// Make vim select first item on completion
 	"suggest.noselect": true,
 
