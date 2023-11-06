@@ -29,5 +29,5 @@ let g:ascii = [
 			\ ' #     #  #######   #####   #     #  #     #  ######  ',
 			\ '                                                      ',
 			\ ]
-let g:startify_custom_header = 'startify#center(g:ascii + startify#fortune#boxed())'
+let g:startify_custom_header = 'startify#pad(g:ascii + startify#fortune#boxed())'
 "let g:startify_custom_footer = 'startify#center(startify#fortune#boxed())'
