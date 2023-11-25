@@ -11,20 +11,20 @@
 " You can use the following icons with concatnate with string.
 "    ⚡ ☰  Ɇ  ✎
 
-function! LinghtLineMode() abort
-	return &filetype!='coc-explorer' ? artify#convert(lightline#mode(), 'monospace') : SmallStatusLine()
+function! LightLineMode() abort
+	return &filetype!='NvimTree' ? artify#convert(lightline#mode(), 'monospace') : SmallStatusLine()
 endfunction
 
 function! LineInfo() abort
-	return &filetype!='coc-explorer' ? string((100*line('.'))/line('$')) . "\uf295" . " ☰ " . "  " . string(line('.')) . ":" . string(getcurpos()[2]) . ' ' : ''
+	return &filetype!='NvimTree' ? string((100*line('.'))/line('$')) . "\uf295" . " ☰ " . "  " . string(line('.')) . ":" . string(getcurpos()[2]) . ' ' : ''
 endfunction
 
 function! FileFormat() abort
-	return &filetype!='coc-explorer' ? &fileformat . " " . WebDevIconsGetFileFormatSymbol() : ''
+	return &filetype!='NvimTree' ? &fileformat . " " . WebDevIconsGetFileFormatSymbol() : ''
 endfunction
 
 function! FileType() abort
-	return &filetype!='coc-explorer' ? &filetype . " " . WebDevIconsGetFileTypeSymbol() : ''
+	return &filetype!='NvimTree' ? &filetype . " " . WebDevIconsGetFileTypeSymbol() : ''
 endfunction
 
 function! ErrorDiagnostic() abort
@@ -69,34 +69,34 @@ endfunction
 function! SmallStatusLine() abort
 	let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
 
-	if &readonly==0 && &modified==1
-		let filesstate = ' ➕'
-	elseif &readonly==0 && &modified==0
-		let filesstate = ''
+	if &modifiable==0
+		let filestate = ' '
 	else
-		let filesstate = ' '
+		let filestate = ''
 	endif
 
-	let enhancedfilename = WebDevIconsGetFileTypeSymbol().' '.filename.filesstate
-	
+	let enhancedfilename = WebDevIconsGetFileTypeSymbol().' '.filename.filestate
+
 	return enhancedfilename
 endfunction
 
 function! EnhancedFileName() abort
 	let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
 
-	if &readonly==0 && &modified==1
-		let filesstate = ' ➕'
-	elseif &readonly==0 && &modified==0
-		let filesstate = ''
+	if &readonly==0 && &modified==0 && &modifiable==1
+		let filestate = ''
+	elseif &readonly==0 && &modified==1 && &modifiable==1
+		let filestate = ' ➕'
 	else
-		let filesstate = ' '
+		let filestate = ' '
 	endif
 
 	if filename[0]=='[' && filename!='[No Name]'
 		let enhancedfilename = ''
+	elseif filename=="NvimTree_1"
+		let enhancedfilename = ''
 	else
-		let enhancedfilename = WebDevIconsGetFileTypeSymbol().' '.filename.filesstate
+		let enhancedfilename = WebDevIconsGetFileTypeSymbol().' '.filename.filestate
 	endif
 
 	return enhancedfilename
@@ -252,7 +252,7 @@ let g:lightline.component = {
 	\ }
 
 let g:lightline.component_function = {
-	\ 'mode': 'LinghtLineMode',
+	\ 'mode': 'LightLineMode',
 	\ 'lineinfo': 'LineInfo',
 	\ 'fileformat': 'FileFormat',
 	\ 'filetype': 'FileType',
