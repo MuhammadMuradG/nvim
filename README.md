@@ -18,3 +18,6 @@ This repo is my configuration for neovim text editor.
 6. Now you can install coc extensions:
 	- `CocInstall coc-pyright coc-git coc-snippets coc-clangd coc-json coc-pairs coc-spell-checker coc-word coc-vimlsp coc-lua`, refer to: [coc.nvim](https://github.com/neoclide/coc.nvim)
 7. To set `.vimspector.json` for `Vimspector` debugger plugin, put the `.vimspector.json` file in your project directory, after that the `Vimspector` will be ready to use for `Python`, `java`, `perl`, `C`.
+
+### Screenshots
+![Screenshot](./screenshots/screenshot.png)
