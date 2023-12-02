@@ -68,10 +68,10 @@ vim.cmd('source ~/.config/nvim/vim/markdown.vim')
 
 -- Load lua plugins configurations
 require('plugins-config/ts')
-require('plugins-config/nvim-tree')
 require('plugins-config/theme-config')
 require('plugins-config/ctrlspace')
 require('plugins-config/colorizer')
 require('plugins-config/blankline')
 require('plugins-config/nvim-comment')
 require('plugins-config/auto-save')
+require('plugins-config/nvim-tree')
