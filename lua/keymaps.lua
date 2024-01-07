@@ -5,7 +5,7 @@
 vim.api.nvim_set_keymap(
 	'n',
 	'<C-^><C-^>',
-	':set arabic! keymap=arabic! delcombine!<CR>', -- Using ! for enable toggling
+	':set arabic!<CR>', -- Using ! for enable toggling
 	{noremap = true}
 )
 vim.cmd('autocmd BufWinEnter * :set noarabic')
