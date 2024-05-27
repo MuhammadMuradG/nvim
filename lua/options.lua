@@ -37,13 +37,14 @@ vim.opt.showbreak = ".... "
 vim.opt.breakindentopt = {shift=4, min=40, sbr=true}
 
 -- Referenc for tab https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
+-- Referenc for tab https://threatpicture.com/tutorials/vim-tabstop-shiftwidth-softtabstop-expandtab/
 -- tabstop: Number of spaces that a <Tab> in the file counts for.
--- softtabstop: Number of spaces that a <Tab> counts in editing mode (if using
--- tab character in code).
--- shiftwidth: The size of an 'indent'. It's also measured in spaces
+-- softtabstop: Number of spaces that a <Tab> in the file counts for while edinting.
+-- shiftwidth: The size of an 'indent'. It's also measured in spaces.
+-- expandtab: It determines whether Vim should use spaces or tabs.
 vim.opt.list = true
 vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
-vim.opt.expandtab = false
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 vim.opt.listchars = {eol = '⏎', tab = '│ '}  -- You can use "eol:'¬', tab:'▸ '" and "eol:'⏎', tab:'| '"
