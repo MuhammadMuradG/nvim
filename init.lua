@@ -67,7 +67,7 @@ vim.cmd('source ~/.config/nvim/vim/vimspector.vim')
 vim.cmd('source ~/.config/nvim/vim/markdown.vim')
 
 -- Load lua plugins configurations
-require('plugins-config/ts')
+require('plugins-config/nvim-treesitter')
 require('plugins-config/theme-config')
 require('plugins-config/ctrlspace')
 require('plugins-config/colorizer')
