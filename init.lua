@@ -51,6 +51,7 @@ require('pckr').add{
 	'matze/vim-move';
 	"Pocco81/auto-save.nvim";
 	'lukas-reineke/indent-blankline.nvim';
+    'chrisbra/csv.vim';
 }
 
 -------------------------------------------------------------------------------
