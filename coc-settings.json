@@ -112,7 +112,7 @@
 	// C/C++/Objective-C
 	"clangd.enabled": true,
 	"clangd.checkUpdates": true,
-	"clangd.path": "clangd18",
+	"clangd.path": "clangd19",
 
 	// Manual Settings
 	"languageserver": {
