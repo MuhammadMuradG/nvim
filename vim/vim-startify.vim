@@ -20,14 +20,15 @@ endfunction
 
 " default boxed random quote, but not the ASCII art cow.
 let g:ascii = [
-			\ ' #     #  #######  #     #  ######      #     ######  ',
-			\ ' ##   ##  #     #  #     #  #     #    # #    #     # ',
-			\ ' # # # #  #     #  #     #  #     #   #   #   #     # ',
-			\ ' #  #  #  #     #  #     #  ######   #     #  #     # ',
-			\ ' #     #  #     #  #     #  #   #    #######  #     # ',
-			\ ' #     #  #     #  #     #  #    #   #     #  #     # ',
-			\ ' #     #  #######   #####   #     #  #     #  ######  ',
-			\ '                                                      ',
+			\ '                                             ',
+			\ ' #     #  #     #  ######      #     ######  ',
+			\ ' ##   ##  #     #  #     #    # #    #     # ',
+			\ ' # # # #  #     #  #     #   #   #   #     # ',
+			\ ' #  #  #  #     #  ######   #     #  #     # ',
+			\ ' #     #  #     #  #   #    #######  #     # ',
+			\ ' #     #  #     #  #    #   #     #  #     # ',
+			\ ' #     #   #####   #     #  #     #  ######  ',
+			\ '                                             ',
 			\ ]
 let g:startify_custom_header = 'startify#pad(g:ascii + startify#fortune#boxed())'
 "let g:startify_custom_footer = 'startify#center(startify#fortune#boxed())'
