@@ -1,127 +1,133 @@
 {
-	// Target to show hover information, default is floating window when possible.
-	// diagnostic related configurations
-	"diagnostic.enable": true,
-	"diagnostic.enableMessage": "always",
-	"diagnostic.level": "hint",
-	"diagnostic.refreshOnInsertMode": true,
-	"diagnostic.checkCurrentLine": false,
-	"diagnostic.signPriority": 0,
-	"diagnostic.enableSign": true,
-	"diagnostic.errorSign": "✘",
-	"diagnostic.warningSign": "",
-	"diagnostic.infoSign": "𝓲",
-	"diagnostic.hintSign": "𝒉",
-	"diagnostic.enableHighlightLineNumber": false,
-	"diagnostic.virtualText": false,
-	"diagnostic.virtualTextPrefix": "⎧Msg⎭❱ ",
+    // Target to show hover information, default is floating window when possible.
+    // diagnostic related configurations
+    "diagnostic.enable": true,
+    "diagnostic.enableMessage": "always",
+    "diagnostic.level": "hint",
+    "diagnostic.refreshOnInsertMode": true,
+    "diagnostic.checkCurrentLine": false,
+    "diagnostic.signPriority": 0,
+    "diagnostic.enableSign": true,
+    "diagnostic.errorSign": "✘",
+    "diagnostic.warningSign": "",
+    "diagnostic.infoSign": "𝓲",
+    "diagnostic.hintSign": "𝒉",
+    "diagnostic.enableHighlightLineNumber": false,
+    "diagnostic.virtualText": false,
+    "diagnostic.virtualTextPrefix": "⎧Msg⎭❱ ",
 
-	// completion related configuration
-	"suggest.enableFloat": true,
-	"suggest.autoTrigger": "always",
+    // completion related configuration
+    "suggest.enableFloat": true,
+    "suggest.autoTrigger": "always",
+    "codeLens.enable": true,
+    "codeLens.separator": "‣",
 
-	"codeLens.enable": true,
-	"codeLens.separator": "‣",
+    // Make vim select first item on completion
+    "suggest.noselect": true,
 
-	// Make vim select first item on completion
-	"suggest.noselect": true,
+    // LSP Configurations
+    // spell checker configuration
+    "cSpell.showStatus": true,
+    "cSpell.enabledLanguageIds": [
+        "vim",
+        "asciidoc",
+        "c",
+        "cpp",
+        "csharp",
+        "css",
+        "csv",
+        "dart",
+        "git-commit",
+        "go",
+        "handlebars",
+        "haskell",
+        "html",
+        "jade",
+        "java",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "jsonc",
+        "latex",
+        "tex",
+        "plaintex",
+        "less",
+        "markdown",
+        "rst",
+        "pandoc",
+        "php",
+        "plaintext",
+        "pug",
+        "python",
+        "restructuredtext",
+        "rust",
+        "scala",
+        "scss",
+        "text",
+        "typescript",
+        "typescriptreact",
+        "yaml",
+        "sh",
+        "yml"
+    ],
 
-	// LSP Configurations
-	// coc-Prettier configuration
-	"prettier.tabWidth": 4,
-	"prettier.useTabs": true,
+    // Python
+    "python.pythonPath": "python3.11",
+    "python.analysis.useLibraryCodeForTypes": true,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.diagnosticMode": "openFilesOnly",
+    "python.formatting.provider": "black",
+    "python.formatting.blackPath": "black",
+    "python.formatting.blackArgs": [],
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "pyright.organizeimports.provider": "isort",
 
-	// spell checker configuration
-	"cSpell.showStatus": true,
-	"cSpell.enabledLanguageIds": [
-		"vim",
-		"asciidoc",
-		"c",
-		"cpp",
-		"csharp",
-		"css",
-		"csv",
-		"dart",
-		"git-commit",
-		"go",
-		"handlebars",
-		"haskell",
-		"html",
-		"jade",
-		"java",
-		"javascript",
-		"javascriptreact",
-		"json",
-		"jsonc",
-		"latex",
-		"tex",
-		"plaintex",
-		"less",
-		"markdown",
-		"rst",
-		"pandoc",
-		"php",
-		"plaintext",
-		"pug",
-		"python",
-		"restructuredtext",
-		"rust",
-		"scala",
-		"scss",
-		"text",
-		"typescript",
-		"typescriptreact",
-		"yaml",
-		"sh",
-		"yml"
-	],
+    // coc-snippets configurations
+    "snippets.ultisnips.pythonPrompt": false,
 
-	// Python
-	"python.pythonPath": "python3.11",
-	"python.analysis.useLibraryCodeForTypes": true,
-	"python.analysis.autoImportCompletions": true,
-	"python.analysis.autoSearchPaths": true,
-	"python.analysis.diagnosticMode": "openFilesOnly",
-	"python.formatting.provider": "black",
-	"python.formatting.blackPath": "black",
-	"python.formatting.blackArgs": [],
-	"python.linting.enabled": true,
-	"python.linting.pylintEnabled": true,
-	"pyright.organizeimports.provider": "isort",
+    // Latex
+    "texlab.path": "/usr/local/bin/texlab",
+    "texlab.build.executable": "latexmk",
+    "texlab.build.args": [
+        "-cd",
+        "-pdf",
+        "-lualatex",
+        "-interaction=nonstopmode",
+        "-synctex=1",
+        "%f"
+    ],
+    "texlab.build.onSave": true,
+    "texlab.chktex.onOpenAndSave": true,
+    "texlab.chktex.onEdit": true,
+    "texlab.forwardSearch.executable": "evince",
+    "texlab.forwardSearch.args": [
+        "%p"
+    ],
 
-	// coc-snippets configurations
-	"snippets.ultisnips.pythonPrompt": false,
-
-	// Latex
-	"texlab.path": "/usr/local/bin/texlab",
-	"texlab.build.executable": "latexmk",
-	"texlab.build.args": [
-		"-cd",
-		"-pdf",
-		"-lualatex",
-		"-interaction=nonstopmode",
-		"-synctex=1",
-		"%f"
-	],
-	"texlab.build.onSave": true,
-	"texlab.chktex.onOpenAndSave": true,
-	"texlab.chktex.onEdit": true,
-	"texlab.forwardSearch.executable": "evince",
-	"texlab.forwardSearch.args": ["%p"],
-
-	// C/C++/Objective-C
-	"clangd.enabled": true,
-	"clangd.checkUpdates": true,
-	"clangd.path": "clangd19",
-
-	// Manual Settings
-	"languageserver": {
-		// HDL
-		"hdlChecker": {
-			// First run "pip3 install hdl-checker --user --upgrade"
-			"command": "hdl_checker",
-			"args": ["--lsp"],
-			"filetypes": ["vhdl", "verilog", "systemverilog"]
-		}
-	}
+    // C/C++/Objective-C
+    "clangd.enabled": true,
+    "clangd.checkUpdates": true,
+    "clangd.path": "clangd19",
+    // Manual Settings
+    "languageserver": {
+        // HDL
+        "hdlChecker": {
+            // First run "pip3 install hdl-checker --user --upgrade"
+            "command": "hdl_checker",
+            "args": [
+                "--lsp"
+            ],
+            "filetypes": [
+                "vhdl",
+                "verilog",
+                "systemverilog"
+            ]
+        }
+    },
+    "cSpell.userWords": [
+        "synthesiazble",
+        "synthesisiable"
+    ]
 }

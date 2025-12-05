@@ -44,6 +44,7 @@ require('pckr').add{
 	-- Helper plugins for productivity
 	{'iamcco/markdown-preview.nvim', run = 'cd app && npm install'};
 	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
+    'bpstahlman/txtfmt';
 	'tpope/vim-fugitive';                                -- The premier Git plugin for Vim, it is illegal.
 	'norcalli/nvim-colorizer.lua';
 	'numToStr/comment.nvim';
