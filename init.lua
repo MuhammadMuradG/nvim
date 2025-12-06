@@ -49,7 +49,7 @@ require('pckr').add{
 			require('render-markdown').setup({})
 			end
 	};
-	{ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' };
+	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
 	'tpope/vim-fugitive';                                -- The premier Git plugin for Vim, it is illegal.
 	'norcalli/nvim-colorizer.lua';
 	'numToStr/comment.nvim';
