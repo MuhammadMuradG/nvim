@@ -129,5 +129,6 @@
     "cSpell.userWords": [
         "synthesiazble",
         "synthesisiable"
-    ]
+    ],
+    "markdown-preview-enhanced.previewTheme": "vue.css"
 }

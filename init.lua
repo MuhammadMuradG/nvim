@@ -42,6 +42,7 @@ require('pckr').add{
 	{'puremourning/vimspector', branch = 'master'};      -- Debugger plugin
 
 	-- Helper plugins for productivity
+	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
 	{
 		'MeanderingProgrammer/render-markdown.nvim',
 		after = { 'nvim-treesitter' },
@@ -49,7 +50,6 @@ require('pckr').add{
 			require('render-markdown').setup({})
 			end
 	};
-	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
 	'tpope/vim-fugitive';                                -- The premier Git plugin for Vim, it is illegal.
 	'norcalli/nvim-colorizer.lua';
 	'numToStr/comment.nvim';
