@@ -51,13 +51,12 @@ require('pckr').add{
 			end
 	};
 	'tpope/vim-fugitive';                                -- The premier Git plugin for Vim, it is illegal.
-	'norcalli/nvim-colorizer.lua';
 	'numToStr/comment.nvim';
 	'AndrewRadev/splitjoin.vim';
 	'matze/vim-move';
 	"Pocco81/auto-save.nvim";
 	'lukas-reineke/indent-blankline.nvim';
-    'chrisbra/csv.vim';
+	'chrisbra/csv.vim';
 }
 
 -------------------------------------------------------------------------------
@@ -76,7 +75,6 @@ vim.cmd('source ~/.config/nvim/vim/vimspector.vim')
 require('plugins-config/nvim-treesitter')
 require('plugins-config/theme-config')
 require('plugins-config/ctrlspace')
-require('plugins-config/colorizer')
 require('plugins-config/blankline')
 require('plugins-config/comment_nvim')
 require('plugins-config/auto-save')
