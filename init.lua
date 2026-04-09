@@ -46,9 +46,6 @@ require('pckr').add{
 	{
 		'MeanderingProgrammer/render-markdown.nvim',
 		after = { 'nvim-treesitter' },
-		config = function()
-			require('render-markdown').setup({})
-			end
 	};
 	'tpope/vim-fugitive';                                -- The premier Git plugin for Vim, it is illegal.
 	'numToStr/comment.nvim';
@@ -73,6 +70,7 @@ vim.cmd('source ~/.config/nvim/vim/vimspector.vim')
 
 -- Load lua plugins configurations
 require('plugins-config/nvim-treesitter')
+require('plugins-config/render-markdown')
 require('plugins-config/theme-config')
 require('plugins-config/ctrlspace')
 require('plugins-config/blankline')
